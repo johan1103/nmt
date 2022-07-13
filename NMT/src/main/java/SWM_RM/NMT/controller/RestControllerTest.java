@@ -23,6 +23,7 @@ public class RestControllerTest {
     @GetMapping("/test/postDb")
     public String testController(@RequestBody DbTestDTO dbTestDTO){
         System.out.println(dbTestDTO.getName());
+        System.out.println(dbTestDTO.getAge());
         //return "ok";
         return dbTestRepository.createDbTest(dbTestDTO);
     }
