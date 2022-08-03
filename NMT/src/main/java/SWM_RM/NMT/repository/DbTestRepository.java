@@ -23,7 +23,6 @@ public class DbTestRepository {
         dbTest.setName(dbTestDTO.getName());
         em.persist(dbTest);
         DbTest returnDb = em.find(DbTest.class,dbTest.getId());
-        System.out.println("hello world");
         return returnDb.getName();
     }
 }
