@@ -3,6 +3,8 @@ package SWM_RM.NMT.repository;
 import SWM_RM.NMT.domain.DbTest;
 import SWM_RM.NMT.domain.dto.DbTestDTO;
 import lombok.extern.log4j.Log4j;
+import org.apache.naming.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
