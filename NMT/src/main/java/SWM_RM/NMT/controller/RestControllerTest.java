@@ -24,7 +24,6 @@ public class RestControllerTest {
     public String testController(@RequestBody DbTestDTO dbTestDTO){
         System.out.println(dbTestDTO.getName());
         System.out.println(dbTestDTO.getAge());
-        System.out.println("hello world!");
         //return "ok";
         return dbTestRepository.createDbTest(dbTestDTO);
     }
