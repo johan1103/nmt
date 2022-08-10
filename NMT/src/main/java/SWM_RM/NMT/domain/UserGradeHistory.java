@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 public class UserGradeHistory {
     @Id @GeneratedValue
-    private LocalDateTime id;
-    @Id @ManyToOne
+    private Long id;
+    @ManyToOne
     private User user;
     @Column
     private Double grade1;

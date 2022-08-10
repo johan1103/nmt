@@ -9,9 +9,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class UserUniversity {
-    @Id @ManyToOne
+    @Id
+    private Long id;
+    @ManyToOne
     private University university;
-    @Id @ManyToOne
+    @ManyToOne
     private User user;
     @Column
     private Boolean interest;

@@ -10,8 +10,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class UserGrade {
-    @Id @OneToOne
-    @JoinColumn
+    @Id
+    private Long id;
+    @JoinColumn @OneToOne
     private User user;
     @Column
     private Double totalEverage;
