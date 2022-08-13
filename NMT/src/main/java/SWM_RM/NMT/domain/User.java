@@ -9,14 +9,14 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Table(name = "Users")
 public class User {
     @Id @GeneratedValue
-    @Column(name = "user_id")
     private Long id;
     @Column
-    private String Nickname;
+    private String nickName;
     @Column
-    private String Strick;
+    private String strick;
     /*
     @OneToMany(mappedBy = "user")
     List<UserProblemSheet> userSheets;

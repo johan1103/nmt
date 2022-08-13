@@ -11,13 +11,7 @@ import javax.persistence.*;
 @Setter
 public class SolvedProblem {
     @EmbeddedId
-    private SolvedProblemPK solvedProblemId = new SolvedProblemPK();
-
-    @MapsId("problemId")
-    @ManyToOne
-    @JoinColumn(name = "problem_id")
-    private Problem problem;
-
+    private SolvedProblemPK solvedProblemId;
     @Column
     private Long solvedNum;
 }

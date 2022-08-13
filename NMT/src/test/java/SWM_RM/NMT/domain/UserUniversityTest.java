@@ -1,6 +1,7 @@
 package SWM_RM.NMT.domain;
 
 import SWM_RM.NMT.domain.compositeKey.UserUniversityPK;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +21,31 @@ public class UserUniversityTest {
     private EntityManager em;
     @Test
     @Transactional
-    @Rollback(value = true)
+    @Rollback(value = false)
     public void createUserUniversity() throws Exception {
         User user = new User();
         University university = new University();
         UserUniversity userUniversity = new UserUniversity();
         UserUniversityPK userUniversityPK = new UserUniversityPK();
-        user.setNickname("kimmm");
+        user.setNickName("kimmm");
         user.setStrick("12111");
         university.setUniversityName("InhaUniv");
-        userUniversity.setUniversity(university);
-        userUniversity.setUser(user);
+        userUniversityPK.setUniversity(university);
+        userUniversityPK.setUser(user);
+        userUniversity.setUniversityId(userUniversityPK);
         userUniversity.setInterest(true);
         em.persist(user);
         em.persist(university);
         em.persist(userUniversity);
 
-        em.flush();
-        em.clear();
+    }
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    public void userTest() throws Exception {
+        User user = new User();
+        user.setStrick("134");
+        user.setNickName("hello");
+        em.persist(user);
     }
 }

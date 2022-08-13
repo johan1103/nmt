@@ -11,17 +11,7 @@ import javax.persistence.*;
 @Setter
 public class UniversityProbType {
     @EmbeddedId
-    private UniversityProbTypePK universityProbTypeId = new UniversityProbTypePK();
-    @MapsId("universityId")
-    @ManyToOne
-    @JoinColumn(name = "university_id")
-    private University university= new University();
-
-    @MapsId("probTypeId")
-    @ManyToOne
-    @JoinColumn(name = "probType_id")
-    private ProbType probType = new ProbType();
-
+    private UniversityProbTypePK universityProbTypeId;
     @Column
     private Boolean interest;
 }

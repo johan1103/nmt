@@ -5,11 +5,16 @@ import SWM_RM.NMT.domain.University;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import java.io.Serializable;
 
 @Data
 @Embeddable
 public class UniversityProbTypePK implements Serializable {
-    private Long probTypeId;
-    private Long universityId;
+    @ManyToOne
+    private ProbType probType;
+    @ManyToOne
+    private University university;
 }

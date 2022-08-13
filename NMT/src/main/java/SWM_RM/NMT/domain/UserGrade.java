@@ -12,11 +12,7 @@ import javax.persistence.*;
 @Entity
 public class UserGrade {
     @EmbeddedId
-    private UserGradePK userGradeId = new UserGradePK();
-    @MapsId("userId")
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user = new User();
+    private UserGradePK userGradeId;
     @Column
     private Double totalEverage;
     @Column
