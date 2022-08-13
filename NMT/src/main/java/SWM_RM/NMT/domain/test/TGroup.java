@@ -15,6 +15,6 @@ public class TGroup {
     @Column
     private String name;
     @OneToMany(mappedBy = "tGroup")
-    private List<TGroup> tGroupList;
+    private List<TTeam2> tGroupList;
 
 }

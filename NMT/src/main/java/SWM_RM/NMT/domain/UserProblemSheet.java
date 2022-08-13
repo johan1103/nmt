@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -23,4 +24,20 @@ public class UserProblemSheet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Problem problem;
+    @Column
+    private LocalDateTime createTime;
+
+    @Column
+    private Double totalEverage;
+    @Column
+    private Double grade1;
+    @Column
+    private Double grade2;
+    @Column
+    private Double grade3;
+    @Column
+    private Double grade4;
+    @Column
+    private Double grade5;
+
 }

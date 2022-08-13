@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 public class UserGradeHistory {
     @Id @GeneratedValue
     private Long id;
+    @Column
+    private LocalDateTime updateTime;
     @ManyToOne
     private User user;
     @Column

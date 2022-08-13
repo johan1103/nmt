@@ -29,9 +29,8 @@ public class UserUniversityTest {
         user.setNickname("kimmm");
         user.setStrick("12111");
         university.setUniversityName("InhaUniv");
-        userUniversityPK.setUniversityId(university);
-        userUniversityPK.setUserId(user);
-        userUniversity.setUniversityPK(userUniversityPK);
+        userUniversity.setUniversity(university);
+        userUniversity.setUser(user);
         userUniversity.setInterest(true);
         em.persist(user);
         em.persist(university);
@@ -39,7 +38,5 @@ public class UserUniversityTest {
 
         em.flush();
         em.clear();
-
-        System.out.println();
     }
 }

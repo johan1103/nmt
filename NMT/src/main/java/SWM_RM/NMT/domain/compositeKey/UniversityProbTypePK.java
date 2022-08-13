@@ -1,7 +1,7 @@
 package SWM_RM.NMT.domain.compositeKey;
 
+import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.University;
-import SWM_RM.NMT.domain.User;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class UserUniversityPK implements Serializable {
+public class UniversityProbTypePK implements Serializable {
+    private Long probTypeId;
     private Long universityId;
-    private Long userId;
 }

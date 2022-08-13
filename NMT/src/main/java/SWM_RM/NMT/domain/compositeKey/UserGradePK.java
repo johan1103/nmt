@@ -1,6 +1,5 @@
 package SWM_RM.NMT.domain.compositeKey;
 
-import SWM_RM.NMT.domain.University;
 import SWM_RM.NMT.domain.User;
 import lombok.Data;
 
@@ -9,7 +8,6 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class UserUniversityPK implements Serializable {
-    private Long universityId;
+public class UserGradePK implements Serializable {
     private Long userId;
 }

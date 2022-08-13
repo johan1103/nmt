@@ -1,5 +1,6 @@
 package SWM_RM.NMT.domain;
 
+import SWM_RM.NMT.domain.compositeKey.UniversityProbTypePK;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class UniversityProbType {
-    @Id @GeneratedValue
-    private Long id;
+    @EmbeddedId
+    private UniversityProbTypePK universityProbTypeId = new UniversityProbTypePK();
+    @MapsId("universityId")
     @ManyToOne
-    private University university;
+    @JoinColumn(name = "university_id")
+    private University university= new University();
+
+    @MapsId("probTypeId")
     @ManyToOne
-    private ProbType probType;
+    @JoinColumn(name = "probType_id")
+    private ProbType probType = new ProbType();
+
     @Column
     private Boolean interest;
 }

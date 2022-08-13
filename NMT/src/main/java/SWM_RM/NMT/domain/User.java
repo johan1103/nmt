@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 public class User {
     @Id @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
     @Column
     private String Nickname;
