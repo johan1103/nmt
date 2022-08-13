@@ -1,5 +1,6 @@
 package SWM_RM.NMT.domain;
 
+import SWM_RM.NMT.domain.compositeKey.UserUniversityPK;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class UserUniversity {
-    @Id
-    private Long id;
-    @ManyToOne
-    private University university;
-    @ManyToOne
-    private User user;
+    @EmbeddedId
+    private UserUniversityPK universityPK;
     @Column
     private Boolean interest;
 }
