@@ -29,4 +29,6 @@ public class Problem {
     private Double CompetetionRate;
     @Column
     private String probType;
+    @Column
+    private Long recommendedSubmissionSize;
 }
