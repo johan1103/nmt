@@ -37,6 +37,7 @@ public class RestControllerTest {
         prototypeSheetDTO.setExperssionScore(2);
         prototypeSheetDTO.setTotalScore(5);
         prototypeSheetDTO.setVocabularyScore(3);
+        System.out.println(essayContent);
         return prototypeSheetDTO;
     }
 
