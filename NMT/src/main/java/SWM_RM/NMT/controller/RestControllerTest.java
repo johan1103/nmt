@@ -2,10 +2,13 @@ package SWM_RM.NMT.controller;
 
 import SWM_RM.NMT.domain.DbTest;
 import SWM_RM.NMT.domain.dto.DbTestDTO;
+import SWM_RM.NMT.domain.dto.PrototypeSheetDTO;
 import SWM_RM.NMT.repository.DbTestRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +29,15 @@ public class RestControllerTest {
         System.out.println(dbTestDTO.getAge());
         //return "ok";
         return dbTestRepository.createDbTest(dbTestDTO);
+    }
+    @PostMapping("/submit")
+    public PrototypeSheetDTO tmpProblemSheetController(String essayContent){
+        PrototypeSheetDTO prototypeSheetDTO = new PrototypeSheetDTO();
+        prototypeSheetDTO.setLogicScore(1);
+        prototypeSheetDTO.setExperssionScore(2);
+        prototypeSheetDTO.setTotalScore(5);
+        prototypeSheetDTO.setVocabularyScore(3);
+        return prototypeSheetDTO;
     }
 
 }
