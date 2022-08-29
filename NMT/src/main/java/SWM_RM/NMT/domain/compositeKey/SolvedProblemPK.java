@@ -9,6 +9,6 @@ import java.io.Serializable;
 @Data
 @Embeddable
 public class SolvedProblemPK implements Serializable {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Problem problem;
 }

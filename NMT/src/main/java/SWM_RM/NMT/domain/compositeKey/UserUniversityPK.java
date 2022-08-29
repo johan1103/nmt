@@ -4,17 +4,14 @@ import SWM_RM.NMT.domain.University;
 import SWM_RM.NMT.domain.User;
 import lombok.Data;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Embeddable
 public class UserUniversityPK implements Serializable {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private University university;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }
