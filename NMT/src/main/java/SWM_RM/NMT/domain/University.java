@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 public class University {
     @Id @GeneratedValue
-    @Column(name = "university_id")
+    @Column
     private Long id;
     @Column
     private String universityName;

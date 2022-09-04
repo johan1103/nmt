@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,12 +26,26 @@ public class ProblemRepository {
     }
 
     public List<Problem> findProblems(University universityFilter, ProbType probTypeFilter,
-                                      Long Year){
+                                      Long year){
+        System.out.println("Repository UnivName "+universityFilter.getUniversityName());
         String typeNameFilter = probTypeFilter.getTypeName();
         String universityNameFilter = universityFilter.getUniversityName();
-        return em.createQuery("select p from Problem p join fetch ProbType pt join fetch University u" +
-                " where pt.typeName =: typeNameFilter and u.universityName =: universityNameFilter",Problem.class)
+        System.out.println(universityNameFilter);
+        System.out.println(typeNameFilter);
+        String sen = new String();
+        sen = "problem 1 in Inha";
+        return em.createQuery("select p from Problem p join fetch p.probType join fetch p.university" +
+                " where p.probType.typeName =: typeName and p.university.universityName =: universityName",Problem.class)
+                .setParameter("typeName",typeNameFilter)
+                .setParameter("universityName",universityNameFilter)
                 .getResultList();
+
+        /*
+        return em.createQuery("select p from Problem p join fetch p.probType join fetch p.university" +
+                        " where p.probTitle =: senParam",Problem.class)
+                .setParameter("senParam",sen)
+                .getResultList();
+         */
     }
 
 

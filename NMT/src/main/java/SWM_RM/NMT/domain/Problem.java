@@ -26,8 +26,8 @@ public class Problem {
     private Double CompetetionRate;
     @Column
     private Long recommendedSubmissionSize;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private University university;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private ProbType probType;
 }
