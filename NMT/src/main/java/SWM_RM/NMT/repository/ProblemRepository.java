@@ -25,27 +25,17 @@ public class ProblemRepository {
         return findProblem.getId();
     }
 
-    public List<Problem> findProblems(University universityFilter, ProbType probTypeFilter,
-                                      Long year){
-        System.out.println("Repository UnivName "+universityFilter.getUniversityName());
-        String typeNameFilter = probTypeFilter.getTypeName();
-        String universityNameFilter = universityFilter.getUniversityName();
+    public List<Problem> findProblems(String universityNameFilter, String typeNameFilter,
+                                      Long yearFilter){
         System.out.println(universityNameFilter);
         System.out.println(typeNameFilter);
-        String sen = new String();
-        sen = "problem 1 in Inha";
         return em.createQuery("select p from Problem p join fetch p.probType join fetch p.university" +
-                " where p.probType.typeName =: typeName and p.university.universityName =: universityName",Problem.class)
+                " where p.probType.typeName =: typeName and p.university.universityName =: universityName" +
+                        " and p.createYear =: year" ,Problem.class)
                 .setParameter("typeName",typeNameFilter)
                 .setParameter("universityName",universityNameFilter)
+                .setParameter("year",yearFilter)
                 .getResultList();
-
-        /*
-        return em.createQuery("select p from Problem p join fetch p.probType join fetch p.university" +
-                        " where p.probTitle =: senParam",Problem.class)
-                .setParameter("senParam",sen)
-                .getResultList();
-         */
     }
 
 

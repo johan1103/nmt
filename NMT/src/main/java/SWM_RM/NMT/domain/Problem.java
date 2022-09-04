@@ -21,9 +21,9 @@ public class Problem {
     @Column
     private String probExp;
     @Column
-    private LocalDateTime CreateDate;
+    private Long createYear;
     @Column
-    private Double CompetetionRate;
+    private Double competetionRate;
     @Column
     private Long recommendedSubmissionSize;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

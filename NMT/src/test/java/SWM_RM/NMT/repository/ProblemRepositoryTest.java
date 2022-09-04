@@ -3,6 +3,7 @@ package SWM_RM.NMT.repository;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.service.ProblemService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ProblemRepositoryTest {
     private EntityManager em;
 
     @Autowired
+    private ProblemService problemService;
+    @Autowired
     private ProbTypeRepository probTypeRepository;
     @Autowired
     private ProblemRepository problemRepository;
@@ -42,8 +45,16 @@ public class ProblemRepositoryTest {
         problem.setUniversity(university);
         problem.setProbType(probType);
         problem.setProbTitle("problem 1 in Inha");
+        problem.setCreateYear(1999L);
         em.persist(problem);
-        System.out.println(problem.getId());
+
+        Problem problem2 = new Problem();
+        problem2.setUniversity(university);
+        problem2.setProbType(probType);
+        problem2.setProbTitle("problem 2 in Inha");
+        problem2.setCreateYear(1999L);
+        em.persist(problem2);
+
     }
 
     @Test
@@ -53,7 +64,7 @@ public class ProblemRepositoryTest {
         ProbType probType = new ProbType();
         university.setUniversityName("Inha");
         probType.setTypeName("Impl");
-        List<Problem> list = problemRepository.findProblems(university,probType,1999L);
+        List<Problem> list = problemService.findList(university.getUniversityName(),probType.getTypeName(),1999L);
         System.out.println("------------------");
         for(Problem p : list){
             System.out.println("p : "+p.getProbTitle());
