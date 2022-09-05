@@ -24,6 +24,10 @@ public class ProblemRepository {
         Problem findProblem = em.find(Problem.class,problem.getId());
         return findProblem.getId();
     }
+    public Problem testPaper(Long problemId){
+        Problem findProblem = em.find(Problem.class,problemId);
+        return findProblem;
+    }
 
     public List<Problem> findProblems(String universityNameFilter, String typeNameFilter,
                                       Long yearFilter){

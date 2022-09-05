@@ -72,4 +72,14 @@ public class ProblemRepositoryTest {
         System.out.println("------------------");
     }
 
+    @Test
+    public void findTestPaperTest(){
+        Problem newProblem = new Problem();
+        newProblem.setProbTitle("문제이름");
+        problemRepository.createProblem(newProblem);
+        em.flush();
+        Problem problem = em.find(Problem.class,newProblem.getId());
+        System.out.println(problem.getProbTitle());
+    }
+
 }
