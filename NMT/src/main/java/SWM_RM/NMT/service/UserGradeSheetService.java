@@ -33,6 +33,8 @@ public class UserGradeSheetService {
         return userGradeSheetRepository.findUserGradeSheetById(userGradeSheetId);
     }
 
-    public List<UserGradeSheet> findUserGradeSheetListByProblemService()
+    public List<UserGradeSheet> findUserGradeSheetListByProblemService(Long problemId){
+        return userGradeSheetRepository.findUserGradeSheetListByProblemRepository(problemId);
+    }
 
 }

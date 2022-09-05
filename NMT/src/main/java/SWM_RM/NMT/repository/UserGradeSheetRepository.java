@@ -40,7 +40,7 @@ public class UserGradeSheetRepository {
     public UserGradeSheet findUserGradeSheetById(Long userGradeSheetId){
         return em.find(UserGradeSheet.class,userGradeSheetId);
     }
-    public List<UserGradeSheet> findUserGradeSheetListByProblemService(Long problemId){
+    public List<UserGradeSheet> findUserGradeSheetListByProblemRepository(Long problemId){
         return em.createQuery("select gs from UserGradeSheet gs join fetch gs.problem" +
                 " where gs.problem.id =: probId",UserGradeSheet.class)
                 .setParameter("probId",problemId)
