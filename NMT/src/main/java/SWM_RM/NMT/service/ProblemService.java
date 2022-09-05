@@ -19,4 +19,8 @@ public class ProblemService {
     public List<Problem> findList(String universityName, String probTypeName, Long year){
         return pr.findProblems(universityName,probTypeName,year);
     }
+
+    public Problem findById(Long problemId){
+        return pr.findProblemById(problemId);
+    }
 }

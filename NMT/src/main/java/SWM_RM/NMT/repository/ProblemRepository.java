@@ -24,10 +24,6 @@ public class ProblemRepository {
         Problem findProblem = em.find(Problem.class,problem.getId());
         return findProblem.getId();
     }
-    public Problem testPaper(Long problemId){
-        Problem findProblem = em.find(Problem.class,problemId);
-        return findProblem;
-    }
 
     public Problem findProblemById(Long problemId){
         return em.find(Problem.class,problemId);
@@ -44,6 +40,10 @@ public class ProblemRepository {
                 .setParameter("universityName",universityNameFilter)
                 .setParameter("year",yearFilter)
                 .getResultList();
+    }
+
+    public String getBestTextRepository(Long problemId){
+        return em.find(Problem.class,problemId).getBestText();
     }
 
 
