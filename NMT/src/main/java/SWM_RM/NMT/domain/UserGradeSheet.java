@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class UserProblemSheet {
+public class UserGradeSheet {
     @Id @GeneratedValue
     private Long id;
     @Column

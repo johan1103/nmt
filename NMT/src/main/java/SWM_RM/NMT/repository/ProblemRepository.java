@@ -29,6 +29,10 @@ public class ProblemRepository {
         return findProblem;
     }
 
+    public Problem findProblemById(Long problemId){
+        return em.find(Problem.class,problemId);
+    }
+
     public List<Problem> findProblems(String universityNameFilter, String typeNameFilter,
                                       Long yearFilter){
         System.out.println(universityNameFilter);
