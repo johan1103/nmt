@@ -4,6 +4,7 @@ import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.User;
 import SWM_RM.NMT.domain.UserGradeSheet;
 import SWM_RM.NMT.domain.dto.ScoreSet;
+import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
 import SWM_RM.NMT.repository.ProblemRepository;
 import SWM_RM.NMT.repository.UserGradeSheetRepository;
 import SWM_RM.NMT.repository.UserRepository;
@@ -26,6 +27,8 @@ public class UserGradeSheetService {
         Problem problem = problemRepository.findProblemById(problemId);
         ScoreSet scoreSet = scoreSetService.gradingScore();
         Long gradeSheetId = userGradeSheetRepository.createGradeSheet(problem, user, scoreSet, text);
+        //유저 평균 점수 업데이트 함수
+        UserAverageGradeDTO userAverageGradeDTO = userGradeSheetRepository.updateUserAverageGrade(userId);
         return gradeSheetId;
     }
 

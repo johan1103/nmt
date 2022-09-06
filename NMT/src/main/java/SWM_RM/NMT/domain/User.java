@@ -17,6 +17,8 @@ public class User {
     private String nickName;
     @Column
     private String strick;
+    @OneToOne
+    private UserGrade userGrade;
     /*
     @OneToMany(mappedBy = "user")
     List<UserProblemSheet> userSheets;

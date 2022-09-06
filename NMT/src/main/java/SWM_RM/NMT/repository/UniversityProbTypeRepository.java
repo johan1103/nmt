@@ -12,10 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UniversityProbTypeRepository {
     private final EntityManager em;
-    public List<ProbType> findUniversityProbTypeList(University university){
+    public List<ProbType> findUniversityProbTypeList(String universityName){
         return em.createQuery("select up.universityProbTypeId.probType from UniversityProbType up join up.universityProbTypeId.probType pt" +
                 " where up.universityProbTypeId.university.universityName =: univName and up.interest = TRUE ",ProbType.class)
-                .setParameter("univName",university.getUniversityName())
+                .setParameter("univName",universityName)
                 .getResultList();
     }
 }
