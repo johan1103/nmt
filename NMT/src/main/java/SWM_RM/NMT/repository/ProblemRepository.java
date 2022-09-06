@@ -3,6 +3,7 @@ package SWM_RM.NMT.repository;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.domain.UserGradeSheet;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -42,8 +44,16 @@ public class ProblemRepository {
                 .getResultList();
     }
 
-    public String getBestTextRepository(Long problemId){
-        return em.find(Problem.class,problemId).getBestText();
+    public HashSet<Problem> findUserProblemList(Long userId){
+        List<UserGradeSheet> userGradeSheets = em.createQuery("select ug from UserGradeSheet ug join fetch " +
+                "ug.problem join ug.user where ug.user.id =: userId", UserGradeSheet.class)
+                .setParameter("userId",userId)
+                .getResultList();
+        HashSet<Problem> problems = new HashSet<Problem>();
+        for(UserGradeSheet userGradeSheet : userGradeSheets){
+            problems.add(userGradeSheet.getProblem());
+        }
+        return problems;
     }
 
 
