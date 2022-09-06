@@ -11,7 +11,9 @@ import javax.persistence.EntityManager;
 public class UniversityRepository {
     private final EntityManager em;
 
-    public Long createUniversity(University university){
+    public Long createUniversity(String universityName){
+        University university = new University();
+        university.setUniversityName(universityName);
         em.persist(university);
         return em.find(University.class,university.getId()).getId();
     }

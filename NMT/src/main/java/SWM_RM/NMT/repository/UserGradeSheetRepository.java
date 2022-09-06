@@ -53,7 +53,7 @@ public class UserGradeSheetRepository {
 
 
 
-        
+
 
         //임의로 만든거
         UserAverageGradeDTO userAverageGradeDTO = new UserAverageGradeDTO();
