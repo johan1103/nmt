@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,6 +44,7 @@ public class UserGradeSheetRepository {
         return em.find(UserGradeSheet.class,userGradeSheetId);
     }
     public List<UserGradeSheet> findUserGradeSheetListByProblemRepository(Long problemId){
+        //현재는 유저들의 모든 성적표임, 추후에 각 유저당 제일 좋은 성적표 하나만 산출해서 통계를 내도록 작성해야함.
         return em.createQuery("select gs from UserGradeSheet gs join fetch gs.problem" +
                 " where gs.problem.id =: probId",UserGradeSheet.class)
                 .setParameter("probId",problemId)
@@ -50,10 +52,11 @@ public class UserGradeSheetRepository {
     }
     public UserAverageGradeDTO findUniversityAverageGrade(Long universityId){
         //밑의 코드처럼 JPQL로 학교를 희망하는 학샐들만 가져오는 쿼리문 가져오기
-
-
-
-
+        /*
+        List<UserGradeSheet> userGradeSheets = em.createQuery("select ug from UserGradeSheet ug" +
+                " join ug.user.userUniversities")
+                */
+        TypedQuery<UserGradeSheet> query;
 
         //임의로 만든거
         UserAverageGradeDTO userAverageGradeDTO = new UserAverageGradeDTO();
@@ -72,43 +75,5 @@ public class UserGradeSheetRepository {
         return userAverageGradeDTO;
     }
 
-    public UserAverageGradeDTO updateUserAverageGrade(Long userId){
-        UserGrade userGrade = em.find(User.class,userId).getUserGrade();
-        User findUser = em.find(User.class,userId);
-        List<UserGradeSheet> userGradeSheets = em.createQuery("select ug from UserGradeSheet ug join " +
-                "ug.user where ug.user.id =: userId",UserGradeSheet.class)
-                .setParameter("userId",userId)
-                .getResultList();
-        Double grade1Everage = 0D;
-        Double grade2Everage = 0D;
-        Double grade3Everage = 0D;
-        Double grade4Everage = 0D;
-        Double grade5Everage = 0D;
-        Double totalEverage = 0D;
-        for(UserGradeSheet userGradeSheet : userGradeSheets){
-            grade1Everage += userGradeSheet.getGrade1();
-            grade2Everage += userGradeSheet.getGrade2();
-            grade3Everage += userGradeSheet.getGrade3();
-            grade4Everage += userGradeSheet.getGrade4();
-            grade5Everage += userGradeSheet.getGrade5();
-            totalEverage += userGradeSheet.getTotalEverage();
-        }
-        if(userGradeSheets.size()!=0) {
-            grade1Everage /= userGradeSheets.size();
-            grade2Everage /= userGradeSheets.size();
-            grade3Everage /= userGradeSheets.size();
-            grade4Everage /= userGradeSheets.size();
-            grade5Everage /= userGradeSheets.size();
-            totalEverage /= userGradeSheets.size();
-        }
-        UserAverageGradeDTO userAverageGradeDTO = new UserAverageGradeDTO();
-        userAverageGradeDTO.setGrade1Everage(grade1Everage);
-        userAverageGradeDTO.setGrade2Everage(grade2Everage);
-        userAverageGradeDTO.setGrade3Everage(grade3Everage);
-        userAverageGradeDTO.setGrade4Everage(grade4Everage);
-        userAverageGradeDTO.setGrade5Everage(grade5Everage);
-        userAverageGradeDTO.setTotalEverage(totalEverage);
-        return userAverageGradeDTO;
-    }
 
 }

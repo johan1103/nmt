@@ -23,4 +23,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<UserProblemSheet> userSheets;
     */
+    @OneToMany(mappedBy = "user")
+    private List<UserUniversity> userUniversities;
 }

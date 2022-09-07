@@ -5,9 +5,7 @@ import SWM_RM.NMT.domain.User;
 import SWM_RM.NMT.domain.UserGradeSheet;
 import SWM_RM.NMT.domain.dto.ScoreSet;
 import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
-import SWM_RM.NMT.repository.ProblemRepository;
-import SWM_RM.NMT.repository.UserGradeSheetRepository;
-import SWM_RM.NMT.repository.UserRepository;
+import SWM_RM.NMT.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +19,7 @@ public class UserGradeSheetService {
     private final UserRepository userRepository;
     private final ProblemRepository problemRepository;
     private final ScoreSetService scoreSetService;
+    private final UserGradeRepository userGradeRepository;
 
     public Long createGradeSheetService(Long userId, Long problemId, String text){
         User user = userRepository.findUser(userId);
@@ -28,7 +27,7 @@ public class UserGradeSheetService {
         ScoreSet scoreSet = scoreSetService.gradingScore();
         Long gradeSheetId = userGradeSheetRepository.createGradeSheet(problem, user, scoreSet, text);
         //유저 평균 점수 업데이트 함수
-        UserAverageGradeDTO userAverageGradeDTO = userGradeSheetRepository.updateUserAverageGrade(userId);
+        UserAverageGradeDTO userAverageGradeDTO = userGradeRepository.updateUserAverageGrade(userId);
         return gradeSheetId;
     }
 
