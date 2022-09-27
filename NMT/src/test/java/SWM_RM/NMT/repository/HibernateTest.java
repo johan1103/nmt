@@ -15,9 +15,9 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-    @SpringBootTest
-    @Transactional //데이터를 변경해야하기 때문에 추가(?)
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional //데이터를 변경해야하기 때문에 추가(?)
 public class HibernateTest {
     @Autowired
     EntityManager em;

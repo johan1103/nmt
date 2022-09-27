@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SWM_RM.NMT.NmtApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-09T10:47:40" hostname="gimtaehyeong-ui-MacBookAir.local" time="0.488">
+  <properties/>
+  <testcase name="contextLoads()" classname="SWM_RM.NMT.NmtApplicationTests" time="0.488"/>
+  <system-out><![CDATA[19:47:26.275 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+19:47:26.291 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+19:47:26.362 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [SWM_RM.NMT.NmtApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+19:47:26.385 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [SWM_RM.NMT.NmtApplicationTests], using SpringBootContextLoader
+19:47:26.390 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [SWM_RM.NMT.NmtApplicationTests]: class path resource [SWM_RM/NMT/NmtApplicationTests-context.xml] does not exist
+19:47:26.391 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [SWM_RM.NMT.NmtApplicationTests]: class path resource [SWM_RM/NMT/NmtApplicationTestsContext.groovy] does not exist
+19:47:26.391 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [SWM_RM.NMT.NmtApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:47:26.392 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [SWM_RM.NMT.NmtApplicationTests]: NmtApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:47:26.495 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [SWM_RM.NMT.NmtApplicationTests]
+19:47:26.607 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/kimtaehyung/IdeaProjects/SWM13-RUNNINGMACHINE-NONMENTOR-BE/SWM13-RUNNINGMACHINE-NONMENTOR-BE/NMT/build/classes/java/main/SWM_RM/NMT/NmtApplication.class]
+19:47:26.611 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration SWM_RM.NMT.NmtApplication for test class SWM_RM.NMT.NmtApplicationTests
+19:47:26.761 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [SWM_RM.NMT.NmtApplicationTests]: using defaults.
+19:47:26.762 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+19:47:26.809 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1e1d3956, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4f2c9ba6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4e28bdd1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@53f48368, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@24d4d7c9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@f0e995e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4c37b5b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@73db4768, org.springframework.test.context.event.EventPublishingTestExecutionListener@71b3bc45, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@a8c1f44, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@150ab4ed, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3c435123, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@50fe837a, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3a62c01e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7a8fa663]
+19:47:26.816 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@2453f95d testClass = NmtApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@44828f6b testClass = NmtApplicationTests, locations = '{}', classes = '{class SWM_RM.NMT.NmtApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@401f7633, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1869fbd2, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@ca30bc1, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@73cd37c0, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@35432107, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@291b4bf5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.1)
+
+2022-09-09 19:47:27.744  INFO 81465 --- [    Test worker] SWM_RM.NMT.NmtApplicationTests           : Starting NmtApplicationTests using Java 17.0.4 on gimtaehyeong-ui-MacBookAir.local with PID 81465 (started by kimtaehyung in /Users/kimtaehyung/IdeaProjects/SWM13-RUNNINGMACHINE-NONMENTOR-BE/SWM13-RUNNINGMACHINE-NONMENTOR-BE/NMT)
+2022-09-09 19:47:27.746  INFO 81465 --- [    Test worker] SWM_RM.NMT.NmtApplicationTests           : The following 1 profile is active: "mariadb"
+2022-09-09 19:47:29.524  INFO 81465 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-09 19:47:29.563  INFO 81465 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 0 JPA repository interfaces.
+2022-09-09 19:47:30.229  INFO 81465 --- [    Test worker] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2022-09-09 19:47:30.232  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-09-09 19:47:30.234  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-09-09 19:47:30.235  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-09-09 19:47:30.235  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-09-09 19:47:30.235  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-09-09 19:47:30.235  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-09-09 19:47:30.235  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-09-09 19:47:30.236  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-09-09 19:47:30.237  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-09-09 19:47:30.237  INFO 81465 --- [    Test worker] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-09-09 19:47:30.717  INFO 81465 --- [    Test worker] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-09-09 19:47:30.779  INFO 81465 --- [    Test worker] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-09-09 19:47:30.782  INFO 81465 --- [    Test worker] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-09-09 19:47:31.288  INFO 81465 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-09 19:47:31.361  INFO 81465 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-09-09 19:47:31.610  INFO 81465 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-09 19:47:31.778  INFO 81465 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-09-09 19:47:32.137  INFO 81465 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-09-09 19:47:32.193  INFO 81465 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-09-09 19:47:33.788 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists db_test CASCADE 
+Hibernate: 
+    
+    drop table if exists db_test CASCADE 
+2022-09-09 19:47:33.795 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists everage_grade_set CASCADE 
+Hibernate: 
+    
+    drop table if exists everage_grade_set CASCADE 
+2022-09-09 19:47:33.795 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists problem CASCADE 
+Hibernate: 
+    
+    drop table if exists problem CASCADE 
+2022-09-09 19:47:33.796 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists prob_type CASCADE 
+Hibernate: 
+    
+    drop table if exists prob_type CASCADE 
+2022-09-09 19:47:33.796 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists solved_problem CASCADE 
+Hibernate: 
+    
+    drop table if exists solved_problem CASCADE 
+2022-09-09 19:47:33.796 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tgroup CASCADE 
+Hibernate: 
+    
+    drop table if exists tgroup CASCADE 
+2022-09-09 19:47:33.797 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tmember CASCADE 
+Hibernate: 
+    
+    drop table if exists tmember CASCADE 
+2022-09-09 19:47:33.799 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tmember2 CASCADE 
+Hibernate: 
+    
+    drop table if exists tmember2 CASCADE 
+2022-09-09 19:47:33.799 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tmember3 CASCADE 
+Hibernate: 
+    
+    drop table if exists tmember3 CASCADE 
+2022-09-09 19:47:33.800 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tteam CASCADE 
+Hibernate: 
+    
+    drop table if exists tteam CASCADE 
+2022-09-09 19:47:33.800 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists tteam2 CASCADE 
+Hibernate: 
+    
+    drop table if exists tteam2 CASCADE 
+2022-09-09 19:47:33.803 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists university CASCADE 
+Hibernate: 
+    
+    drop table if exists university CASCADE 
+2022-09-09 19:47:33.803 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists university_prob_type CASCADE 
+Hibernate: 
+    
+    drop table if exists university_prob_type CASCADE 
+2022-09-09 19:47:33.804 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists user_grade CASCADE 
+Hibernate: 
+    
+    drop table if exists user_grade CASCADE 
+2022-09-09 19:47:33.807 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists user_grade_history CASCADE 
+Hibernate: 
+    
+    drop table if exists user_grade_history CASCADE 
+2022-09-09 19:47:33.807 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists user_grade_sheet CASCADE 
+Hibernate: 
+    
+    drop table if exists user_grade_sheet CASCADE 
+2022-09-09 19:47:33.808 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists users CASCADE 
+Hibernate: 
+    
+    drop table if exists users CASCADE 
+2022-09-09 19:47:33.808 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop table if exists user_university CASCADE 
+Hibernate: 
+    
+    drop table if exists user_university CASCADE 
+2022-09-09 19:47:33.809 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    drop sequence if exists hibernate_sequence
+Hibernate: 
+    
+    drop sequence if exists hibernate_sequence
+2022-09-09 19:47:33.814 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+2022-09-09 19:47:33.820 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table db_test (
+       id bigint not null,
+        age integer,
+        name varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table db_test (
+       id bigint not null,
+        age integer,
+        name varchar(255),
+        primary key (id)
+    )
+2022-09-09 19:47:33.828 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table everage_grade_set (
+       id bigint not null,
+        everage_grade double,
+        everage_grade1 double,
+        everage_grade2 double,
+        everage_grade3 double,
+        everage_grade4 double,
+        everage_grade5 double,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table everage_grade_set (
+       id bigint not null,
+        everage_grade double,
+        everage_grade1 double,
+        everage_grade2 double,
+        everage_grade3 double,
+        everage_grade4 double,
+        everage_grade5 double,
+        primary key (id)
+    )
+2022-09-09 19:47:33.831 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table problem (
+       id bigint not null,
+        best_text varchar(255),
+        competetion_rate double,
+        create_year bigint,
+        prob_exp varchar(255),
+        prob_text varchar(255),
+        prob_title varchar(255),
+        recommended_submission_size bigint,
+        prob_type_id bigint,
+        university_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table problem (
+       id bigint not null,
+        best_text varchar(255),
+        competetion_rate double,
+        create_year bigint,
+        prob_exp varchar(255),
+        prob_text varchar(255),
+        prob_title varchar(255),
+        recommended_submission_size bigint,
+        prob_type_id bigint,
+        university_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.840 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table prob_type (
+       id bigint not null,
+        type_name varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table prob_type (
+       id bigint not null,
+        type_name varchar(255),
+        primary key (id)
+    )
+2022-09-09 19:47:33.843 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table solved_problem (
+       solved_num bigint,
+        problem_id bigint not null,
+        primary key (problem_id)
+    )
+Hibernate: 
+    
+    create table solved_problem (
+       solved_num bigint,
+        problem_id bigint not null,
+        primary key (problem_id)
+    )
+2022-09-09 19:47:33.846 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tgroup (
+       id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tgroup (
+       id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
+2022-09-09 19:47:33.851 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tmember (
+       id bigint not null,
+        name varchar(255),
+        t_team_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tmember (
+       id bigint not null,
+        name varchar(255),
+        t_team_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.853 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tmember2 (
+       id bigint not null,
+        name varchar(255),
+        t_team2_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tmember2 (
+       id bigint not null,
+        name varchar(255),
+        t_team2_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.854 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tmember3 (
+       id bigint not null,
+        name varchar(255),
+        t_team2_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tmember3 (
+       id bigint not null,
+        name varchar(255),
+        t_team2_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.856 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tteam (
+       id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tteam (
+       id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
+2022-09-09 19:47:33.860 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table tteam2 (
+       id bigint not null,
+        name varchar(255),
+        t_group_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table tteam2 (
+       id bigint not null,
+        name varchar(255),
+        t_group_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.862 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table university (
+       id bigint not null,
+        university_name varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table university (
+       id bigint not null,
+        university_name varchar(255),
+        primary key (id)
+    )
+2022-09-09 19:47:33.869 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table university_prob_type (
+       interest boolean,
+        university_id bigint not null,
+        prob_type_id bigint not null,
+        primary key (prob_type_id, university_id)
+    )
+Hibernate: 
+    
+    create table university_prob_type (
+       interest boolean,
+        university_id bigint not null,
+        prob_type_id bigint not null,
+        primary key (prob_type_id, university_id)
+    )
+2022-09-09 19:47:33.877 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table user_grade (
+       id bigint not null,
+        grade1everage double,
+        grade2everage double,
+        grade3everage double,
+        grade4everage double,
+        grade5everage double,
+        total_everage double,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table user_grade (
+       id bigint not null,
+        grade1everage double,
+        grade2everage double,
+        grade3everage double,
+        grade4everage double,
+        grade5everage double,
+        total_everage double,
+        primary key (id)
+    )
+2022-09-09 19:47:33.880 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table user_grade_history (
+       id bigint not null,
+        grade1 double,
+        grade2 double,
+        grade3 double,
+        grade4 double,
+        grade5 double,
+        total_grade double,
+        update_time timestamp,
+        user_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table user_grade_history (
+       id bigint not null,
+        grade1 double,
+        grade2 double,
+        grade3 double,
+        grade4 double,
+        grade5 double,
+        total_grade double,
+        update_time timestamp,
+        user_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.884 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table user_grade_sheet (
+       id bigint not null,
+        create_time timestamp,
+        grade varchar(255),
+        grade1 double,
+        grade2 double,
+        grade3 double,
+        grade4 double,
+        grade5 double,
+        report_text varchar(255),
+        text_size integer,
+        total_everage double,
+        problem_id bigint,
+        user_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table user_grade_sheet (
+       id bigint not null,
+        create_time timestamp,
+        grade varchar(255),
+        grade1 double,
+        grade2 double,
+        grade3 double,
+        grade4 double,
+        grade5 double,
+        report_text varchar(255),
+        text_size integer,
+        total_everage double,
+        problem_id bigint,
+        user_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.893 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table users (
+       id bigint not null,
+        nick_name varchar(255),
+        strick varchar(255),
+        user_grade_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table users (
+       id bigint not null,
+        nick_name varchar(255),
+        strick varchar(255),
+        user_grade_id bigint,
+        primary key (id)
+    )
+2022-09-09 19:47:33.899 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    create table user_university (
+       interest boolean,
+        user_id bigint not null,
+        university_id bigint not null,
+        primary key (university_id, user_id)
+    )
+Hibernate: 
+    
+    create table user_university (
+       interest boolean,
+        user_id bigint not null,
+        university_id bigint not null,
+        primary key (university_id, user_id)
+    )
+2022-09-09 19:47:33.904 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table problem 
+       add constraint FKfe60xpll9ko2aupxp73u16h2j 
+       foreign key (prob_type_id) 
+       references prob_type
+Hibernate: 
+    
+    alter table problem 
+       add constraint FKfe60xpll9ko2aupxp73u16h2j 
+       foreign key (prob_type_id) 
+       references prob_type
+2022-09-09 19:47:33.923 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table problem 
+       add constraint FKbc2g2s9kef34w992mftg801kh 
+       foreign key (university_id) 
+       references university
+Hibernate: 
+    
+    alter table problem 
+       add constraint FKbc2g2s9kef34w992mftg801kh 
+       foreign key (university_id) 
+       references university
+2022-09-09 19:47:33.930 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table solved_problem 
+       add constraint FKhpbpcr0jd5h75huf5dqi8saqp 
+       foreign key (problem_id) 
+       references problem
+Hibernate: 
+    
+    alter table solved_problem 
+       add constraint FKhpbpcr0jd5h75huf5dqi8saqp 
+       foreign key (problem_id) 
+       references problem
+2022-09-09 19:47:33.932 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table tmember 
+       add constraint FKa0p95kjpfs5qrbw4m4md7ynja 
+       foreign key (t_team_id) 
+       references tteam
+Hibernate: 
+    
+    alter table tmember 
+       add constraint FKa0p95kjpfs5qrbw4m4md7ynja 
+       foreign key (t_team_id) 
+       references tteam
+2022-09-09 19:47:33.935 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table tmember2 
+       add constraint FKajehy9crf6jc2fysilejrf13 
+       foreign key (t_team2_id) 
+       references tteam2
+Hibernate: 
+    
+    alter table tmember2 
+       add constraint FKajehy9crf6jc2fysilejrf13 
+       foreign key (t_team2_id) 
+       references tteam2
+2022-09-09 19:47:33.938 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table tmember3 
+       add constraint FKnh2i8dkcknjw723bhdiuhwa5j 
+       foreign key (t_team2_id) 
+       references tteam2
+Hibernate: 
+    
+    alter table tmember3 
+       add constraint FKnh2i8dkcknjw723bhdiuhwa5j 
+       foreign key (t_team2_id) 
+       references tteam2
+2022-09-09 19:47:33.940 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table tteam2 
+       add constraint FK6rjlo5lsjb3kg19shc6yhhatr 
+       foreign key (t_group_id) 
+       references tgroup
+Hibernate: 
+    
+    alter table tteam2 
+       add constraint FK6rjlo5lsjb3kg19shc6yhhatr 
+       foreign key (t_group_id) 
+       references tgroup
+2022-09-09 19:47:33.941 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table university_prob_type 
+       add constraint FKfx13y68c7a0lfkmfxs16ow53 
+       foreign key (university_id) 
+       references university
+Hibernate: 
+    
+    alter table university_prob_type 
+       add constraint FKfx13y68c7a0lfkmfxs16ow53 
+       foreign key (university_id) 
+       references university
+2022-09-09 19:47:33.943 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table university_prob_type 
+       add constraint FKp4v7al38jk4prspkhost9wu 
+       foreign key (prob_type_id) 
+       references prob_type
+Hibernate: 
+    
+    alter table university_prob_type 
+       add constraint FKp4v7al38jk4prspkhost9wu 
+       foreign key (prob_type_id) 
+       references prob_type
+2022-09-09 19:47:33.952 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table user_grade_history 
+       add constraint FKebtx2n1fybid1r7vtjx6w79mn 
+       foreign key (user_id) 
+       references users
+Hibernate: 
+    
+    alter table user_grade_history 
+       add constraint FKebtx2n1fybid1r7vtjx6w79mn 
+       foreign key (user_id) 
+       references users
+2022-09-09 19:47:33.955 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table user_grade_sheet 
+       add constraint FKofowhbyca1fs88f84fl7j0ln9 
+       foreign key (problem_id) 
+       references problem
+Hibernate: 
+    
+    alter table user_grade_sheet 
+       add constraint FKofowhbyca1fs88f84fl7j0ln9 
+       foreign key (problem_id) 
+       references problem
+2022-09-09 19:47:33.958 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table user_grade_sheet 
+       add constraint FKmj0c54gqnpkda8hkohss45qp3 
+       foreign key (user_id) 
+       references users
+Hibernate: 
+    
+    alter table user_grade_sheet 
+       add constraint FKmj0c54gqnpkda8hkohss45qp3 
+       foreign key (user_id) 
+       references users
+2022-09-09 19:47:33.961 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table users 
+       add constraint FK3mc8xsdh9fonpae2al5mu2asb 
+       foreign key (user_grade_id) 
+       references user_grade
+Hibernate: 
+    
+    alter table users 
+       add constraint FK3mc8xsdh9fonpae2al5mu2asb 
+       foreign key (user_grade_id) 
+       references user_grade
+2022-09-09 19:47:33.967 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table user_university 
+       add constraint FKfpeqlbeuxas21cidmsl0oos41 
+       foreign key (user_id) 
+       references users
+Hibernate: 
+    
+    alter table user_university 
+       add constraint FKfpeqlbeuxas21cidmsl0oos41 
+       foreign key (user_id) 
+       references users
+2022-09-09 19:47:33.971 DEBUG 81465 --- [    Test worker] org.hibernate.SQL                        : 
+    
+    alter table user_university 
+       add constraint FK21qtn6gm70ey6j7o1exm26fd8 
+       foreign key (university_id) 
+       references university
+Hibernate: 
+    
+    alter table user_university 
+       add constraint FK21qtn6gm70ey6j7o1exm26fd8 
+       foreign key (university_id) 
+       references university
+2022-09-09 19:47:33.978  INFO 81465 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-09 19:47:33.992  INFO 81465 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-09 19:47:35.342  WARN 81465 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-09 19:47:39.587  WARN 81465 --- [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-09-09 19:47:40.411  INFO 81465 --- [    Test worker] SWM_RM.NMT.NmtApplicationTests           : Started NmtApplicationTests in 13.493 seconds (JVM running for 15.713)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

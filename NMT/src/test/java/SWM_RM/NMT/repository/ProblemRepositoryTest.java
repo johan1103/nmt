@@ -3,6 +3,8 @@ package SWM_RM.NMT.repository;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.domain.User;
+import SWM_RM.NMT.mockCreate.CreateMockData;
 import SWM_RM.NMT.service.ProblemService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +17,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +33,17 @@ public class ProblemRepositoryTest {
     private ProblemRepository problemRepository;
     @Autowired
     private UniversityRepository universityRepository;
+    @Autowired
+    private CreateMockData createMockData;
 
+    @Test
+    @Rollback(value = false)
+    public void printUserTest(){
+        createMockData.createUser();
+        List<User> users = em.createQuery("select u from User u",User.class)
+                .getResultList();
+        System.out.println(users.size());
+    }
     @Test
     @Rollback(value = false)
     public void createProblemTest(){

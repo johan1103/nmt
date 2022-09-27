@@ -7,24 +7,40 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
     private final EntityManager em;
     private final UserGradeRepository userGradeRepository;
+
+    /**
+     * 유저를 생성할 때에는 유저의 인적 사항이 주어지면, 빈 유저 성적표를 생성해서 연관관계 설정 후, 영속상태로 설정한다.
+     * @param user
+     * @return User
+     */
+    public User createUser(User user){
+        //User 생성과 동시에 userGrade 또한 생성해서 연관관계 형성
+        UserGrade createUserGrade = userGradeRepository.createUserGrade();
+        user.setUserGrade(createUserGrade);
+        em.persist(user);
+        return user;
+    }
+
+    public User findByUsername(String username) {
+        User findUser = em.createQuery("select u from User u where u.nickName =: username",User.class)
+                .setParameter("username",username)
+                .getSingleResult();
+        return findUser;
+    }
+    public List<User> findByEmail(String email){
+        List<User> findUser = em.createQuery("select u from User u where u.email =: email",User.class)
+                .setParameter("email",email)
+                .getResultList();
+        return findUser;
+    }
     public User findUser(Long userId){
         return em.find(User.class,userId);
-    }
-    public Long createUser(UserDTO userDTO){
-        User user = new User();
-        user.setNickName(userDTO.getNickName());
-        user.setStrick(userDTO.getStrick());
-        em.persist(user);
-        //User 생성과 동시에 userGrade 또한 생성해서 연관관계 형성
-        Long userGradeId = userGradeRepository.createUserGrade(user.getId());
-        UserGrade userGrade = em.find(UserGrade.class,userGradeId);
-        user.setUserGrade(userGrade);
-        return user.getId();
     }
 }
