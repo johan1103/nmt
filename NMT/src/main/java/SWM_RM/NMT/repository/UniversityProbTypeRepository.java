@@ -14,20 +14,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UniversityProbTypeRepository {
     private final EntityManager em;
-    public List<ProbType> findUniversityProbTypeList(String universityName){
-        return em.createQuery("select up.universityProbTypeId.probType from UniversityProbType up join up.universityProbTypeId.probType pt" +
-                " where up.universityProbTypeId.university.universityName =: univName and up.interest = TRUE ",ProbType.class)
-                .setParameter("univName",universityName)
-                .getResultList();
-    }
-    public UniversityProbTypePK createUniversityProbType(University university, ProbType probType){
-        UniversityProbType universityProbType = new UniversityProbType();
+
+    /**
+     *  조회된 UniversityProbType이 없을 때 해당 엔티티 생성 메서드.
+     * @param universityProbType
+     * @param university
+     * @param probType
+     * @return UniversityProbType
+     */
+    public UniversityProbType createUniversityProbType(UniversityProbType universityProbType,
+                                                         University university, ProbType probType){
         UniversityProbTypePK universityProbTypePK = new UniversityProbTypePK();
         universityProbTypePK.setProbType(probType);
         universityProbTypePK.setUniversity(university);
         universityProbType.setUniversityProbTypeId(universityProbTypePK);
         universityProbType.setInterest(Boolean.TRUE);
         em.persist(universityProbType);
-        return universityProbTypePK;
+        return universityProbType;
     }
 }

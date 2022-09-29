@@ -10,17 +10,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.parameters.P;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+/**
+ * Create Source (Entity)
+ * UserGradeSheet UserGradeHistory
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Transactional
-public class UserGradeSheetTest {
+public class UserGradeSheetCreateTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,10 +36,7 @@ public class UserGradeSheetTest {
     @Autowired
     private UserGradeHistoryRepository userGradeHistoryRepository;
 
-    /**
-     * Create Source (Entity)
-     * UserGradeSheet UserGradeHistory
-     */
+
     @Test
     @Rollback(value = false)
     public void userGradeSheetCreateTest(){
