@@ -10,7 +10,11 @@ import javax.persistence.EntityManager;
 @RequiredArgsConstructor
 public class UniversityRepository {
     private final EntityManager em;
-
+    /**
+     * University 생성 메서드
+     * @param university
+     * @return ProbType (Entity)
+     */
     public University createUniversity(University university){
         em.persist(university);
         return university;

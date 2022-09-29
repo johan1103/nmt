@@ -12,7 +12,11 @@ import javax.persistence.EntityManager;
 public class UserGradeHistoryRepository {
 
     private final EntityManager em;
-
+    /**
+     * History 생성 메서드
+     * @param userGradeHistory, user
+     * @return UserGradeHistory (Entity)
+     */
     public UserGradeHistory createUserGradeHistory(UserGradeHistory userGradeHistory, User user){
         userGradeHistory.setUser(user);
         em.persist(userGradeHistory);
