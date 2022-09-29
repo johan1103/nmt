@@ -26,6 +26,8 @@ public class Problem {
     private Double competetionRate;
     @Column
     private Long recommendedSubmissionSize;
+    @Column
+    private Long solvedNum;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private University university;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
