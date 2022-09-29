@@ -15,4 +15,10 @@ public class UniversityRepository {
         em.persist(university);
         return university;
     }
+
+    public University findUniversityByName(String name){
+        return em.createQuery("select u from University u where u.universityName =: name",University.class)
+                .setParameter("name",name)
+                .getSingleResult();
+    }
 }
