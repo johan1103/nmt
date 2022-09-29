@@ -21,7 +21,9 @@ import java.util.List;
 public class ProblemRepository {
     private final EntityManager em;
 
-    public Long createProblem(Problem problem){
+    public Long createProblem(Problem problem,University university,ProbType probType){
+        problem.setProbType(probType);
+        problem.setUniversity(university);
         em.persist(problem);
         Problem findProblem = em.find(Problem.class,problem.getId());
         return findProblem.getId();

@@ -11,10 +11,8 @@ import javax.persistence.EntityManager;
 public class ProbTypeRepository {
     private final EntityManager em;
 
-    public Long createProbType(String probTypeName){
-        ProbType probType = new ProbType();
-        probType.setTypeName(probTypeName);
+    public ProbType createProbType(ProbType probType){
         em.persist(probType);
-        return em.find(ProbType.class,probType.getId()).getId();
+        return probType;
     }
 }

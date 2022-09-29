@@ -31,6 +31,7 @@ public class UniversityProbTypeRepositoryTest {
 
     @Test
     public void createUniversityProbTypeRepositoryTest(){
+        /*
         Long universityId = universityRepository.createUniversity("Inha");
         University findUniversity;
         findUniversity = em.find(University.class,universityId);
@@ -45,5 +46,7 @@ public class UniversityProbTypeRepositoryTest {
         System.out.println(findUniversityProbType.getUniversityProbTypeId().getProbType().getTypeName());
         System.out.println(findUniversityProbType.getInterest());
         System.out.println("-------------------");
+
+         */
     }
 }
