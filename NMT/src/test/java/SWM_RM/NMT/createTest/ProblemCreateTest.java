@@ -39,9 +39,32 @@ public class ProblemCreateTest {
      *
      * 각각 따로 생성을 테스트하고, 서비스 단에서 정상적으로 로직이 작동 되었다는 가정하에 Create 메서드를 테스트 하는 것이므로
      * 서비스에서 할 역할을 memoryRepository에서 그 역할을 대신 하는것.
+     *
+     * 결과적으로 안됨 persistencContextTest로 분석해본 원인은
+     *      각 테스트가 실행될 때마다 Transaction이 새로 실행되어서 같은 영속성 컨텍스트에서 진행된 사항이 아니라서 적용이 되지 않음
      */
     private HashMap<String,ProbType> memoryProbtypeRepository = new HashMap<>();
     private HashMap<String,University> memoryUniversityRepository = new HashMap<>();
+
+    @Test
+    @Rollback(value = false)
+    public void persistenceContextTest(){
+        /*
+        ProbType probType = new ProbType();
+        probType.setTypeName("요약");
+        probTypeRepository.createProbType(probType);
+        memoryProbtypeRepository.put(probType.getTypeName(),probType);
+        University university = new University();
+        university.setUniversityName("mock Univ");
+        universityRepository.createUniversity(university);
+        memoryUniversityRepository.put(university.getUniversityName(),university);
+        Problem problem = setProblemAuto("temp");
+        problemRepository.createProblem(problem,memoryUniversityRepository.get("mock Univ"),
+                memoryProbtypeRepository.get("요약"));
+
+         */
+
+    }
 
     @Test
     @Rollback(value = false)
@@ -97,10 +120,6 @@ public class ProblemCreateTest {
         memoryUniversityRepository.put(university4.getUniversityName(),university4);
         memoryUniversityRepository.put(university5.getUniversityName(),university5);
 
-
-        Problem problem1 = setProblemAuto("problem1");
-        problemRepository.createProblem(problem1,university1,
-                memoryProbtypeRepository.get("요약"));
     }
 
 
@@ -108,7 +127,6 @@ public class ProblemCreateTest {
     @Rollback(value = false)
     public void problemCreateTest(){
         //문제는 총 7개가 존재
-        /*
         Problem problem1 = setProblemAuto("problem1");
         Problem problem2 = setProblemAuto("problem2");
         Problem problem3 = setProblemAuto("problem3");
@@ -120,28 +138,27 @@ public class ProblemCreateTest {
         Problem problem9 = setProblemAuto("problem9");
         Problem problem10 = setProblemAuto("problem10");
 
-        problemRepository.createProblem(problem1,memoryUniversityRepository.get("고려대학교"),
-                memoryProbtypeRepository.get("요약"));
-        problemRepository.createProblem(problem2,memoryUniversityRepository.get("서울시립대학교"),
-                memoryProbtypeRepository.get("비교. 대조"));
-        problemRepository.createProblem(problem3,memoryUniversityRepository.get("성균관대학교"),
-                memoryProbtypeRepository.get("설명. 해설"));
-        problemRepository.createProblem(problem4,memoryUniversityRepository.get("경희대학교"),
-                memoryProbtypeRepository.get("분석"));
-        problemRepository.createProblem(problem5,memoryUniversityRepository.get("인하대학교"),
-                memoryProbtypeRepository.get("요약"));
-        problemRepository.createProblem(problem6,memoryUniversityRepository.get("고려대학교"),
-                memoryProbtypeRepository.get("비교. 대조"));
-        problemRepository.createProblem(problem7,memoryUniversityRepository.get("서울시립대학교"),
-                memoryProbtypeRepository.get("설명. 해설"));
-        problemRepository.createProblem(problem8,memoryUniversityRepository.get("성균관대학교"),
-                memoryProbtypeRepository.get("분석"));
-        problemRepository.createProblem(problem9,memoryUniversityRepository.get("경희대학교"),
-                memoryProbtypeRepository.get("요약"));
-        problemRepository.createProblem(problem10,memoryUniversityRepository.get("인하대학교"),
-                memoryProbtypeRepository.get("비교. 대조"));
+        problemRepository.createProblem(problem1, universityRepository.findUniversityByName("고려대학교"),
+                probTypeRepository.findProbTypeByName("요약"));
+        problemRepository.createProblem(problem2, universityRepository.findUniversityByName("서울시립대학교"),
+                probTypeRepository.findProbTypeByName("비교. 대조"));
+        problemRepository.createProblem(problem3, universityRepository.findUniversityByName("성균관대학교"),
+                probTypeRepository.findProbTypeByName("설명. 해설"));
+        problemRepository.createProblem(problem4, universityRepository.findUniversityByName("경희대학교"),
+                probTypeRepository.findProbTypeByName("분석"));
+        problemRepository.createProblem(problem5, universityRepository.findUniversityByName("인하대학교"),
+                probTypeRepository.findProbTypeByName("요약"));
+        problemRepository.createProblem(problem6, universityRepository.findUniversityByName("고려대학교"),
+                probTypeRepository.findProbTypeByName("비교. 대조"));
+        problemRepository.createProblem(problem7, universityRepository.findUniversityByName("서울시립대학교"),
+                probTypeRepository.findProbTypeByName("설명. 해설"));
+        problemRepository.createProblem(problem8, universityRepository.findUniversityByName("성균관대학교"),
+                probTypeRepository.findProbTypeByName("분석"));
+        problemRepository.createProblem(problem9, universityRepository.findUniversityByName("경희대학교"),
+                probTypeRepository.findProbTypeByName("요약"));
+        problemRepository.createProblem(problem10, universityRepository.findUniversityByName("인하대학교"),
+                probTypeRepository.findProbTypeByName("비교. 대조"));
 
-         */
     }
 
     public static Problem setProblemAuto(String problemName){
