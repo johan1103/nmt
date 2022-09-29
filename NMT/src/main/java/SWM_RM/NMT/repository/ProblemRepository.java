@@ -21,12 +21,18 @@ import java.util.List;
 public class ProblemRepository {
     private final EntityManager em;
 
-    public Long createProblem(Problem problem,University university,ProbType probType){
+    /**
+     * 문제를 생성할 때에는 문제 정보와 university엔티티, ProbType엔티티가 주어지면 연관관계 설정 후 영속상태로 설정한다.
+     * @param problem
+     * @param university
+     * @param probType
+     * @return Problem (Entity)
+     */
+    public Problem createProblem(Problem problem,University university,ProbType probType){
         problem.setProbType(probType);
         problem.setUniversity(university);
         em.persist(problem);
-        Problem findProblem = em.find(Problem.class,problem.getId());
-        return findProblem.getId();
+        return problem;
     }
 
     public Problem findProblemById(Long problemId){

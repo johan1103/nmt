@@ -27,20 +27,4 @@ public class UserRepository {
         em.persist(user);
         return user;
     }
-
-    public User findByUsername(String username) {
-        User findUser = em.createQuery("select u from User u where u.nickName =: username",User.class)
-                .setParameter("username",username)
-                .getSingleResult();
-        return findUser;
-    }
-    public List<User> findByEmail(String email){
-        List<User> findUser = em.createQuery("select u from User u where u.email =: email",User.class)
-                .setParameter("email",email)
-                .getResultList();
-        return findUser;
-    }
-    public User findUser(Long userId){
-        return em.find(User.class,userId);
-    }
 }

@@ -15,8 +15,6 @@ public class UserGradeSheet {
     @Column
     private String reportText;
     @Column
-    private String grade;
-    @Column
     private Integer textSize;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn

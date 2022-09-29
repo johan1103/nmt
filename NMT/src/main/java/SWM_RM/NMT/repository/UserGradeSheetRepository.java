@@ -20,25 +20,22 @@ import java.util.List;
 public class UserGradeSheetRepository {
     private final EntityManager em;
 
-    public Long createGradeSheet(Problem problem, User user, ScoreSet scoreSet, String text){
-        LocalDateTime localDateTime = LocalDateTime.now();
-        UserGradeSheet userGradeSheet = new UserGradeSheet();
+    /**
+     * 연관관계의 problem, user가 주어지고, service layer에서 채점이 된 정보와 유저가 작성한 정보들이 들어간 userGradeSheet이 넘어왔을때
+     * 이들의 연관관계를 설정하고
+     * @param problem
+     * @param user
+     * @param userGradeSheet
+     * @return
+     */
+    public UserGradeSheet createGradeSheet(Problem problem, User user, UserGradeSheet userGradeSheet){
         userGradeSheet.setUser(user);
-        userGradeSheet.setGrade1(scoreSet.getGrade1());
-        userGradeSheet.setGrade2(scoreSet.getGrade2());
-        userGradeSheet.setGrade3(scoreSet.getGrade3());
-        userGradeSheet.setGrade4(scoreSet.getGrade4());
-        userGradeSheet.setGrade5(scoreSet.getGrade5());
-        userGradeSheet.setGrade(scoreSet.getGrade());
         userGradeSheet.setProblem(problem);
-        userGradeSheet.setTextSize(text.length());
-        userGradeSheet.setReportText(text);
-        userGradeSheet.setCreateTime(localDateTime);
-        //여기에 점수 업데이트 로직 추가해야함 (어떻게 할 지 모르겠음)
-
         em.persist(userGradeSheet);
-        return em.find(UserGradeSheet.class,userGradeSheet.getId()).getId();
+        return userGradeSheet;
     }
+
+
 
     public UserGradeSheet findUserGradeSheetById(Long userGradeSheetId){
         return em.find(UserGradeSheet.class,userGradeSheetId);
@@ -74,6 +71,5 @@ public class UserGradeSheetRepository {
         userAverageGradeDTO.setTotalEverage(totalEverage);
         return userAverageGradeDTO;
     }
-
 
 }
