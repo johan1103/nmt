@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -24,5 +25,14 @@ public class UniversityRepository {
         return em.createQuery("select u from University u where u.universityName =: name",University.class)
                 .setParameter("name",name)
                 .getSingleResult();
+    }
+
+    /**
+     * 문제 목록 페이지에서 유저가 선택하기 위해 보여주는 선택지를 return하는 메서드
+     * @return
+     */
+    public List<University> findAllUniversity(){
+        return em.createQuery("select u from University u",University.class)
+                .getResultList();
     }
 }
