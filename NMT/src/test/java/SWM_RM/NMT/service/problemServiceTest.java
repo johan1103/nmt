@@ -48,19 +48,6 @@ public class problemServiceTest {
     }
 
     @Test
-    public void problemListTest2(){
-        CreateProblemDatas2 createProblemDatas2 = new CreateProblemDatas2(problemRepository,probTypeRepository,
-                universityRepository);
-        createProblemDatas2.createDatas();
-
-        List<Problem> findAllproblems = problemService.problemListService();
-        for(Problem p : findAllproblems){
-            System.out.println(p.getProbTitle()+" "+p.getUniversity().getUniversityName()+
-                    " "+p.getProbType().getTypeName());
-        }
-    }
-
-    @Test
     public void problemListFilterService(){
         CreateProblemDatas2 createProblemDatas2 = new CreateProblemDatas2(problemRepository,probTypeRepository,
                 universityRepository);
@@ -102,16 +89,5 @@ public class problemServiceTest {
             System.out.println(p.getCreateYear()+" "+p.getProbTitle()+" "+p.getUniversity().getUniversityName()+
                     " "+p.getProbType().getTypeName());
         }
-    }
-
-    public static Problem setProblemAuto(String problemName){
-        Problem problem = new Problem();
-        problem.setCreateYear(2022L);
-        problem.setProbExp(problemName+" Exp");
-        problem.setBestText(problemName+" Best Text");
-        problem.setProbText(problemName+" Prob Text");
-        problem.setProbTitle(problemName);
-        problem.setCompetetionRate(6.56D);
-        return problem;
     }
 }

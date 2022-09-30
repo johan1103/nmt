@@ -27,4 +27,21 @@ public class UserRepository {
         em.persist(user);
         return user;
     }
+
+    /**
+     * 성적표 생성시 연관관계 설정을 위해 유저 정보를 id로 찾아서 return해주는 메서드
+     * @param userId
+     * @return
+     */
+    public User findUserById(Long userId){
+        return em.find(User.class,userId);
+    }
+
+    /**
+     * 성적표 생성 테스트 코드에서 사용할 메서드 (아무 유저나 가져오기 위해서)
+     * @return
+     */
+    public List<User> findUserList(){
+        return em.createQuery("select u from User u",User.class).getResultList();
+    }
 }

@@ -46,5 +46,7 @@ public class ProblemService {
     /**
      * 문제 정보 조회 서비스, 문제의 상세 정보를 전부 return 해야함
      */
-//    public Problem problemPageService()
+    public Problem problemPageService(Long problemId){
+        return problemRepository.findProblemById(problemId);
+    }
 }

@@ -1,5 +1,6 @@
 package SWM_RM.NMT.domain;
 
+import SWM_RM.NMT.domain.dto.ScoreSet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,5 +38,17 @@ public class UserGradeSheet {
     private Double grade4;
     @Column
     private Double grade5;
+    @Column
+    private String grade;
+
+    public void setGradesByScoreSet(ScoreSet scoreSet){
+        this.totalEverage= scoreSet.getTotalEverage();
+        this.grade1=scoreSet.getGrade1();
+        this.grade2=scoreSet.getGrade2();
+        this.grade3=scoreSet.getGrade3();
+        this.grade4=scoreSet.getGrade4();
+        this.grade5=scoreSet.getGrade5();
+        this.grade=scoreSet.getGrade();
+    }
 
 }

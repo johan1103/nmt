@@ -31,6 +31,7 @@ public class UserGradeRepository {
         em.persist(createUserGrade);
         return createUserGrade;
     }
+
     public UserGrade findUserGrade(Long userId){
         return em.find(UserGrade.class,userId);
     }

@@ -43,12 +43,17 @@ public class ProblemRepository {
         return em.createQuery("select p from Problem p",Problem.class).getResultList();
     }
 
+    /**
+     * 문제 풀이를 위한 페이지를 들어갈 때, ProblemId가 주어지면 해당 하는 문제의 상세 정보들을 return하는 메서드
+     * @param problemId
+     * @return
+     */
     public Problem findProblemById(Long problemId){
         return em.find(Problem.class,problemId);
     }
 
     /**
-     * 현재는 필터기능이 인자 경우의 수에 따라서 유연하지 못함. 일단은 일일히 인자의 경우의 수마다 메서드 정드
+     * 현재는 필터기능이 인자 경우의 수에 따라서 유연하지 못함. 일단은 일일히 인자의 경우의 수마다 메서드 정의
      * @param universityNameFilter
      * @param typeNameFilter
      * @param yearFilter

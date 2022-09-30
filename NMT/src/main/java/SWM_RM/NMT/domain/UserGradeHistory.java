@@ -28,4 +28,13 @@ public class UserGradeHistory {
     private Double grade5;
     @Column
     private Double totalGrade;
+
+    public void setUserGradeByUserGradeSheet(UserGradeSheet userGradeSheet){
+        this.grade1=userGradeSheet.getGrade1();
+        this.grade2= userGradeSheet.getGrade2();
+        this.grade3= userGradeSheet.getGrade3();
+        this.grade4= userGradeSheet.getGrade4();
+        this.grade5= userGradeSheet.getGrade5();
+        this.totalGrade= userGradeSheet.getTotalEverage();
+    }
 }
