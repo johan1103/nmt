@@ -35,11 +35,26 @@ public class ProblemRepository {
         return problem;
     }
 
+    /**
+     * 모든 문제를 조회하고자 할 때, 현재 존재하는 모든 문제들을 return하는 메서드
+     * @return
+     */
+    public List<Problem> findProblemList(){
+        return em.createQuery("select p from Problem p",Problem.class).getResultList();
+    }
+
     public Problem findProblemById(Long problemId){
         return em.find(Problem.class,problemId);
     }
 
-    public List<Problem> findProblems(String universityNameFilter, String typeNameFilter,
+    /**
+     * 현재는 필터기능이 인자 경우의 수에 따라서 유연하지 못함. 일단은 일일히 인자의 경우의 수마다 메서드 정드
+     * @param universityNameFilter
+     * @param typeNameFilter
+     * @param yearFilter
+     * @return
+     */
+    public List<Problem> findProblemListFilter(String universityNameFilter, String typeNameFilter,
                                       Long yearFilter){
         System.out.println(universityNameFilter);
         System.out.println(typeNameFilter);
@@ -51,6 +66,27 @@ public class ProblemRepository {
                 .setParameter("year",yearFilter)
                 .getResultList();
     }
+
+    public List<Problem> findProblemListOneFilter1(String universityNameFilter){
+        System.out.println(universityNameFilter);
+        return em.createQuery("select p from Problem p join fetch p.university" +
+                " where p.university.universityName =: name",Problem.class)
+                .setParameter("name",universityNameFilter).getResultList();
+    }
+
+    public List<Problem> findProblemListOneFilter2(String typeNameFilter){
+        System.out.println(typeNameFilter);
+        return em.createQuery("select p from Problem p join fetch p.probType" +
+                " where p.probType.typeName =: name",Problem.class)
+                .setParameter("name",typeNameFilter).getResultList();
+    }
+    public List<Problem> findProblemListOneFilter3(Long createYear){
+        System.out.println(createYear);
+        return em.createQuery("select p from Problem p where p.createYear =: year",Problem.class)
+                .setParameter("year",createYear).getResultList();
+    }
+    //여기까지 필터
+
 
     public HashSet<Problem> findUserProblemList(Long userId){
         List<UserGradeSheet> userGradeSheets = em.createQuery("select ug from UserGradeSheet ug join fetch " +
