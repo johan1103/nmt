@@ -47,6 +47,18 @@ public class UserGradeSheetRepository {
     }
 
     /**
+     * 특정 유저가 푼 문제들을 가져오기 위해 우선적으로 푼 문제집들을 문제의 정보와 같이 join fetch 로 가져오는
+     * 메서드
+     * @param userId
+     * @return
+     */
+    public List<UserGradeSheet> findUserGradeSheetListByUserIdJoinFetchProblem(Long userId){
+        return em.createQuery("select ugs from UserGradeSheet ugs  join fetch ugs.problem " +
+                        "where ugs.user.id =: id",UserGradeSheet.class)
+                .setParameter("id",userId).getResultList();
+    }
+
+    /**
      * 한 문제에 대한 성적표들을 전부 조회하기 위해서 한 문제에 대한 모든 성적표들을 return하는 메서드
      * @param problemId
      * @return

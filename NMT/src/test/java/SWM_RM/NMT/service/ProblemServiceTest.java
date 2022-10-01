@@ -1,11 +1,8 @@
 package SWM_RM.NMT.service;
 
 
-import SWM_RM.NMT.data.CreateProblemDatas;
 import SWM_RM.NMT.data.CreateProblemDatas2;
-import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
-import SWM_RM.NMT.domain.University;
 import SWM_RM.NMT.repository.ProbTypeRepository;
 import SWM_RM.NMT.repository.ProblemRepository;
 import SWM_RM.NMT.repository.UniversityRepository;
@@ -21,7 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Transactional
-public class problemServiceTest {
+public class ProblemServiceTest {
 
     @Autowired
     private ProblemRepository problemRepository;

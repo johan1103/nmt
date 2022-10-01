@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -107,6 +110,27 @@ public class UserGradeSheetService {
 
     public List<UserGradeSheet> userGradeSheetListService(Long userId,Long problemId){
         return userGradeSheetRepository.findUserGradeSheetListByUserIdProblemId(userId,problemId);
+    }
+
+    /**
+     * 마이페이지에서 유저가 푼 문제들을 보고자 할 때 문제 리스트들을 return해주는 메서드
+     * @param userId
+     * @return
+     */
+    public List<Problem> userSolvedListService(Long userId){
+        List<UserGradeSheet> userGradeSheetList=userGradeSheetRepository.
+                findUserGradeSheetListByUserIdJoinFetchProblem(userId);
+        List<Problem> problemList = new ArrayList<>();
+        HashSet<Problem> problemHashSet = new HashSet<>();
+        for(UserGradeSheet ugs : userGradeSheetList){
+            System.out.println("-------------- user problem "+ugs.getProblem().getProbTitle());
+            problemHashSet.add(ugs.getProblem());
+        }
+        Iterator<Problem> iter = problemHashSet.iterator();
+        while (iter.hasNext()){
+            problemList.add(iter.next());
+        }
+        return problemList;
     }
 
     /**

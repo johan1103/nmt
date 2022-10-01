@@ -22,4 +22,15 @@ public class UserGradeHistoryRepository {
         em.persist(userGradeHistory);
         return userGradeHistory;
     }
+
+    /**
+     * 특정 User가 자신의 History를 조회하고자 할때 해당 정보를 return하는 메서드
+     * @param userId
+     * @return
+     */
+    public UserGradeHistory findUserGradeHistoryByUserId(Long userId){
+        return em.createQuery("select ugh from UserGradeHistory ugh where " +
+                "ugh.user.id =: id",UserGradeHistory.class)
+                .setParameter("id",userId).getSingleResult();
+    }
 }
