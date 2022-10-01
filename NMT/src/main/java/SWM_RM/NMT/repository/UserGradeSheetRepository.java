@@ -35,12 +35,40 @@ public class UserGradeSheetRepository {
         return userGradeSheet;
     }
 
+    /**
+     * UserGrade를 update하기 위해서 한 User에 대한 모든 성적표들을 return하는 메서드
+     * @param userId
+     * @return
+     */
     public List<UserGradeSheet> findUserGradeSheetListByUserId(Long userId){
         return em.createQuery("select ugs from UserGradeSheet ugs " +
                 "where ugs.user.id =: id",UserGradeSheet.class)
                 .setParameter("id",userId).getResultList();
     }
 
+    /**
+     * 한 문제에 대한 성적표들을 전부 조회하기 위해서 한 문제에 대한 모든 성적표들을 return하는 메서드
+     * @param problemId
+     * @return
+     */
+    public List<UserGradeSheet> findUserGradeSheetListByProblemId(Long problemId){
+        return em.createQuery("select ugs from UserGradeSheet ugs " +
+                "where ugs.problem.id =: id",UserGradeSheet.class)
+                .setParameter("id",problemId).getResultList();
+    }
+
+    /**
+     * 한 문제에서 특정 유저의 성적표들만 조회해서 return하는 메서드
+     * @param userId
+     * @param problemId
+     * @return
+     */
+    public List<UserGradeSheet> findUserGradeSheetListByUserIdProblemId(Long userId,Long problemId){
+        return em.createQuery("select ugs from UserGradeSheet ugs " +
+                "where ugs.user.id =: userId and ugs.problem.id =: problemId",UserGradeSheet.class)
+                .setParameter("userId",userId).setParameter("problemId",problemId)
+                .getResultList();
+    }
 
 
 

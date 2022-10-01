@@ -90,6 +90,26 @@ public class UserGradeSheetService {
     }
 
     /**
+     * 한 문제에 대한 모든 성적표 조회해서 return하는 메서드
+     * @param problemId
+     * @return
+     */
+    public List<UserGradeSheet> gradeSheetListService(Long problemId){
+        return  userGradeSheetRepository.findUserGradeSheetListByProblemId(problemId);
+    }
+
+    /**
+     * 한 문제에서 특정 유저의 성적표들만 조회해서 return하는 메서드
+     * @param userId
+     * @param problemId
+     * @return
+     */
+
+    public List<UserGradeSheet> userGradeSheetListService(Long userId,Long problemId){
+        return userGradeSheetRepository.findUserGradeSheetListByUserIdProblemId(userId,problemId);
+    }
+
+    /**
      * 임시 임의 채점기
      * @param text
      * @return
@@ -114,6 +134,7 @@ public class UserGradeSheetService {
         scoreSet.setGrade("B");
         return scoreSet;
     }
+
 
 
 }
