@@ -4,15 +4,10 @@ import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.User;
 import SWM_RM.NMT.domain.UserGrade;
 import SWM_RM.NMT.domain.UserGradeSheet;
-import SWM_RM.NMT.domain.dto.ScoreSet;
-import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -82,6 +77,13 @@ public class UserGradeSheetRepository {
                 .getResultList();
     }
 
-
+    /**
+     * 특정 성적표를 조회하고자 할 때, 해당 성적표 정보를 return하는 메서드
+     * @param userGradeSheetId
+     * @return
+     */
+    public UserGradeSheet findUserGradeSheetByUserGradeSheetId(Long userGradeSheetId){
+        return em.find(UserGradeSheet.class,userGradeSheetId);
+    }
 
 }

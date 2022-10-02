@@ -23,6 +23,44 @@ public class UserGradeSheetService {
     private final UserGradeHistoryRepository userGradeHistoryRepository;
 
     /**
+     * 특정 성적표를 조회하고자 할 때 성적표 정보를 return하는 메서드
+     * @param userGradeSheetId
+     * @return
+     */
+    public UserGradeSheet userGradeSheetService(Long userGradeSheetId){
+        return userGradeSheetRepository.findUserGradeSheetByUserGradeSheetId(userGradeSheetId);
+    }
+
+    /**
+     * 타 유저의 성적표를 볼 때 자신의 것도 비교 분석하기 위해 자신이 푼 가장 총점이 높은 성적표를 return하는 메서드
+     * @param userId
+     * @param userGradeSheetId
+     * @return
+     */
+    public UserGradeSheet userGradeSheetCompareService(Long userId,Long userGradeSheetId){
+        /**
+         * 성적표를 조회하려는 페이지는 필히 userGradeSheetId를 주게 되어있고, problemId는 주지 않을 것 같으므로, 직접 problemId를 찾아야함.
+         */
+        UserGradeSheet userGradeSheet = userGradeSheetRepository.findUserGradeSheetByUserGradeSheetId(userGradeSheetId);
+        Problem problem = userGradeSheet.getProblem();
+        /**
+         * 찾은 problem과 인자로 받은 userId로, user가 푼 문제를 가져온 후, 가장 총점이 우수한 UserGradeSheet을 가져옴.
+         * 쿼리문이 속도가 훨씬 빠르니, 이걸 자바 로직이 아닌, 쿼리문으로 해결하는 것도 좋을 듯
+         */
+        List<UserGradeSheet> userGradeSheetList = userGradeSheetRepository.
+                findUserGradeSheetListByUserIdProblemId(userId, problem.getId());
+        UserGradeSheet bestUserGradeSheet = null;
+        Double bestTotal=0D;
+        for(UserGradeSheet u : userGradeSheetList){
+            if(u.getTotalEverage()>bestTotal){
+                bestTotal=u.getTotalEverage();
+                bestUserGradeSheet=u;
+            }
+        }
+        return bestUserGradeSheet;
+    }
+
+    /**
      * (이 주석은 service 구현때 참고해서 service주석 작성후 삭제할 것.)
      * service layer에서 해야 할 것.
      *      1. 문제 제출 정보 토대로 userGradeSheet내부 내용 작성
