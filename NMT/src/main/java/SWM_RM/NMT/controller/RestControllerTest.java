@@ -5,13 +5,22 @@ import SWM_RM.NMT.domain.dto.DbTestDTO;
 import SWM_RM.NMT.domain.dto.PrototypeSheetDTO;
 import SWM_RM.NMT.repository.DbTestRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.web.FilterChainProxy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.FilterChain;
 import java.util.List;
 
 @RestController
@@ -29,6 +38,10 @@ public class RestControllerTest {
         System.out.println(dbTestDTO.getAge());
         //return "ok";
         return dbTestRepository.createDbTest(dbTestDTO);
+    }
+    @GetMapping("/test/configTest")
+    public String configTestController(){
+        return "ans";
     }
     @PostMapping("/submit")
     public PrototypeSheetDTO tmpProblemSheetController(String essayContent){

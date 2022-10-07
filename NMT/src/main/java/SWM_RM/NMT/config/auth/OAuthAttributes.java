@@ -3,6 +3,7 @@ package SWM_RM.NMT.config.auth;
 import SWM_RM.NMT.domain.User;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import java.util.Map;
 
