@@ -224,7 +224,7 @@
     const wing = document.querySelector('.wing');
     const $wing2 = document.getElementsByClassName('wing2');
     const $submit_btn = document.getElementById('submit-btn');
-
+    const problemId = [[${problem.id}]];
 
     // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
     const contentTop = content.getBoundingClientRect().top + window.scrollY;
@@ -251,12 +251,12 @@
     $submit_btn.addEventListener("click", function () {
         //window.location.href = 'gradeSheet.html';
         submitForm.text=document.getElementById("text-content").innerText;
-        post_to_url("/submit",submitForm,"post");
+        post_to_url("/submitGradeSheet?problemId="+problemId,submitForm,"post");
     });
 
     var submitForm={
         text : ""
-    }
+    };
     function post_to_url(path, params, method) {
         method = method || "post"; // Set method to post by default, if not specified.
         // The rest of this code assumes you are not using a library.

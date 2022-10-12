@@ -19,14 +19,11 @@ import java.util.List;
 public class ProblemController {
     private final ProblemService problemService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String problemController(Model model
-            , @RequestParam(value = "problemId",required = false) Long problemId){
-        //임시 데이터 아무거나 가져오기용
-        List<Problem> problemList = problemService.problemListService();
+            , @RequestParam(value = "problemId") Long problemId){
 
-        Problem problem = problemService.problemPageService(problemList.get(0).getId());
-        //Problem problem = problemService.problemPageService(problemList.get(0).getId());
+        Problem problem = problemService.problemPageService(problemId);
         ProblemDetailDTO problemDetailDTO=ProblemDetailDTO.problemDtoConverter(problem);
         model.addAttribute("problem",problemDetailDTO);
         System.out.println("----problem title: "+problemDetailDTO.getProbTitle());

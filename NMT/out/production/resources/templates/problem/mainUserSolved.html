@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    #wrap {
+      min-height: 35vh;
+      position: relative;
+      width: 100%;
+    }
+
+    footer {
+      width: 100%;
+      height: 110px;
+      /* 내용물에 따라 알맞는 값 설정 */
+      bottom: 0px;
+      position: absolute;
+    }
+
+
+    .header {
+      display: flex;
+      border-bottom: solid 2px black;
+      padding-top: 30px;
+      height: 120px;
+      padding-bottom: 3px;
+    }
+
+    .header-logo {
+      width: 15%;
+      position: absolute;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .header-menu li {
+      width: 20%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+
+    .problem-li {
+      display: flex;
+      height: 45px;
+      padding-bottom: 3px;
+      margin-top: 20px;
+      margin-left: 1%;
+    }
+
+    .problem-menu li {
+      width: 13%;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .active-problem {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .ChallengesTablestyle__Table-sc-wt0ety-2 th {
+      font-size: 12px;
+      color: #98a8b9;
+    }
+
+    a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+    }
+
+    tr>th {
+      padding: 7px;
+    }
+
+    tr>td {
+      padding: 7px;
+    }
+
+    tr {
+      border-bottom: 0.0625rem solid rgb(215, 226, 235);
+    }
+
+    .status {
+
+      width: 5.75rem;
+      text-align: center;
+    }
+
+    .level {
+      text-align: center;
+    }
+
+    .level-2 {
+      color: rgb(71, 200, 76);
+    }
+
+    .level-1 {
+      color: rgb(27, 186, 255);
+    }
+    .score{
+      width: 8.75rem;
+      text-align: center;
+    }
+    .part-title {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 0.0625rem;
+      font-size: 0.75rem;
+      color: rgb(120, 144, 160);
+      line-height: 150%;
+    }
+
+    .title {
+      font-size: 1rem;
+      line-height: 150%;
+      letter-spacing: -0.009em;
+      color: rgb(0, 0, 0);
+    }
+  </style>
+</head>
+
+<body>
+
+
+<div class="header-logo" style="height: 120px;">
+  <h1>
+    NMT
+  </h1>
+</div>
+<div class="header">
+  <div style="margin: auto; width: 63%;">
+    <ul class="nav header-menu">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="problemList.html">문제 풀이</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">실전 테스트</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">마이페이지</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container" style="margin-left: auto; margin-top: 45px;  margin-right: auto;">
+
+  <!-- 문제 제목 -->
+  <div style="margin : 20px; margin-bottom: 5px; margin-left: 1%;">
+    <h2>
+      고려대학교 22/인문
+    </h2>
+  </div>
+
+
+  <!-- 문제 하위 메뉴-->
+  <div class="problem-li">
+    <div style="width: 63%;">
+      <ul class="nav problem-menu">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="main.html">문제 풀이</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active-problem" href="mainUserSolved.html">내 제출</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="mainSolved.html">푼 사람</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">채점 현황</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="height: 3px; margin : 5px 15px 5px 1%; background-color: gray;">
+  </div>
+
+  <!-- 유저 성적표 개요 블럭 (표)-->
+  <div class="gradesheet-block" style="margin-left : 1%;margin-right : 20px;
+        padding: 10px; background-color: #f9fafc; margin-top: 20px;">
+    <div class="problem-block" style="width: 100%; background-color: white;">
+      <table class="ChallengesTablestyle__Table-sc-wt0ety-2 AHXna" style="width: 100%; margin: auto;
+        border: solid 1px #eaeaea;">
+        <thead style="text-align: center;">
+        <tr>
+          <th class="status">제출번호</th>
+          <th class="title">아이디</th>
+          <th class="level">총점</th>
+          <th class="score">독해력</th>
+          <th class="score">구현력</th>
+          <th class="score">어휘력</th>
+          <th class="score">제출 분량</th>
+          <th class="score">제출 날짜</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="status">22103</td>
+          <td class="title"><a href="gradeSheet.html">johan1103<small class="part-title">SUM, MAX,
+            MIN</small></a></td>
+          <td class="level"><span class="level-2">A</span></td>
+          <td class="score">3점</td>
+          <td class="score">2점</td>
+          <td class="score">3점</td>
+          <td class="score">253자</td>
+          <td class="score">1달전</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+<!-- footer 작성 -->
+<div id='wrap' style="background-color: #e9e9e9; margin-top: 20%;">
+  <section>
+    <!-- 대충 뭐 요소들이 가득차있음 -->
+  </section>
+  <footer>
+    <nav>
+      <a href='https://github.com/johan1103' target='_blank'>Github</a>
+    </nav>
+    <p>
+      <span>저자 : 김태형</span><br />
+      <span>이메일 : johan1103@naver.com</span><br />
+      <span>johan1103 2022. johan1103. All Rights Reserved.</span>
+    </p>
+  </footer>
+</div>
+</body>
+
+<script>
+  const $gradeSheet_btn = document.getElementById('gradeSheet-btn');
+  $gradeSheet_btn.addEventListener("click", function () {
+    window.location.href = 'gradeSheet.html';
+  })
+
+</script>
+
+
+</html>
