@@ -6,14 +6,17 @@ import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
 import SWM_RM.NMT.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserGradeSheetService {
 
@@ -75,14 +78,16 @@ public class UserGradeSheetService {
         userGradeSheet.setReportText(reportText);
         userGradeSheet.setCreateTime(LocalDateTime.now());
         userGradeSheet.setTextSize(reportText.length());
-
         User findUser = userRepository.findUserById(userId);
+        System.out.println("-------find user------");
         Problem findProblem = problemRepository.findProblemById(problemId);
+        System.out.println("-------find Problem------");
 
         ScoreSet gradedScoreSet = tempGradeEvaluater(reportText);
         userGradeSheet.setGradesByScoreSet(gradedScoreSet);
 
         userGradeSheetRepository.createGradeSheet(findProblem,findUser,userGradeSheet);
+        System.out.println("-------create gradeSheet------");
 
 
         /**
@@ -90,6 +95,7 @@ public class UserGradeSheetService {
          */
         UserGrade userGrade = findUser.getUserGrade();
         List<UserGradeSheet> userGradeSheetList = userGradeSheetRepository.findUserGradeSheetListByUserId(userId);
+        System.out.println("-------find userGradeSheet------");
         Double updateGrade1 = 0D;
         Double updateGrade2 = 0D;
         Double updateGrade3 = 0D;
@@ -119,6 +125,7 @@ public class UserGradeSheetService {
         userGrade.setGrade5Everage(updateGrade5);
         userGrade.setTotalEverage(updateTotalGrade);
 
+
         /**
          * 성적표 히스토리 Create
          */
@@ -126,6 +133,7 @@ public class UserGradeSheetService {
         userGradeHistory.setUserGradeByUserGradeSheet(userGradeSheet);
         userGradeHistory.setUpdateTime(LocalDateTime.now());
         userGradeHistoryRepository.createUserGradeHistory(userGradeHistory,findUser);
+        System.out.println("-------create userGradeHistory------");
 
         return userGradeSheet;
     }
@@ -194,6 +202,12 @@ public class UserGradeSheetService {
         scoreSet.setTotalEverage(sum/5);
 
         scoreSet.setGrade("B");
+        try {
+            System.out.println("Sleep 3s: "  + LocalDateTime.now());
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return scoreSet;
     }
 

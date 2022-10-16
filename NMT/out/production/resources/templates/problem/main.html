@@ -225,6 +225,9 @@
     const $wing2 = document.getElementsByClassName('wing2');
     const $submit_btn = document.getElementById('submit-btn');
     const problemId = [[${problem.id}]];
+    var submitForm={
+        text : ""
+    };
 
     // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
     const contentTop = content.getBoundingClientRect().top + window.scrollY;
@@ -248,15 +251,19 @@
             $wing2[0].style.top = '8px';
         }
     });
+    var cnt=0;
     $submit_btn.addEventListener("click", function () {
-        //window.location.href = 'gradeSheet.html';
-        submitForm.text=document.getElementById("text-content").innerText;
-        post_to_url("/submitGradeSheet?problemId="+problemId,submitForm,"post");
+        //submitForm.text=document.getElementById("text-content").innerText;
+        //post_to_url("/submitGradeSheet?problemId="+problemId,submitForm,"post");
+        //post_to_url2("/submitGradeSheet?problemId="+problemId);
+        cnt+=1;
+        if(cnt<=1) {
+            submitForm.text = document.getElementById("text-content").value;
+            post_to_url3("/submitGradeSheet?problemId=" + problemId, submitForm);
+        }
     });
 
-    var submitForm={
-        text : ""
-    };
+    /*
     function post_to_url(path, params, method) {
         method = method || "post"; // Set method to post by default, if not specified.
         // The rest of this code assumes you are not using a library.
@@ -264,6 +271,7 @@
         var form = document.createElement("form");
         form.setAttribute("method", method);
         form.setAttribute("action", path);
+        form.setAttribute("Content-Type","application/json");
         for(var key in params) {
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");
@@ -273,6 +281,32 @@
         }
         document.body.appendChild(form);
         form.submit();
+    }
+
+     */
+    /*
+    function post_to_url2(path){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", path, true);
+        submitForm.text=document.getElementById("text-content").value;
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(submitForm));
+    }
+
+     */
+    function post_to_url3(url,data){
+        fetch(url, {
+            method: 'post', // Default is 'get'
+            body: JSON.stringify(data),
+            mode: 'cors',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+            .then(response => response.text())
+            .then(text => {
+               window.location.href = "/problem/list?problemId="+problemId;
+            });
     }
 </script>
 </html>
