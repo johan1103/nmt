@@ -59,7 +59,7 @@ public class UserGradeSheetRepository {
      * @return
      */
     public List<UserGradeSheet> findUserGradeSheetListByProblemId(Long problemId){
-        return em.createQuery("select ugs from UserGradeSheet ugs " +
+        return em.createQuery("select ugs from UserGradeSheet ugs join fetch ugs.user " +
                 "where ugs.problem.id =: id",UserGradeSheet.class)
                 .setParameter("id",problemId).getResultList();
     }

@@ -1,6 +1,8 @@
 package SWM_RM.NMT.service;
 
 import SWM_RM.NMT.domain.*;
+import SWM_RM.NMT.domain.dto.GradeSheetDetailDTO;
+import SWM_RM.NMT.domain.dto.GradeSheetListDTO;
 import SWM_RM.NMT.domain.dto.ScoreSet;
 import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
 import SWM_RM.NMT.repository.*;
@@ -30,8 +32,13 @@ public class UserGradeSheetService {
      * @param userGradeSheetId
      * @return
      */
-    public UserGradeSheet userGradeSheetService(Long userGradeSheetId){
-        return userGradeSheetRepository.findUserGradeSheetByUserGradeSheetId(userGradeSheetId);
+    public GradeSheetDetailDTO userGradeSheetService(Long userGradeSheetId){
+        UserGradeSheet userGradeSheet = userGradeSheetRepository
+                .findUserGradeSheetByUserGradeSheetId(userGradeSheetId);
+        GradeSheetDetailDTO gradeSheetDetailDTO = GradeSheetDetailDTO
+                .gradeSheetDetailDtoConverter(userGradeSheet,
+                        userGradeSheet.getProblem(),userGradeSheet.getUser());
+        return gradeSheetDetailDTO;
     }
 
     /**
@@ -140,11 +147,19 @@ public class UserGradeSheetService {
 
     /**
      * 한 문제에 대한 모든 성적표 조회해서 return하는 메서드
+     * 
      * @param problemId
-     * @return
+     * @return List<GradeSheetListDTO>
      */
-    public List<UserGradeSheet> gradeSheetListService(Long problemId){
-        return  userGradeSheetRepository.findUserGradeSheetListByProblemId(problemId);
+    public List<GradeSheetListDTO> gradeSheetListService(Long problemId){
+        List<UserGradeSheet> userGradeSheetList =
+                userGradeSheetRepository.findUserGradeSheetListByProblemId(problemId);
+        List<GradeSheetListDTO> gradeSheetListDTO = new ArrayList<>();
+        System.out.println("---------------get grade sheet list, start converting");
+        for(UserGradeSheet userGradeSheet : userGradeSheetList){
+            gradeSheetListDTO.add(GradeSheetListDTO.gradeSheetDtoConverter(userGradeSheet));
+        }
+        return  gradeSheetListDTO;
     }
 
     /**
@@ -154,8 +169,15 @@ public class UserGradeSheetService {
      * @return
      */
 
-    public List<UserGradeSheet> userGradeSheetListService(Long userId,Long problemId){
-        return userGradeSheetRepository.findUserGradeSheetListByUserIdProblemId(userId,problemId);
+    public List<GradeSheetListDTO> userGradeSheetListService(Long userId,Long problemId){
+        List<UserGradeSheet> userGradeSheetList =
+                userGradeSheetRepository.findUserGradeSheetListByUserIdProblemId(userId,problemId);
+        List<GradeSheetListDTO> gradeSheetListDTO = new ArrayList<>();
+        System.out.println("---------------get grade sheet list, start converting");
+        for(UserGradeSheet userGradeSheet : userGradeSheetList){
+            gradeSheetListDTO.add(GradeSheetListDTO.gradeSheetDtoConverter(userGradeSheet));
+        }
+        return gradeSheetListDTO;
     }
 
     /**

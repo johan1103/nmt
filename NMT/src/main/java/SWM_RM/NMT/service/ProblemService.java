@@ -3,6 +3,7 @@ package SWM_RM.NMT.service;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.domain.dto.ProblemDetailDTO;
 import SWM_RM.NMT.repository.ProblemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,9 @@ public class ProblemService {
     /**
      * 문제 정보 조회 서비스, 문제의 상세 정보를 전부 return 해야함
      */
-    public Problem problemPageService(Long problemId){
-        return problemRepository.findProblemById(problemId);
+    public ProblemDetailDTO problemPageService(Long problemId){
+        Problem problem = problemRepository.findProblemById(problemId);
+        ProblemDetailDTO problemDetailDTO = ProblemDetailDTO.problemDtoConverter(problem);
+        return problemDetailDTO;
     }
 }

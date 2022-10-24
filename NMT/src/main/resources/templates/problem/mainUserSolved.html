@@ -152,6 +152,8 @@
     NMT
   </h1>
 </div>
+
+<!-- 문제풀이, 실젠테스트, 마이페이지-->
 <div class="header">
   <div style="margin: auto; width: 63%;">
     <ul class="nav header-menu">
@@ -174,7 +176,7 @@
 
   <!-- 문제 제목 -->
   <div style="margin : 20px; margin-bottom: 5px; margin-left: 1%;">
-    <h2>
+    <h2 th:text="${problem.probTitle}">
       고려대학교 22/인문
     </h2>
   </div>
@@ -185,13 +187,14 @@
     <div style="width: 63%;">
       <ul class="nav problem-menu">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="main.html">문제 풀이</a>
+          <a class="nav-link" aria-current="page"
+             th:href="@{/problem(problemId=${problem.id})}">문제 풀이</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active-problem" href="mainUserSolved.html">내 제출</a>
+          <a class="nav-link active-problem" th:href="@{/problem/user-solved-list(problemId=${problem.id})}">내 제출</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="mainSolved.html">푼 사람</a>
+          <a class="nav-link" th:href="@{/problem/solved-list(problemId=${problem.id})}">푼 사람</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">채점 현황</a>
@@ -222,15 +225,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="status">22103</td>
-          <td class="title"><a href="gradeSheet.html">johan1103<small class="part-title">SUM, MAX,
-            MIN</small></a></td>
-          <td class="level"><span class="level-2">A</span></td>
-          <td class="score">3점</td>
-          <td class="score">2점</td>
-          <td class="score">3점</td>
-          <td class="score">253자</td>
+        <tr th:each="grades :${gradeList}" >
+          <td class="status" th:text="${grades.id}">22103</td>
+          <td class="title">
+            <a th:href="@{/grade-sheet(gradeSheetId=${grades.id})}">
+              <span th:text="${grades.userNickname}">johan1103</span>
+              <small class="part-title">SUM, MAX,MIN</small>
+            </a>
+          </td>
+          <td class="level"><span class="level-2" th:text="${grades.totalGrade}">A</span></td>
+          <td class="score" th:text="${grades.grade1}">3점</td>
+          <td class="score" th:text="${grades.grade2}">2점</td>
+          <td class="score" th:text="${grades.grade3}">3점</td>
+          <td class="score" th:text="${grades.textSize}">253자</td>
           <td class="score">1달전</td>
         </tr>
         </tbody>
@@ -257,6 +264,7 @@
   </footer>
 </div>
 </body>
-
+<script>
+</script>
 
 </html>

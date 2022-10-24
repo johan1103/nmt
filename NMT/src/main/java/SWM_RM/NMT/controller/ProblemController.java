@@ -1,10 +1,6 @@
 package SWM_RM.NMT.controller;
-
-import SWM_RM.NMT.data.CreateProblemDatas2;
-import SWM_RM.NMT.domain.Problem;
-import SWM_RM.NMT.domain.dto.GradeSheetDTO;
+import SWM_RM.NMT.domain.dto.GradeSheetListDTO;
 import SWM_RM.NMT.domain.dto.ProblemDetailDTO;
-import SWM_RM.NMT.repository.UserRepository;
 import SWM_RM.NMT.service.ProblemService;
 import SWM_RM.NMT.service.UserGradeSheetService;
 import lombok.RequiredArgsConstructor;
@@ -19,21 +15,43 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProblemController {
     private final ProblemService problemService;
+    private final UserGradeSheetService userGradeSheetService;
 
     @GetMapping("")
     public String problemController(Model model
             , @RequestParam(value = "problemId") Long problemId){
-
-        Problem problem = problemService.problemPageService(problemId);
-        ProblemDetailDTO problemDetailDTO=ProblemDetailDTO.problemDtoConverter(problem);
+        ProblemDetailDTO problemDetailDTO=problemService.problemPageService(problemId);
         model.addAttribute("problem",problemDetailDTO);
         System.out.println("----problem title: "+problemDetailDTO.getProbTitle());
         return "/problem/main";
     }
-    @GetMapping("/list")
-    public String problemListController(Model model, @RequestParam(value = "problemId") Long problemId){
-        System.out.println("----------redirected--------");
-        System.out.println(problemId);
+    @GetMapping("/user-solved-list")
+    public String userSolvedListController(Model model, @RequestParam(value = "problemId") Long problemId){
+        /**
+         * user id는 security에서 가져와야 함
+         */
+        Long userId = 21L;
+        System.out.println("----------user-solved-list controller--------");
+        System.out.println(problemId+" "+userId);
+        List<GradeSheetListDTO> userGradeSheetList=userGradeSheetService.userGradeSheetListService(userId,problemId);
+        ProblemDetailDTO problemDetail=problemService.problemPageService(problemId);
+        model.addAttribute("gradeList",userGradeSheetList);
+        model.addAttribute("problem",problemDetail);
+        System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
+                +userGradeSheetList.get(0).getTotalGrade());
         return "/problem/mainUserSolved";
+    }
+
+    @GetMapping("/solved-list")
+    public String solvedListController(Model model, @RequestParam(value = "problemId") Long problemId){
+        System.out.println("----------solved-list controller--------");
+        System.out.println(problemId);
+        List<GradeSheetListDTO> userGradeSheetList=userGradeSheetService.gradeSheetListService(problemId);
+        ProblemDetailDTO problemDetail=problemService.problemPageService(problemId);
+        model.addAttribute("gradeList",userGradeSheetList);
+        model.addAttribute("problem",problemDetail);
+        System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
+                +userGradeSheetList.get(0).getTotalGrade());
+        return "/problem/mainSolved";
     }
 }
