@@ -5,6 +5,8 @@ import SWM_RM.NMT.repository.UserGradeHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -18,14 +20,25 @@ public class UserGradeHistoryService {
      */
     private final UserGradeHistoryRepository userGradeHistoryRepository;
     public List<UserGradeHistory> userGradeHistoryService(Long userId){
+        return userGradeHistoryRepository.findUserGradeHistoryByUserId(userId);
+    }
+
+    /**
+     * user Strick return
+     * @param userId
+     * @return
+     */
+    public HashMap<Integer,Integer> UserGradeHistroyStrickService(Long userId){
         List<UserGradeHistory> userGradeHistories = userGradeHistoryRepository
                 .findUserGradeHistoryByUserId(userId);
-
-        /**
-         * 히스토리 보여주는 로직을 어떻게 짤 것인가....
-         */
-
-
-        return userGradeHistoryRepository.findUserGradeHistoryByUserId(userId);
+        HashMap<Integer,Integer> strick = new HashMap<Integer,Integer>();
+        for(int i=1;i<=12;i++){
+            strick.put(i,0);
+        }
+        for(UserGradeHistory ugh : userGradeHistories){
+            Integer month=ugh.getUpdateTime().getMonth().getValue();
+            strick.put(month,strick.get(month)+1);
+        }
+        return strick;
     }
 }
