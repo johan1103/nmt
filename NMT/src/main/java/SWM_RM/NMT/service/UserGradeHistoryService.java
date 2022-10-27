@@ -5,6 +5,8 @@ import SWM_RM.NMT.repository.UserGradeHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserGradeHistoryService {
@@ -15,7 +17,15 @@ public class UserGradeHistoryService {
      * @return
      */
     private final UserGradeHistoryRepository userGradeHistoryRepository;
-    public UserGradeHistory userGradeHistoryService(Long userId){
+    public List<UserGradeHistory> userGradeHistoryService(Long userId){
+        List<UserGradeHistory> userGradeHistories = userGradeHistoryRepository
+                .findUserGradeHistoryByUserId(userId);
+
+        /**
+         * 히스토리 보여주는 로직을 어떻게 짤 것인가....
+         */
+
+
         return userGradeHistoryRepository.findUserGradeHistoryByUserId(userId);
     }
 }

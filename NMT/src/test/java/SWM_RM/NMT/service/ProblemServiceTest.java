@@ -3,6 +3,7 @@ package SWM_RM.NMT.service;
 
 import SWM_RM.NMT.data.CreateProblemDatas2;
 import SWM_RM.NMT.domain.Problem;
+import SWM_RM.NMT.domain.dto.ProblemListDTO;
 import SWM_RM.NMT.repository.ProbTypeRepository;
 import SWM_RM.NMT.repository.ProblemRepository;
 import SWM_RM.NMT.repository.UniversityRepository;
@@ -37,10 +38,9 @@ public class ProblemServiceTest {
                 universityRepository);
 
         createProblemDatas2.createDatas();
-        List<Problem> findAllproblems = problemService.problemListService();
-        for(Problem p : findAllproblems){
-            System.out.println(p.getProbTitle()+" "+p.getUniversity().getUniversityName()+
-                    " "+p.getProbType().getTypeName());
+        List<ProblemListDTO> findAllproblems = problemService.problemListService();
+        for(ProblemListDTO p : findAllproblems){
+            System.out.println(p.getProbTitle()+" "+p.getProbTitle());
         }
     }
 

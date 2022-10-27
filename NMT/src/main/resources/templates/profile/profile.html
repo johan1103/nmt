@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    .w-btn {
+      position: relative;
+      border: none;
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 15px;
+      font-family: "paybooc-Light", sans-serif;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .w-btn-outline {
+      position: relative;
+      padding: 15px 30px;
+      border-radius: 15px;
+      font-family: "paybooc-Light", sans-serif;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .w-btn-indigo {
+      background-color: aliceblue;
+      color: #1e6b7b;
+    }
+
+    .w-btn-indigo-outline {
+      border: 3px solid aliceblue;
+      color: #1e6b7b;
+    }
+
+    .w-btn-indigo-outline:hover {
+      color: #1e6b7b;
+      background: aliceblue;
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: black;
+      border: solid 1px #eaeaea;
+      font-weight: 700;
+    }
+
+
+    #wrap {
+      min-height: 35vh;
+      position: relative;
+      width: 100%;
+    }
+
+    footer {
+      width: 100%;
+      height: 110px;
+      /* 내용물에 따라 알맞는 값 설정 */
+      bottom: 0px;
+      position: absolute;
+    }
+
+
+    .header {
+      display: flex;
+      border-bottom: solid 2px black;
+      padding-top: 30px;
+      height: 120px;
+      padding-bottom: 3px;
+    }
+
+    .header-logo {
+      width: 15%;
+      position: absolute;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .header-menu li {
+      width: 20%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+
+    .problem-li {
+      display: flex;
+      height: 45px;
+      padding-bottom: 3px;
+      margin-top: 20px;
+      margin-left: 1%;
+    }
+
+    .problem-menu li {
+      width: 13%;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .active-problem {
+      border-bottom: solid #0d6efd 4px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .user-summary-container {
+      padding-left: 15%;
+      padding-right: 15%;
+
+    }
+
+    button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .progress-filled {
+      background-color: rgb(0, 212, 151);
+    }
+
+    .user-info-li li {
+      width: 10%;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .grade-info-logo {
+      color: black;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      border-radius: 50%;
+      padding: 10px;
+      padding-top: 12px;
+    }
+
+    .grade-info-container {
+      display: flex;
+      position: relative;
+      margin-top: 50px;
+      margin-left: 20px;
+      height: 99px;
+      padding: 25px;
+    }
+
+    .grade-info-detail {
+      width: 40%;
+      color: white;
+      text-align: center;
+      padding: 5px;
+      padding-top: 12px;
+      border-radius: 15%;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<!-- 헤더 -->
+<div class="header-logo" style="height: 120px;">
+  <h1>
+    NMT
+  </h1>
+</div>
+<div class="header">
+  <div style="margin: auto; width: 63%;">
+    <ul class="nav header-menu">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" th:href="@{/problem/list}">문제 풀이</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">실전 테스트</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">마이페이지</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="my-container" style="width: 100%;">
+  <div style="width: 100%; ">
+    <img
+            src="https://solved.ac/_next/image?url=https%3A%2F%2Fstatic.solved.ac%2Fprofile_bg%2Fgrass_200%2Fgrass_200.png&w=3840&q=75">
+  </div>
+
+  <div class="user-summary-container">
+    <!-- 유저 기본 정보 (배경사진,프로필사진,레벨)-->
+    <div style="width:100%; position: relative; height: 120px;">
+      <div class="user-image" style="position: absolute; width: 120px;height: 120px;
+                left: 0px; top: -50px; ">
+        <img src="johan1103-picture-1644132619873.png" alt="" style="position:absolute;border-radius: 50%; filter: drop-shadow(rgba(0, 212, 151, 0.6) 0px 4px 8px);
+                    left: 0px;top: 0px;">
+        <img src="https://static.solved.ac/tier_small/17.svg"
+             style="position:absolute;top: 102px;left:42px;width: 35px;">
+      </div>
+      <div style="position: absolute; top:16px; right:16px;">
+        <button class="w-btn w-btn-indigo" type="button">
+          프로필 편집
+        </button>
+      </div>
+    </div>
+    <div>
+      <h2 th:text="">johan1103</h2>
+      <div>자기소개</div>
+      <div style="display: block; height: 16px;"></div>
+      <span style="color: rgb(0, 212, 151);">
+                    <b>Platinum IV</b> 1803<small class="css-iprtw2"
+                                                  style="display: inline-block; float: right;">Platinum III
+                        승급까지 −97</small>
+                </span>
+      <div class="progress" style="height: 25px;">
+        <div class="progress-bar progress-filled" role="progressbar" aria-label="Success example"
+             style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div style="margin-top: 20px;">
+        <a style="margin-right: 5px; color: rgb(138, 143, 149);"><b
+                style="font-weight: 700; color: black;">564</b>문제 해결</a>
+        <a style="color: rgb(138, 143, 149);"><b style="font-weight: 700; color: black;">3</b>명의 라이벌</a>
+      </div>
+    </div>
+
+    <!-- 문제 하위 메뉴-->
+    <div class="problem-li user-info-li" style="margin: 0px; margin-top: 50px;">
+      <div style="width: 100%;">
+        <ul class="nav problem-menu">
+          <li class="nav-item">
+            <a id="summary-button"class="nav-link active-problem"
+               aria-current="page" href="#d">개요</a>
+          </li>
+          <li class="nav-item">
+            <a id="history-button"class="nav-link" href="#d">히스토리</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 개요 컨테이너 -->
+    <div id="summary-container">
+      <!-- 푼 문제 리스트 -->
+      <div style="width:100%; height: 400px; background-color: #f7f8f9; margin-top: 20px; padding: 20px;">
+        <h3 style="color: black;">
+          성적표 목록
+        </h3>
+        <div
+                style="background-color: #0d6efd; width: 60px; text-align: center; display: inline-block; color: white;">
+          고려22
+        </div>
+        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
+          고려22
+        </div>
+        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
+          고려22
+        </div>
+        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
+          고려22
+        </div>
+        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
+          고려22
+        </div>
+        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
+          고려22
+        </div>
+      </div>
+
+      <!-- 지금까지 푼 기록(스트릭)-->
+      <div style="width:100%; background-color: #f7f8f9; margin-top: 40px; padding: 20px;">
+        <h3 style="color: black;">
+          스트릭
+        </h3>
+
+        <div style="width: 100%;height: 270px; text-align: center;">
+          <div style="width: 70%; margin:auto; text-align: center;">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <canvas id="bar-chart" width="700" height="270"></canvas>
+          </div>
+        </div>
+        <div class="css-1nvk81z" style="padding: 8px 24px; text-align: center;">
+          <b>#2,157</b>
+          <br>
+          <small>전체 ↑<span>2.81</span>%</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 히스토리 컨테이너 -->
+    <div id="history-container" style="display:none;">
+      <!-- 학교별 성적 분석 -->
+      <div style="width:100%; height: 400px; background-color: #f7f8f9; margin-top: 20px; padding: 20px;
+                position: relative;">
+        <div style="width: 20%; position: absolute; left: 48%;">
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              학교 선택
+            </a>
+            <ul class="dropdown-menu" style="width: 100%">
+              <li><a class="dropdown-item" href="#">대조</a></li>
+              <li><a class="dropdown-item" href="#">비교. 분석</a></li>
+              <li><a class="dropdown-item" href="#">추론</a></li>
+            </ul>
+          </div>
+        </div>
+        <h3>
+          학교별 성적 분석
+        </h3>
+        <div style="display: flex;width: 100%;height: 270px;">
+          <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <canvas id="university-grade-chart" width="600" height="270"></canvas>
+          </div>
+          <div style="position: relative;">
+            <div>
+              <b>김태형</b><span>님의 <b>고려대학교</b> 평균 성적표</span>
+            </div>
+            <div class="grade-info-container">
+              <div class="grade-info-logo" style="background-color: #dddfe0; position: absolute;
+                                left:-25px;top:-25px;">
+                강점
+              </div>
+              <div class="grade-info-detail" style="background-color: #0d6efd;">
+                독해력
+              </div>
+              <div class="grade-info-detail" style="background-color:#0d6efd;
+                                margin-left: 20px;">
+                어휘력
+              </div>
+            </div>
+            <div class="grade-info-container" style="margin-top: 20px;">
+              <div class="grade-info-logo" style="background-color: #dddfe0; position: absolute;
+                                left:-25px;top:-25px;">
+                약점
+              </div>
+              <div class="grade-info-detail" style="background-color: #F44336;">
+                논리력
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 히스토리 -->
+      <div style="width:100%; background-color: #f7f8f9; margin-top: 40px; padding: 20px;
+                position: relative;">
+        <!-- 옵션 블럭 -->
+        <div style="width: 20%; position: absolute; left: 71%;">
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              세부 능력 선택
+            </a>
+            <ul class="dropdown-menu" style="width: 100%">
+              <li><a class="dropdown-item" href="#">대조</a></li>
+              <li><a class="dropdown-item" href="#">비교. 분석</a></li>
+              <li><a class="dropdown-item" href="#">추론</a></li>
+            </ul>
+          </div>
+        </div>
+        <h3 style="color: black;">
+          히스토리
+        </h3>
+        <!--히스토리 그래프-->
+        <div style="width: 100%;height: 270px; text-align: center;">
+          <div style="width: 70%; margin:auto; text-align: center;">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <canvas id="history-chart" width="700" height="270"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- footer 작성 -->
+<div id='wrap' style="background-color: #e9e9e9; margin-top: 20%;">
+  <section>
+    <!-- 대충 뭐 요소들이 가득차있음 -->
+  </section>
+  <footer>
+    <nav>
+      <a href='https://github.com/johan1103' target='_blank'>Github</a>
+    </nav>
+    <p>
+      <span>저자 : 김태형</span><br />
+      <span>이메일 : johan1103@naver.com</span><br />
+      <span>johan1103 2022. johan1103. All Rights Reserved.</span>
+    </p>
+  </footer>
+</div>
+</body>
+
+<script>
+
+  $('a.feellink').click(function(e)
+  {
+    e.preventDefault();
+  });
+
+  var summary_container=document.getElementById("summary-container");
+  var history_container=document.getElementById("history-container");
+  var summary_button=document.getElementById("summary-button");
+  var history_button=document.getElementById("history-button");
+  summary_button.addEventListener('click',()=>{
+    summary_button.style['border-bottom']="solid #0d6efd 4px";
+    history_button.style['border-bottom']="none";
+    summary_container.style['display']="block";
+    history_container.style['display']="none";
+  });
+  history_button.addEventListener('click',()=>{
+    summary_button.style['border-bottom']="none";
+    history_button.style['border-bottom']="solid #0d6efd 4px";
+    summary_container.style['display']="none";
+    history_container.style['display']="block";
+  });
+
+
+  var mychart = new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: 'rgba(13, 110, 253, 0.5)',
+          //backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          borderColor: '#0076C0',
+          data: [9, 6, 13, 12, 15, 8, 7, 10, 20, 17, 26, 23],
+          drawActiveElementsOnTop: true,
+          indexAxis: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      legend: { display: false },
+      title: {
+        display: true,
+        text: '고려대학교22/인문 점수 분포표'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 30
+          }
+        }]
+      }
+    }
+  });
+
+  new Chart(document.getElementById("university-grade-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["독해력", "독해력(평균)", "논리력", "논리력(평균)", "어휘력", "어휘력(평균)", "총점", "총점(평균)"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          //backgroundColor: 'rgba(13, 110, 253, 0.5)',
+          backgroundColor: ["rgba(13,110,253,0.6)", "rgba(244,67,54,0.6)", "rgba(13,110,253,0.6)", "rgba(244,67,54,0.6)"
+            , "rgba(13,110,253,0.6)", "rgba(244,67,54,0.6)", "rgba(13,110,253,0.6)", "rgba(244,67,54,0.6)"],
+          borderColor: '#0076C0',
+          data: [3, 2, 1, 4, 3, 2, 1, 4],
+          drawActiveElementsOnTop: true,
+          indexAxis: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      legend: { display: false },
+      title: {
+        display: true,
+        text: '고려대학교 희망 학생 평균'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 5
+          }
+        }]
+      }
+    }
+  });
+
+  new Chart(document.getElementById("history-chart"), {
+    type: 'line',
+    data: {
+      labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: 'rgba(13, 110, 253, 0.5)',
+          //backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          borderColor: '#0076C0',
+          data: [1, 2, 2, 2.7, 3, 3.4, 3, 4, 3.7, 4, 4.2, 4.5],
+          drawActiveElementsOnTop: true,
+          indexAxis: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      legend: { display: false },
+      title: {
+        display: true,
+        text: '총점 히스토리'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 7
+          }
+        }]
+      }
+    }
+  });
+  /*
+
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      suggestedMin: 0,
+                      suggestedMax: 7
+                  }
+              }]
+          }
+  */
+</script>
+
+
+</html>

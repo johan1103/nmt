@@ -4,10 +4,12 @@ import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
 import SWM_RM.NMT.domain.dto.ProblemDetailDTO;
+import SWM_RM.NMT.domain.dto.ProblemListDTO;
 import SWM_RM.NMT.repository.ProblemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,9 +21,13 @@ public class ProblemService {
      * 모든 문제들을 조회하고자 할 때, problemRepository로 문제 리스트를 요청하는 메서드
      * @return List<Problem>
      */
-    public List<Problem> problemListService(){
+    public List<ProblemListDTO> problemListService(){
         List<Problem> problems = problemRepository.findProblemList();
-        return problems;
+        List<ProblemListDTO> problemDtolist=new ArrayList<>();
+        for(Problem problem : problems){
+            problemDtolist.add(ProblemListDTO.problemListDtoConverter(problem));
+        }
+        return problemDtolist;
     }
 
     /**

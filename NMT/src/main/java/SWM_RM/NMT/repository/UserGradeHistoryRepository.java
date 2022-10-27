@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -28,9 +29,9 @@ public class UserGradeHistoryRepository {
      * @param userId
      * @return
      */
-    public UserGradeHistory findUserGradeHistoryByUserId(Long userId){
+    public List<UserGradeHistory> findUserGradeHistoryByUserId(Long userId){
         return em.createQuery("select ugh from UserGradeHistory ugh where " +
                 "ugh.user.id =: id",UserGradeHistory.class)
-                .setParameter("id",userId).getSingleResult();
+                .setParameter("id",userId).getResultList();
     }
 }

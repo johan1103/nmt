@@ -40,7 +40,8 @@ public class ProblemRepository {
      * @return
      */
     public List<Problem> findProblemList(){
-        return em.createQuery("select p from Problem p",Problem.class).getResultList();
+        return em.createQuery("select p from Problem p" +
+                " join fetch p.probType",Problem.class).getResultList();
     }
 
     /**
