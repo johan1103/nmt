@@ -181,6 +181,18 @@
       padding-top: 12px;
       border-radius: 15%;
     }
+
+    .problem-block{
+      background-color: #0d6efd;
+      width: 100px;
+      padding: 5px;
+      height: 35px;
+      text-align: center;
+      display: inline-block;
+      color: white;
+      border-radius: 5px;
+      margin: 5px;
+    }
   </style>
 </head>
 
@@ -203,7 +215,7 @@
         <a class="nav-link active" href="#">실전 테스트</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="profile.html">마이페이지</a>
+        <a class="nav-link" th:href="@{/profile/my-profile}">마이페이지</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled">Disabled</a>
@@ -224,7 +236,7 @@
     <div style="width:100%; position: relative; height: 120px;">
       <div class="user-image" style="position: absolute; width: 120px;height: 120px;
                 left: 0px; top: -50px; ">
-        <img src="johan1103-picture-1644132619873.png" alt="" style="position:absolute;border-radius: 50%; filter: drop-shadow(rgba(0, 212, 151, 0.6) 0px 4px 8px);
+        <img src="https://avatars.githubusercontent.com/u/71641610?v=4" alt="" style="position:absolute;border-radius: 50%; filter: drop-shadow(rgba(0, 212, 151, 0.6) 0px 4px 8px);
                     left: 0px;top: 0px;">
         <img src="https://static.solved.ac/tier_small/17.svg"
              style="position:absolute;top: 102px;left:42px;width: 35px;">
@@ -236,7 +248,7 @@
       </div>
     </div>
     <div>
-      <h2 th:text="">johan1103</h2>
+      <h2 th:text="${user.nickName}">johan1103</h2>
       <div>자기소개</div>
       <div style="display: block; height: 16px;"></div>
       <span style="color: rgb(0, 212, 151);">
@@ -275,26 +287,12 @@
       <!-- 푼 문제 리스트 -->
       <div style="width:100%; height: 400px; background-color: #f7f8f9; margin-top: 20px; padding: 20px;">
         <h3 style="color: black;">
-          성적표 목록
+          푼 문제 목록
         </h3>
-        <div
-                style="background-color: #0d6efd; width: 60px; text-align: center; display: inline-block; color: white;">
-          고려22
-        </div>
-        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
-          고려22
-        </div>
-        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
-          고려22
-        </div>
-        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
-          고려22
-        </div>
-        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
-          고려22
-        </div>
-        <div style="color: #0d6efd; width: 60px; text-align: center; display: inline-block;">
-          고려22
+        <div class="problem-block" th:each="problem:${problems}">
+          <a th:href="@{/problem(problemId=${problem.problemId})}">
+          <span style="color: white" th:text="${problem.probTitle}">고려22</span>
+          </a>
         </div>
       </div>
 
@@ -425,7 +423,7 @@
 </div>
 </body>
 
-<script>
+<script th:inline="javascript">
 
   $('a.feellink').click(function(e)
   {
@@ -448,7 +446,19 @@
     summary_container.style['display']="none";
     history_container.style['display']="block";
   });
-
+  var jan=[[${strick.get(1)}]];
+  var feb=[[${strick.get(2)}]];
+  var mar=[[${strick.get(3)}]];
+  var apr=[[${strick.get(4)}]];
+  var may=[[${strick.get(5)}]];
+  var jun=[[${strick.get(6)}]];
+  var jul=[[${strick.get(7)}]];
+  var aug=[[${strick.get(8)}]];
+  var sep=[[${strick.get(9)}]];
+  var oct=[[${strick.get(10)}]];
+  var nov=[[${strick.get(11)}]];
+  var dec=[[${strick.get(12)}]];
+  var totalStrick = [[${totalStrick}]];
 
   var mychart = new Chart(document.getElementById("bar-chart"), {
     type: 'bar',
@@ -460,7 +470,7 @@
           backgroundColor: 'rgba(13, 110, 253, 0.5)',
           //backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
           borderColor: '#0076C0',
-          data: [9, 6, 13, 12, 15, 8, 7, 10, 20, 17, 26, 23],
+          data: [jan, feb, mar, apr, may, jun, jul , aug, sep, oct, nov, dec],
           drawActiveElementsOnTop: true,
           indexAxis: 2,
         }
@@ -529,7 +539,8 @@
           backgroundColor: 'rgba(13, 110, 253, 0.5)',
           //backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
           borderColor: '#0076C0',
-          data: [1, 2, 2, 2.7, 3, 3.4, 3, 4, 3.7, 4, 4.2, 4.5],
+          data: [totalStrick[1], totalStrick[2], totalStrick[3], totalStrick[4], totalStrick[5],totalStrick[6],
+            totalStrick[7], totalStrick[8], totalStrick[9], totalStrick[10], totalStrick[11], totalStrick[12]],
           drawActiveElementsOnTop: true,
           indexAxis: 2,
         }

@@ -1,13 +1,15 @@
 package SWM_RM.NMT.service;
 
+import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.UserGradeHistory;
+import SWM_RM.NMT.domain.UserGradeSheet;
+import SWM_RM.NMT.domain.dto.ProblemListDTO;
 import SWM_RM.NMT.repository.UserGradeHistoryRepository;
+import SWM_RM.NMT.repository.UserGradeSheetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +21,23 @@ public class UserGradeHistoryService {
      * @return
      */
     private final UserGradeHistoryRepository userGradeHistoryRepository;
+    private final UserGradeSheetRepository userGradeSheetRepository;
     public List<UserGradeHistory> userGradeHistoryService(Long userId){
         return userGradeHistoryRepository.findUserGradeHistoryByUserId(userId);
+    }
+
+    public List<ProblemListDTO> userSolvedProblemListService(Long userId){
+        HashSet<Problem> problemHashSet= new HashSet<Problem>();
+        List<ProblemListDTO> problems = new ArrayList<>();
+        List<UserGradeSheet> userGradeSheetList = userGradeSheetRepository
+                .findUserGradeSheetListByUserIdFetchJoinProblem(userId);
+        for(UserGradeSheet ugh : userGradeSheetList){
+            problemHashSet.add(ugh.getProblem());
+        }
+        for(Problem p : problemHashSet){
+            problems.add(ProblemListDTO.problemListDtoConverter(p));
+        }
+        return problems;
     }
 
     /**
@@ -28,17 +45,41 @@ public class UserGradeHistoryService {
      * @param userId
      * @return
      */
-    public HashMap<Integer,Integer> UserGradeHistroyStrickService(Long userId){
-        List<UserGradeHistory> userGradeHistories = userGradeHistoryRepository
-                .findUserGradeHistoryByUserId(userId);
+    public HashMap<Integer,Integer> userGradeHistoryStrickService(Long userId){
+        List<UserGradeSheet> userGradeHistories = userGradeSheetRepository
+                .findUserGradeSheetListByUserId(userId);
         HashMap<Integer,Integer> strick = new HashMap<Integer,Integer>();
         for(int i=1;i<=12;i++){
             strick.put(i,0);
         }
-        for(UserGradeHistory ugh : userGradeHistories){
-            Integer month=ugh.getUpdateTime().getMonth().getValue();
+        for(UserGradeSheet ugs : userGradeHistories){
+            Integer month=ugs.getCreateTime().getMonth().getValue();
+            System.out.println("month is "+month+" plus value "+(strick.get(month)+1));
             strick.put(month,strick.get(month)+1);
         }
         return strick;
+    }
+
+    public HashMap<Integer,Double> userTotalGradeHistoryServcie(long userId){
+        List<UserGradeSheet> userGradeSheetList=userGradeSheetRepository
+                .findUserGradeSheetListByUserId(userId);
+        HashMap<Integer,Double> totalGradeStrick=new HashMap<>();
+        List<Integer> totalList=new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0));
+        for(int i=1;i<=12;i++){
+            totalGradeStrick.put(i,0D);
+        }
+        for(UserGradeSheet ugs:userGradeSheetList){
+            Integer month=ugs.getCreateTime().getMonth().getValue();
+            totalList.set(month,totalList.get(month)+1);
+            totalGradeStrick.put(month,totalGradeStrick.get(month)+ugs.getTotalEverage());
+        }
+        for(int i=1;i<=12;i++){
+            if(totalList.get(i)!=0) {
+                Double avg=totalGradeStrick.get(i)/totalList.get(i);
+                totalGradeStrick.put(i, (Math.round(avg * 100)/100.0));
+            }
+            System.out.println("month "+i+", value "+totalGradeStrick.get(i));
+        }
+        return totalGradeStrick;
     }
 }

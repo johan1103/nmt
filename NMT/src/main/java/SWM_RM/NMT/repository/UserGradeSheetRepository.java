@@ -42,6 +42,18 @@ public class UserGradeSheetRepository {
     }
 
     /**
+     * Profile페이지에서 한 유저가 푼 문제들을 가져오기 위해서 gradeSheet를 가져올 때, N+1을 방지하기 위해
+     * problem까지 join fetch해서 가져오는 메서드
+     * @param userId
+     * @return
+     */
+    public List<UserGradeSheet> findUserGradeSheetListByUserIdFetchJoinProblem(Long userId){
+        return em.createQuery("select ugs from UserGradeSheet ugs join fetch ugs.problem " +
+                        "where ugs.user.id =: id",UserGradeSheet.class)
+                .setParameter("id",userId).getResultList();
+    }
+
+    /**
      * 특정 유저가 푼 문제들을 가져오기 위해 우선적으로 푼 문제집들을 문제의 정보와 같이 join fetch 로 가져오는
      * 메서드
      * @param userId

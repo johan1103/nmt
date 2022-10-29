@@ -96,6 +96,11 @@ public class UserGradeSheetService {
         userGradeSheetRepository.createGradeSheet(findProblem,findUser,userGradeSheet);
         System.out.println("-------create gradeSheet------");
 
+        /**
+         * user 경험치 상승
+         */
+        findUser.setExp(findUser.getExp()+gradedScoreSet.getTotalEverage());
+
 
         /**
          *UserGrade 호출 및 업데이트

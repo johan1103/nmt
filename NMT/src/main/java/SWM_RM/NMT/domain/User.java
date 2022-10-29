@@ -24,6 +24,8 @@ public class User {
     private String email;
     @OneToOne
     private UserGrade userGrade;
+    @Column
+    private Double exp;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;

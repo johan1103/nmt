@@ -1,4 +1,4 @@
 .gradle
 .idea
-application-mariadb.properties
-application-oauth.properties
+application-dbDeploy.properties
+application-db.properties
