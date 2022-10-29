@@ -28,7 +28,7 @@ public class ProblemController {
         ProblemDetailDTO problemDetailDTO=problemService.problemPageService(problemId);
         model.addAttribute("problem",problemDetailDTO);
         System.out.println("----problem title: "+problemDetailDTO.getProbTitle());
-        return "/problems/main";
+        return "problems/main";
     }
     @GetMapping("/user-solved-list")
     public String userSolvedListController(Model model, @RequestParam(value = "problemId") Long problemId){
