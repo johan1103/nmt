@@ -44,7 +44,7 @@ public class ProblemController {
         model.addAttribute("problem",problemDetail);
         System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
                 +userGradeSheetList.get(0).getTotalGrade());
-        return "/problems/mainUserSolved";
+        return "problems/mainUserSolved";
     }
 
     @GetMapping("/solved-list")
@@ -57,7 +57,7 @@ public class ProblemController {
         model.addAttribute("problem",problemDetail);
         System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
                 +userGradeSheetList.get(0).getTotalGrade());
-        return "/problems/mainSolved";
+        return "problems/mainSolved";
     }
 
     @GetMapping("/list")
@@ -71,6 +71,6 @@ public class ProblemController {
         UserDTO userDTO = userService.findUserService(userId);
         model.addAttribute("problems",problemDtoList);
         model.addAttribute("user",userDTO);
-        return "/problems/problemList";
+        return "problems/problemList";
     }
 }
