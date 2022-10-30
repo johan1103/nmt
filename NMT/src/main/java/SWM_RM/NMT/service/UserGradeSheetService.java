@@ -99,7 +99,7 @@ public class UserGradeSheetService {
         /**
          * user 경험치 상승
          */
-        findUser.setExp(findUser.getExp()+gradedScoreSet.getTotalEverage());
+        //findUser.setExp(findUser.getExp()+gradedScoreSet.getTotalEverage());
 
 
         /**
