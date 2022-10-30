@@ -42,8 +42,6 @@ public class ProblemController {
         ProblemDetailDTO problemDetail=problemService.problemPageService(problemId);
         model.addAttribute("gradeList",userGradeSheetList);
         model.addAttribute("problem",problemDetail);
-        System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
-                +userGradeSheetList.get(0).getTotalGrade());
         return "problems/mainUserSolved";
     }
 
@@ -55,8 +53,6 @@ public class ProblemController {
         ProblemDetailDTO problemDetail=problemService.problemPageService(problemId);
         model.addAttribute("gradeList",userGradeSheetList);
         model.addAttribute("problem",problemDetail);
-        System.out.println("user "+userGradeSheetList.get(0).getUserNickname()+", "
-                +userGradeSheetList.get(0).getTotalGrade());
         return "problems/mainSolved";
     }
 
