@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class UserGradeSheet {
     @Id @GeneratedValue
     private Long id;
-    @Column
+    @Column(columnDefinition = "LONGTEXT")
     private String reportText;
     @Column
     private Integer textSize;
