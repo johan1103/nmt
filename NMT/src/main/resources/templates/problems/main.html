@@ -139,6 +139,7 @@
 
         <div class="content" style="position: relative;">
             <!-- 논제 블럭-->
+            <!--
             <div class="content" style="margin: 20px; margin-top: 70px;margin-left: 1%;">
                 <h4>
                     논제
@@ -151,17 +152,18 @@
                     ㉡을 ㉣의 관점에서 비판하고, ㉢의 근거를 (다)를 바탕으로 서술한 후, ㉤의 차원에서 ㉠을 평가하시오. (700~800자)
                 </div>
             </div>
-
+            -->
             <!-- 문제 블럭-->
             <div class="wing" style="margin: 20px; margin-top: 70px;margin-left: 1%;">
                 <h4>
                     문제
                 </h4>
-                <div style="height: 3px; width: 70px;margin : 5px 0px 5px 0px; background-color: #0d6efd;">
+                <div style="height: 3px; width: 70px;margin : 5px 0px 5px 0px; background-color: #0d6efd;"
                 </div>
             </div>
-            <div style="margin-left : 1%;">
-                <div style="width: 703px; height: 703px;  background-color: #d9d9d9;" th:text="${problem.probText}">
+            <div>
+                <div style="width: 703px; background-color: #d9d9d9; padding: 10px;"
+                     th:insert='${problem.probText} :: problem'>
                 </div>
             </div>
             <!-- 답안지 블럭 -->

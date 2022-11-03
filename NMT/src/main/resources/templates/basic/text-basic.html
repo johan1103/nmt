@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="import" href="/templates/template/problemList/problem.html">
 </head>
 <body>
 
-<ul>
-  <li>th:text 사용 <span th:text="${data.name}"></span></li>
-  <li>th:text 사용 [[${data.name}]]</li>
-</ul>
+<div style="width:700px; background-color: #d9d9d9; margin:auto; padding: 10px;">
+    <div th:insert='${data.name} :: problem'></div>
+</div>
 
 </body>
 </html>
