@@ -137,6 +137,13 @@
       line-height: 150%;
       letter-spacing: -0.009em;
       color: rgb(0, 0, 0);
+      width: 70%;
+    }
+    .finished-count{
+      width: 15%;
+    }
+    .acceptance-rate{
+      width: 15%;
     }
 
     .pagination-btn button {
@@ -241,19 +248,6 @@
                     padding-bottom: 10px;">
           <div style="display:flex;">
             <div style="width: 20%;">
-              <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
-                  유형 선택
-                </a>
-                <ul class="dropdown-menu" style="width: 100%">
-                  <li><a class="dropdown-item" href="#">대조</a></li>
-                  <li><a class="dropdown-item" href="#">비교. 분석</a></li>
-                  <li><a class="dropdown-item" href="#">추론</a></li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 20%;">
               <div>
                 <div class="dropdown">
                   <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -261,32 +255,17 @@
                     학교 선택
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">고려대학교</a></li>
-                    <li><a class="dropdown-item" href="#">성균관대학교</a></li>
-                    <li><a class="dropdown-item" href="#">경희대학교</a></li>
+                    <li><a class="dropdown-item" th:href="@{/problem/list}">
+                      전체문제</a></li>
+                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=고려대학교)}">
+                      고려대학교</a></li>
+                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=성균관대학교)}">
+                      성균관대학교</a></li>
+                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=한국외국어대학교)}">
+                      한국외국어대학교</a></li>
                   </ul>
                 </div>
               </div>
-            </div>
-            <div style="width: 20%;">
-              <div>
-                <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                     data-bs-toggle="dropdown" aria-expanded="false">
-                    출제 년도
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">2020</a></li>
-                    <li><a class="dropdown-item" href="#">2021</a></li>
-                    <li><a class="dropdown-item" href="#">2022</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="btn btn-secondary"style="width: 10%; margin-left: 30%;">
-              <a style="color: black; font-weight: 700;">
-                검색
-              </a>
             </div>
           </div>
         </div>
@@ -298,23 +277,13 @@
                 border: solid 1px #eaeaea;">
             <thead style="text-align: center;">
             <tr>
-              <th class="status">상태</th>
               <th class="title">제목</th>
-              <th class="level">난이도</th>
               <th class="finished-count">완료한 사람</th>
               <th class="acceptance-rate">출제년도</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="problem:${problems}">
-              <td class="status">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                      viewBox="0 0 16 16" width="1.875rem" height="1.875rem">
-                <path fill-rule="evenodd"
-                      d="M1.6 7.314 0 8.914l5.257 5.257L15.543 3.886l-1.6-1.6-8.686 8.685L1.6 7.314Z"
-                      clip-rule="evenodd"></path>
-                </svg>
-              </td>
               <td class="title">
                 <a th:href="@{/problem(problemId=${problem.problemId})}">
                 <span th:text="${problem.probTitle}">
@@ -325,17 +294,8 @@
                 </small>
                 </a>
               </td>
-              <td class="level"><span class="level-2">Lv. 2</span></td>
               <td class="finished-count" th:text="${problem.solvedNum}">42,741명</td>
               <td class="acceptance-rate" th:text="${problem.createYear}">2022</td>
-            </tr>
-            <tr>
-              <td class="status"></td>
-              <td class="title"><a href="/learn/courses/30/lessons/12931">자릿수 더하기<small
-                      class="part-title">연습문제</small></a></td>
-              <td class="level"><span class="level-1">Lv. 1</span></td>
-              <td class="finished-count">31,346명</td>
-              <td class="acceptance-rate">2017</td>
             </tr>
             </tbody>
           </table>
@@ -349,32 +309,21 @@
           <div class="user-block-name" style="height: 50px;" th:text="${user.nickName}">
             김태형
           </div>
-          <div class="user-block-info" style="display: flex; padding: 20px;;">
-            <div style="width: 30%;">
-              <p>순위</p>
-              <p style="color: black; font-weight: bolder;">2322위</p>
+          <div class="user-block-info" style="padding: 20px;;">
+            <div style="width: 100%;">
+              <p>해결한 문제</p>
+              <p style="color: black; font-weight: bolder;">
+                <b th:text="${user.userSolvedNum}">11</b>문제
+              </p>
             </div>
-            <div style="width: 30%;margin-left: 10px;">
-              <p>점수</p>
+            <div style="width: 100%; padding-top: 10px;">
+              <p>평균 점수</p>
               <p style="color: black; font-weight: bolder;">2322개</p>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
-
-    <div style="width: 100%; padding: 20px;">
-      <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
     </div>
   </div>
 </div>

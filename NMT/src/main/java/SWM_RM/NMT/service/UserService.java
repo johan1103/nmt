@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final UserGradeSheetService userGradeSheetService;
 
     public UserDTO findUserService(Long userId){
         User user= userRepository.findUserById(userId);
-        return UserDTO.userDtoConverter(user);
+        Integer userSolvedNum = userGradeSheetService.userSolvedListService(userId).size();
+        return UserDTO.userDtoConverter(user,userSolvedNum);
     }
 }

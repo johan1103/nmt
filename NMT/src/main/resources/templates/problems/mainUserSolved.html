@@ -183,24 +183,7 @@
 
 
   <!-- 문제 하위 메뉴-->
-  <div class="problem-li">
-    <div style="width: 63%;">
-      <ul class="nav problem-menu">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page"
-             th:href="@{/problem(problemId=${problem.id})}">문제 풀이</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active-problem" th:href="@{/problem/user-solved-list(problemId=${problem.id})}">내 제출</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/problem/solved-list(problemId=${problem.id})}">푼 사람</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">채점 현황</a>
-        </li>
-      </ul>
-    </div>
+  <div class="problem-li" th:insert='template/problemHeader'>
   </div>
 
   <div style="height: 3px; margin : 5px 15px 5px 1%; background-color: gray;">
@@ -230,7 +213,6 @@
           <td class="title">
             <a th:href="@{/grade-sheet(gradeSheetId=${grades.id})}">
               <span th:text="${grades.userNickname}">johan1103</span>
-              <small class="part-title">SUM, MAX,MIN</small>
             </a>
           </td>
           <td class="level"><span class="level-2" th:text="${grades.totalGrade}">A</span></td>
@@ -238,7 +220,7 @@
           <td class="score" th:text="${grades.grade2}">2점</td>
           <td class="score" th:text="${grades.grade3}">3점</td>
           <td class="score" th:text="${grades.textSize}">253자</td>
-          <td class="score">1달전</td>
+          <td class="score" th:text="${grades.createTime}">1달전</td>
         </tr>
         </tbody>
       </table>
@@ -265,6 +247,9 @@
 </div>
 </body>
 <script>
+
+  var problemHeader = document.getElementById("my-submission");
+  problemHeader.classList.add('active-problem');
 </script>
 
 </html>

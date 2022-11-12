@@ -12,13 +12,15 @@ public class UserDTO {
     private String nickName;
     private String strick;
     private String email;
-    private Role role;
+    private Integer userSolvedNum;
+    //private Role role;
 
-    public static UserDTO userDtoConverter(User user){
+    public static UserDTO userDtoConverter(User user,Integer solvedNum){
         UserDTO userDTO = new UserDTO();
         userDTO.setStrick(user.getStrick());
         userDTO.setEmail(user.getEmail());
         userDTO.setNickName(user.getNickName());
+        userDTO.setUserSolvedNum(solvedNum);
         return userDTO;
     }
 }

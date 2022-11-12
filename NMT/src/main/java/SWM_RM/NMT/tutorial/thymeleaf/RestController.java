@@ -13,7 +13,7 @@ public class RestController {
     public String textBasic(Model model) {
         tempUser user=new tempUser();
         String text=new String();
-        text="/template/problemList/problem19";
+        text="template/problemList/problem19";
         user.setName(text);
         model.addAttribute("data", user);
         return "basic/text-basic";

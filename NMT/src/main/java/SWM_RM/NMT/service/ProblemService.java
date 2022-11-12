@@ -37,18 +37,22 @@ public class ProblemService {
      * @param createYear
      * @return
      */
-    public List<Problem> problemListFilterService(String probTypeName, String universityName, Long createYear){
-        List<Problem> problems;
+    public List<ProblemListDTO> problemListFilterService(String probTypeName, String universityName, Long createYear){
+        List<Problem> problems=new ArrayList<>();
         if(probTypeName!=null && universityName!=null && createYear!=null)
-            return problems=problemRepository.findProblemListFilter(universityName,
+             problems=problemRepository.findProblemListFilter(universityName,
                     probTypeName,createYear);
         if(probTypeName==null && universityName!=null && createYear==null)
-            return problems=problemRepository.findProblemListOneFilter1(universityName);
+             problems=problemRepository.findProblemListOneFilter1(universityName);
         if(probTypeName!=null && universityName==null && createYear==null)
-            return problems=problemRepository.findProblemListOneFilter2(probTypeName);
+             problems=problemRepository.findProblemListOneFilter2(probTypeName);
         if(probTypeName==null && universityName==null && createYear!=null)
-            return problems=problemRepository.findProblemListOneFilter3(createYear);
-        return null;
+             problems=problemRepository.findProblemListOneFilter3(createYear);
+        List<ProblemListDTO> problemDtolist=new ArrayList<>();
+        for(Problem problem : problems){
+            problemDtolist.add(ProblemListDTO.problemListDtoConverter(problem));
+        }
+        return problemDtolist;
     }
     /**
      * 문제 정보 조회 서비스, 문제의 상세 정보를 전부 return 해야함

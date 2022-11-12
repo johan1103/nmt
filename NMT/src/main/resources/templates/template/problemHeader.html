@@ -1,0 +1,14 @@
+<div style="width: 63%;" th:fragment="problemHeader">
+  <ul class="nav problem-menu">
+    <li class="nav-item">
+      <a id="problem-solve" class="nav-link" aria-current="page"
+         th:href="@{/problem(problemId=${problem.id})}">문제 풀이</a>
+    </li>
+    <li class="nav-item">
+      <a id="my-submission" class="nav-link" th:href="@{/problem/user-solved-list(problemId=${problem.id})}">내 제출</a>
+    </li>
+    <li class="nav-item">
+      <a id="all-submission" class="nav-link" th:href="@{/problem/solved-list(problemId=${problem.id})}">푼 사람</a>
+    </li>
+  </ul>
+</div>

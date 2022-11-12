@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDateTime;
 
 /**
  * 특정 문제의 성적표 List들을 조회하는 Controller에서 문제 list정보를 제공하는 DTO
@@ -21,6 +22,7 @@ public class GradeSheetListDTO {
     private Double grade4;
     private Double grade5;
     private Integer textSize;
+    private String createTime;
 
     public static GradeSheetListDTO gradeSheetDtoConverter(UserGradeSheet userGradeSheet){
         GradeSheetListDTO gradeSheetDTO = new GradeSheetListDTO();
@@ -32,6 +34,13 @@ public class GradeSheetListDTO {
         gradeSheetDTO.setTotalGrade(userGradeSheet.getGrade());
         gradeSheetDTO.setTextSize(userGradeSheet.getTextSize());
         gradeSheetDTO.setUserNickname(userGradeSheet.getUser().getNickName());
+        LocalDateTime createTime=userGradeSheet.getCreateTime();
+        gradeSheetDTO.setCreateTime(localDateTimeToStringConverter(createTime));
         return gradeSheetDTO;
+    }
+    public static String localDateTimeToStringConverter(LocalDateTime localDateTime){
+        String createTime=new String();
+        createTime=localDateTime.getYear()+"년 "+localDateTime.getMonthValue()+"월 "+localDateTime.getDayOfMonth()+"일";
+        return createTime;
     }
 }

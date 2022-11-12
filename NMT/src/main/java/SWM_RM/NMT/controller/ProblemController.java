@@ -8,6 +8,7 @@ import SWM_RM.NMT.service.ProblemService;
 import SWM_RM.NMT.service.UserGradeSheetService;
 import SWM_RM.NMT.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,13 +58,18 @@ public class ProblemController {
     }
 
     @GetMapping("/list")
-    public String problemListController(Model model){
+    public String problemListController(Model model,
+                                        @RequestParam(value = "univName") @Nullable String univName){
         /**
          * user id는 security에서 가져와야 함
          */
         Long userId = 21L;
         System.out.println("-----------problem-list controller");
-        List<ProblemListDTO> problemDtoList=problemService.problemListService();
+        List<ProblemListDTO> problemDtoList;
+        if(univName==null)
+            problemDtoList=problemService.problemListService();
+        else
+            problemDtoList=problemService.problemListFilterService(null,univName,null);
         UserDTO userDTO = userService.findUserService(userId);
         model.addAttribute("problems",problemDtoList);
         model.addAttribute("user",userDTO);

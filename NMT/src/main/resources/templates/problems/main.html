@@ -95,24 +95,7 @@
         </div>
 
         <!-- 문제 하위 메뉴-->
-        <div class="problem-li">
-            <div style="width: 63%;">
-                <ul class="nav problem-menu">
-                    <li class="nav-item">
-                        <a class="nav-link active-problem" aria-current="page"
-                           th:href="@{/problem(problemId=${problem.id})}">문제 풀이</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/problem/user-solved-list(problemId=${problem.id})}">내 제출</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/problem/solved-list(problemId=${problem.id})}">푼 사람</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">채점 현황</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="problem-li" th:insert='template/problemHeader'>
         </div>
 
         <div style="height: 3px; margin : 5px 15px 5px 1%; background-color: gray;">
@@ -158,11 +141,11 @@
                 <h4>
                     문제
                 </h4>
-                <div style="height: 3px; width: 70px;margin : 5px 0px 5px 0px; background-color: #0d6efd;"
+                <div style="height: 3px; width: 70px;margin : 5px 0px 5px 0px; background-color: #0d6efd;">
                 </div>
             </div>
             <div>
-                <div style="width: 703px; background-color: #d9d9d9; padding: 10px;"
+                <div style="width: 703px; background-color: #d9d9d9; padding: 20px; border-radius: 10px; margin-left: 1%"
                      th:insert='${problem.probText} :: problem'>
                 </div>
             </div>
@@ -271,5 +254,8 @@
                window.location.href = "/problem/user-solved-list?problemId="+problemId;
             });
     }
+
+    var problemHeader = document.getElementById("problem-solve");
+    problemHeader.classList.add('active-problem');
 </script>
 </html>

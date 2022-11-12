@@ -1,10 +1,7 @@
 package SWM_RM.NMT.service;
 
 import SWM_RM.NMT.domain.*;
-import SWM_RM.NMT.domain.dto.GradeSheetDetailDTO;
-import SWM_RM.NMT.domain.dto.GradeSheetListDTO;
-import SWM_RM.NMT.domain.dto.ScoreSet;
-import SWM_RM.NMT.domain.dto.UserAverageGradeDTO;
+import SWM_RM.NMT.domain.dto.*;
 import SWM_RM.NMT.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -90,6 +87,7 @@ public class UserGradeSheetService {
         Problem findProblem = problemRepository.findProblemById(problemId);
         System.out.println("-------find Problem------");
 
+        MlScoreSet mlScoreSet;
         ScoreSet gradedScoreSet = tempGradeEvaluater(reportText);
         userGradeSheet.setGradesByScoreSet(gradedScoreSet);
 
