@@ -18,7 +18,7 @@ public class Problem {
     private String probTitle;
     @Column
     private String bestText;
-    @Column
+    @Column(columnDefinition = "LONGTEXT")
     private String probExp;
     @Column
     private Long createYear;

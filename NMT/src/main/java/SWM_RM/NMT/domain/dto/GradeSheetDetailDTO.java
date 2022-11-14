@@ -29,6 +29,7 @@ public class GradeSheetDetailDTO {
     private String probExp;
     private String probTitle;
     private String probText;
+    private Long problemId;
 
     public static GradeSheetDetailDTO gradeSheetDetailDtoConverter(UserGradeSheet userGradeSheet,
                                                                    Problem problem,
@@ -46,6 +47,7 @@ public class GradeSheetDetailDTO {
         gradeSheetDetailDTO.setProbExp(problem.getProbExp());
         gradeSheetDetailDTO.setProbTitle(problem.getProbTitle());
         gradeSheetDetailDTO.setProbText(problem.getProbText());
+        gradeSheetDetailDTO.setProblemId(problem.getId());
 
         gradeSheetDetailDTO.setUserNickName(user.getNickName());
         gradeSheetDetailDTO.setUserId(user.getId());

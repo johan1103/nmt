@@ -82,4 +82,32 @@ public class UserGradeHistoryService {
         }
         return totalGradeStrick;
     }
+
+    public HashMap<Integer,Double> userSpecificGradeHistoryService(Long userId,Long gradeNum){
+        List<UserGradeSheet> userGradeSheetList=userGradeSheetRepository
+                .findUserGradeSheetListByUserId(userId);
+        HashMap<Integer,Double> gradeStrick=new HashMap<>();
+        List<Integer> totalList=new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0));
+        for(int i=1;i<=12;i++){
+            gradeStrick.put(i,0D);
+        }
+        for(UserGradeSheet ugs:userGradeSheetList){
+            Integer month=ugs.getCreateTime().getMonth().getValue();
+            totalList.set(month,totalList.get(month)+1);
+            if(gradeNum==1)
+                gradeStrick.put(month,gradeStrick.get(month)+ugs.getGrade1());
+            else if(gradeNum==2)
+                gradeStrick.put(month,gradeStrick.get(month)+ugs.getGrade2());
+            else
+                gradeStrick.put(month,gradeStrick.get(month)+ugs.getGrade3());
+        }
+        for(int i=1;i<=12;i++){
+            if(totalList.get(i)!=0) {
+                Double avg=gradeStrick.get(i)/totalList.get(i);
+                gradeStrick.put(i, (Math.round(avg * 100)/100.0));
+            }
+            //System.out.println("month "+i+", value "+gradeStrick.get(i));
+        }
+        return gradeStrick;
+    }
 }
