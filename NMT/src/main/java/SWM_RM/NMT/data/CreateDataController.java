@@ -3,6 +3,7 @@ package SWM_RM.NMT.data;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.domain.dto.admin.CreateProblemDTO;
 import SWM_RM.NMT.repository.ProbTypeRepository;
 import SWM_RM.NMT.repository.ProblemRepository;
 import SWM_RM.NMT.repository.UniversityRepository;
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
@@ -39,18 +42,33 @@ public class CreateDataController {
         return "ok";
     }
     @GetMapping("create-problem")
-    public String createDataProblem(){
-        University university = universityRepository.findUniversityByName("한국외국어대학교");
-        ProbType probType = probTypeRepository.findProbTypeByName("요약");
+    public String createDataProblem(@RequestBody CreateProblemDTO problemDTO){
+        University university = universityRepository.findUniversityByName(problemDTO.getUnivName());
+        ProbType probType = probTypeRepository.findProbTypeByName(problemDTO.getProbTypeName());
         Problem problem = new Problem();
-        problem.setCreateYear(2022L);
-        problem.setCompetetionRate(24.02);
-        problem.setProbTitle("2022학년도 한국외국어대학교 논술고사");
-        problem.setBestText("/template/bestTextList/bestText19");
+        problem.setCreateYear(problemDTO.getCreateYear());
+        problem.setCompetetionRate(problemDTO.getCompetitionRate());
+        problem.setProbTitle(problemDTO.getProbTitle());
+        problem.setBestText(problemDTO.getProbBestTextPath());
         problem.setSolvedNum(0L);
-        problem.setRecommendedSubmissionSize(350L);
-        problem.setProbText("/template/problemList/problem19");
+        problem.setRecommendedSubmissionSize(problemDTO.getRecommendedTextSize());
+        problem.setProbText(problemDTO.getProbTextPath());
+        problem.setProbExp(problemDTO.getProbExp());
         problemRepository.createProblem(problem,university,probType);
+        return "ok";
+    }
+
+    @GetMapping("update-problem")
+    public String updateDataProblem(@RequestBody CreateProblemDTO problemDTO){
+        Problem problem = problemRepository.findProblemById(problemDTO.getProblemId());
+        problem.setCreateYear(problemDTO.getCreateYear());
+        problem.setCompetetionRate(problemDTO.getCompetitionRate());
+        problem.setProbTitle(problemDTO.getProbTitle());
+        problem.setBestText(problemDTO.getProbBestTextPath());
+        problem.setSolvedNum(0L);
+        problem.setRecommendedSubmissionSize(problemDTO.getRecommendedTextSize());
+        problem.setProbText(problemDTO.getProbTextPath());
+        problem.setProbExp(problemDTO.getProbExp());
         return "ok";
     }
 }

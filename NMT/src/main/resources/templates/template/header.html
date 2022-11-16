@@ -1,0 +1,27 @@
+<div th:fragment="header">
+    <a th:href="@{/}">
+        <div class="header-logo" style="height: 120px;">
+            <img src="/img/logo.png">
+        </div>
+    </a>
+    <div class="header">
+        <div style="margin: auto; width: 63%;">
+            <ul class="nav header-menu" style="margin-left: 2vw;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/problem/list}">문제 풀이</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile/my-profile}">마이페이지</a>
+                </li>
+            </ul>
+            <div style="position: absolute;right:7vw;color:#0078ff;font-weight: 800;
+              top:35px;">
+                <ul class="nav">
+                    <li class="nav-item login-btn"style="border:solid 1px;border-radius:5px;">
+                        <a class="nav-link" th:href="@{/login}">로그인</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
