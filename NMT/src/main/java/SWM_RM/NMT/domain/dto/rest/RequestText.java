@@ -7,5 +7,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestText {
-    private String text;
+    private String answer;
 }

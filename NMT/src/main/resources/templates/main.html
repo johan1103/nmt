@@ -30,27 +30,29 @@
     }
     .headline {
       position: absolute;
-      top: 350px;
-      left: 15vw;
+      top: 264px;
+      left: 9vw;
     }
-    .main-button{
+
+    .main-button {
       background-color: white;
       display: inline-block;
       color: black;
-      margin-top: 60px;
-      border-radius: 15px;
+      margin-top: 35px;
+      border-radius: 6px;
     }
-    .main-button-iner{
-      padding: 13px 20px 13px 20px;
+
+    .main-button-iner {
+
+      padding: 7px 20px 7px 20px;
       font-weight: 700;
-      font-size: 19px;
       display: inline-block;
     }
 
-    .page-img1{
-      width: 38vw;
+    .page-img1 {
+      width: 46vw;
       padding-top: 140px;
-      margin-left: 55vw;
+      margin-left: 46vw;
     }
   </style>
 </head>
@@ -62,29 +64,32 @@
 
 <div style="background-color:#0d6efd;height: 100vw; position: relative;">
   <div class="headline">
-    <h1 style="color: white;">
+    <h4 style="color: white;font-weight: 600;">
       선생님, 학원 없이<br>
       혼자서도 채점받을 수 있어요
-    </h1>
+    </h4>
     <div style="color: white; margin-top: 10px;">
-      NONMENTOR로 무제한 채점받고 빠르게 성장해보세요
+      Nonmentor로 무제한 채점받고 빠르게 성장해보세요
     </div>
-    <div class="main-button" >
+    <div class="main-button">
       <a th:href="@{/problem/list}" class="main-button-iner">
         문제 풀러 가기
       </a>
     </div>
   </div>
   <div class="page-img1">
-    <img src="/img/gradeSheet.png">
+    <img src="/img/gradeSheet.png" class="shadow">
     <div style="
             width: 80%;
             margin-top: -122px;
             margin-left: 141px;">
-      <img src="/img/problemSheet.png">
+      <!--
+          <img src="./Document_files/problemSheet.png">
+          -->
     </div>
   </div>
 </div>
+
 <!-- footer 작성 -->
 <div id='wrap' style="background-color: #e9e9e9;">
   <section>
@@ -101,6 +106,9 @@
     </p>
   </footer>
 </div>
+
+
+
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

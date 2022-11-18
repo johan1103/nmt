@@ -15,7 +15,7 @@ public class MlScoreSet {
 
     public static ScoreSet scoreSetConverter(MlScoreSet mlScoreSet){
         ScoreSet scoreSet = new ScoreSet();
-        scoreSet.setGrade1((double) mlScoreSet.getChongjumScore());
+        scoreSet.setGrade1((double) mlScoreSet.getChongjumScore()/3);
         scoreSet.setGrade2((double) mlScoreSet.getDockhaeScore());
         scoreSet.setGrade3((double) mlScoreSet.getNonliScore());
         scoreSet.setGrade4((double) mlScoreSet.getPyohyunScore());

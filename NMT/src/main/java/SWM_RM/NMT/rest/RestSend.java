@@ -17,8 +17,8 @@ public class RestSend {
 
     public ResponseEntity<MlScoreSet> sendEngine(String text) {
         URI uri = UriComponentsBuilder
-                .fromUriString("http://localhost:8080")
-                .path("/api/test")
+                .fromUriString("http://3.39.208.21")
+                .path("/getScore")
                 .encode()
                 .build()
                 .expand(text) // {userId}, {userName}에 들어갈 값을 순차적으로 입력
@@ -27,7 +27,7 @@ public class RestSend {
         System.out.println(uri);
 
         RequestText req = new RequestText();
-        req.setText(text);
+        req.setAnswer(text);
 
         RequestEntity<RequestText> requestEntity = RequestEntity
                 .post(uri)

@@ -1,3 +1,25 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+a { text-decoration:none }
+
+.header {
+    display: flex;
+    border-bottom: solid 2px black;
+    padding-top: 7px;
+    height: 72px;
+    padding-bottom: 3px;
+}
+
+.header-logo {
+    width: 20vw;
+    text-align: center;
+    padding-top: 11px;
+    padding-left: 1vw;
+    position: absolute;
+}
+
 .header-menu li {
     width: 20%;
     text-align: center;
@@ -5,27 +27,6 @@
     font-weight: 800;
 }
 
-.header-logo {
-    width: 19%;
-    position: absolute;
-    text-align: center;
-    padding-top: 40px;
-    padding-left: 1vw;
-}
-img {
-    max-width: 100%;
-    height: auto;
-}
-a { text-decoration:none }
-
-
-.header {
-    display: flex;
-    border-bottom: solid 2px black;
-    padding-top: 30px;
-    height: 120px;
-    padding-bottom: 3px;
-}
 
 
 .login-btn a:hover{
