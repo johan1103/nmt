@@ -52,9 +52,9 @@ public class RestControllerTest {
     public ResponseEntity<MlScoreSet> restApiTest(@RequestBody RequestText text){
         MlScoreSet mlScoreSet = new MlScoreSet();
         mlScoreSet.setChongjumScore(1);
-        mlScoreSet.setNonliScore(1);
-        mlScoreSet.setDockhaeScore(1);
-        mlScoreSet.setPyohyunScore(1);
+        mlScoreSet.setDockhaeScore(2);
+        mlScoreSet.setNonliScore(3);
+        mlScoreSet.setPyohyunScore(4);
         ResponseEntity<MlScoreSet> response = ResponseEntity.ok().body(mlScoreSet);
         System.out.println("------------called api/test");
         return response;

@@ -4,6 +4,7 @@ import SWM_RM.NMT.domain.*;
 import SWM_RM.NMT.domain.dto.*;
 import SWM_RM.NMT.domain.dto.rest.MlScoreSet;
 import SWM_RM.NMT.repository.*;
+import SWM_RM.NMT.rest.RestSend;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class UserGradeSheetService {
     private final ProblemRepository problemRepository;
     private final UserGradeSheetRepository userGradeSheetRepository;
     private final UserGradeHistoryRepository userGradeHistoryRepository;
+    private final RestSend restSend;
 
     /**
      * 특정 성적표를 조회하고자 할 때 성적표 정보를 return하는 메서드
@@ -88,8 +90,8 @@ public class UserGradeSheetService {
         Problem findProblem = problemRepository.findProblemById(problemId);
         System.out.println("-------find Problem------");
 
-        MlScoreSet mlScoreSet;
-        ScoreSet gradedScoreSet = tempGradeEvaluater(reportText);
+        MlScoreSet mlScoreSet = restSend.sendEngine(reportText).getBody();
+        ScoreSet gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
         userGradeSheet.setGradesByScoreSet(gradedScoreSet);
 
         userGradeSheetRepository.createGradeSheet(findProblem,findUser,userGradeSheet);

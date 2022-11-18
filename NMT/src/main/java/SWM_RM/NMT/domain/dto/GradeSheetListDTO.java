@@ -36,6 +36,17 @@ public class GradeSheetListDTO {
         gradeSheetDTO.setUserNickname(userGradeSheet.getUser().getNickName());
         LocalDateTime createTime=userGradeSheet.getCreateTime();
         gradeSheetDTO.setCreateTime(localDateTimeToStringConverter(createTime));
+        Double tg=userGradeSheet.getGrade1();
+        if(tg<1)
+            gradeSheetDTO.setTotalGrade("D");
+        else if(tg<2)
+            gradeSheetDTO.setTotalGrade("C");
+        else if(tg<3)
+            gradeSheetDTO.setTotalGrade("B");
+        else if(tg<=4)
+            gradeSheetDTO.setTotalGrade("A");
+        else
+            gradeSheetDTO.setTotalGrade("F");
         return gradeSheetDTO;
     }
     public static String localDateTimeToStringConverter(LocalDateTime localDateTime){
