@@ -1,10 +1,8 @@
 package SWM_RM.NMT.controller;
 import SWM_RM.NMT.domain.User;
-import SWM_RM.NMT.domain.dto.GradeSheetListDTO;
-import SWM_RM.NMT.domain.dto.ProblemDetailDTO;
-import SWM_RM.NMT.domain.dto.ProblemListDTO;
-import SWM_RM.NMT.domain.dto.UserDTO;
+import SWM_RM.NMT.domain.dto.*;
 import SWM_RM.NMT.service.ProblemService;
+import SWM_RM.NMT.service.UniversityService;
 import SWM_RM.NMT.service.UserGradeSheetService;
 import SWM_RM.NMT.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +20,7 @@ public class ProblemController {
     private final ProblemService problemService;
     private final UserGradeSheetService userGradeSheetService;
     private final UserService userService;
+    private final UniversityService universityService;
 
     @GetMapping("")
     public String problemController(Model model
@@ -66,13 +65,16 @@ public class ProblemController {
         Long userId = 21L;
         System.out.println("-----------problem-list controller");
         List<ProblemListDTO> problemDtoList;
+        List<UniversityDTO> universityDtoList;
         if(univName==null)
             problemDtoList=problemService.problemListService();
         else
             problemDtoList=problemService.problemListFilterService(null,univName,null);
         UserDTO userDTO = userService.findUserService(userId);
+        universityDtoList = universityService.universityListService();
         model.addAttribute("problems",problemDtoList);
         model.addAttribute("user",userDTO);
+        model.addAttribute("universities",universityDtoList);
         return "problems/problemList";
     }
 }

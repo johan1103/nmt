@@ -206,12 +206,11 @@
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" th:href="@{/problem/list}">
                       전체문제</a></li>
-                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=고려대학교)}">
-                      고려대학교</a></li>
-                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=성균관대학교)}">
-                      성균관대학교</a></li>
-                    <li><a class="dropdown-item" th:href="@{/problem/list(univName=한국외국어대학교)}">
-                      한국외국어대학교</a></li>
+                    <li th:each="university:${universities}">
+                      <a class="dropdown-item" th:href="@{/problem/list(univName=${university.name})}"
+                      th:text="${university.name}">
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
