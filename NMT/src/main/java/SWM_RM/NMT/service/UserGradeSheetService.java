@@ -2,6 +2,7 @@ package SWM_RM.NMT.service;
 
 import SWM_RM.NMT.domain.*;
 import SWM_RM.NMT.domain.dto.*;
+import SWM_RM.NMT.domain.dto.rest.MlScoreSet;
 import SWM_RM.NMT.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
