@@ -35,4 +35,13 @@ public class UniversityRepository {
         return em.createQuery("select u from University u",University.class)
                 .getResultList();
     }
+
+    /**
+     * 관리자용 API, CreateDataController에서 대학 이름 수정할때 id를 요청하면 해당 Entitiy를 return 해주는 메서드
+     * @param id
+     * @return
+     */
+    public University findUniversityById(Long id){
+        return em.find(University.class,id);
+    }
 }

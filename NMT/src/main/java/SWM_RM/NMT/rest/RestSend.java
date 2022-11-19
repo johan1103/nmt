@@ -15,19 +15,20 @@ import java.net.URI;
 @Component
 public class RestSend {
 
-    public ResponseEntity<MlScoreSet> sendEngine(String text) {
+    public ResponseEntity<MlScoreSet> sendEngine(String text,Integer problemId) {
         URI uri = UriComponentsBuilder
                 .fromUriString("http://3.39.208.21")
                 .path("/getScore")
                 .encode()
                 .build()
-                .expand(text) // {userId}, {userName}에 들어갈 값을 순차적으로 입력
+                .expand(text,problemId) // {userId}, {userName}에 들어갈 값을 순차적으로 입력
                 .toUri();
 
         System.out.println(uri);
 
         RequestText req = new RequestText();
         req.setAnswer(text);
+        req.setPk(problemId);
 
         RequestEntity<RequestText> requestEntity = RequestEntity
                 .post(uri)

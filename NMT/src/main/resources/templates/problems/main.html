@@ -91,22 +91,6 @@
         </table>
 
         <div class="content" style="position: relative;">
-            <!-- 논제 블럭-->
-            <!--
-            <div class="content" style="margin: 20px; margin-top: 70px;margin-left: 1%;">
-                <h4>
-                    논제
-                </h4>
-                <div style="height: 3px; width: 70px;margin : 5px 0px 5px 0px; background-color: #0d6efd;">
-                </div>
-            </div>
-            <div style="margin-left:1%;">
-                <div style="width: 703px; background-color: #d9d9d9;" th:text="${problem.probText}">
-                    ㉡을 ㉣의 관점에서 비판하고, ㉢의 근거를 (다)를 바탕으로 서술한 후, ㉤의 차원에서 ㉠을 평가하시오. (700~800자)
-                </div>
-            </div>
-            -->
-            <!-- 문제 블럭-->
             <div class="wing" style="margin: 20px; margin-top: 70px;margin-left: 1%;">
                 <h4>
                     문제
@@ -173,12 +157,14 @@
     const $wing2 = document.getElementsByClassName('wing2');
     const $submit_btn = document.getElementById('submit-btn');
     const problemId = [[${problem.id}]];
+    const $ansBlock = document.getElementById('ansBlock');
     var submitForm={
         text : ""
     };
 
     // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
     const contentTop = content.getBoundingClientRect().top + window.scrollY;
+    const ansBlockLoc=content.getBoundingClientRect();
 
     window.addEventListener('scroll', function () {
         if (window.scrollY >= contentTop) {

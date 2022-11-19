@@ -3,6 +3,7 @@ package SWM_RM.NMT.data;
 import SWM_RM.NMT.domain.ProbType;
 import SWM_RM.NMT.domain.Problem;
 import SWM_RM.NMT.domain.University;
+import SWM_RM.NMT.domain.dto.admin.AdminUniversityDTO;
 import SWM_RM.NMT.domain.dto.admin.CreateProblemDTO;
 import SWM_RM.NMT.repository.ProbTypeRepository;
 import SWM_RM.NMT.repository.ProblemRepository;
@@ -10,6 +11,7 @@ import SWM_RM.NMT.repository.UniversityRepository;
 import SWM_RM.NMT.repository.UserRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,14 +63,35 @@ public class CreateDataController {
     @GetMapping("update-problem")
     public String updateDataProblem(@RequestBody CreateProblemDTO problemDTO){
         Problem problem = problemRepository.findProblemById(problemDTO.getProblemId());
-        problem.setCreateYear(problemDTO.getCreateYear());
-        problem.setCompetetionRate(problemDTO.getCompetitionRate());
-        problem.setProbTitle(problemDTO.getProbTitle());
-        problem.setBestText(problemDTO.getProbBestTextPath());
-        problem.setSolvedNum(0L);
-        problem.setRecommendedSubmissionSize(problemDTO.getRecommendedTextSize());
-        problem.setProbText(problemDTO.getProbTextPath());
-        problem.setProbExp(problemDTO.getProbExp());
+        if(problemDTO.getCreateYear()!=null)
+            problem.setCreateYear(problemDTO.getCreateYear());
+        if(problemDTO.getCompetitionRate()!=null)
+            problem.setCompetetionRate(problemDTO.getCompetitionRate());
+        if(problemDTO.getProbTitle()!=null)
+            problem.setProbTitle(problemDTO.getProbTitle());
+        if(problemDTO.getProbBestTextPath()!=null)
+            problem.setBestText(problemDTO.getProbBestTextPath());
+        if(problemDTO.getRecommendedTextSize()!=null)
+            problem.setRecommendedSubmissionSize(problemDTO.getRecommendedTextSize());
+        if(problemDTO.getProbTextPath()!=null)
+            problem.setProbText(problemDTO.getProbTextPath());
+        if(problemDTO.getProbExp()!=null)
+            problem.setProbExp(problemDTO.getProbExp());
+        return "ok";
+    }
+
+    @GetMapping("create-university")
+    public String createUniversity(@RequestBody AdminUniversityDTO universityDTO){
+        University university = new University();
+        university.setUniversityName(universityDTO.getName());
+        universityRepository.createUniversity(university);
+        return "ok";
+    }
+
+    @GetMapping("update-university")
+    public String updateUniversity(@RequestBody AdminUniversityDTO universityDTO){
+        University university = universityRepository.findUniversityById(universityDTO.getId());
+        university.setUniversityName(universityDTO.getName());
         return "ok";
     }
 }

@@ -90,7 +90,7 @@ public class UserGradeSheetService {
         Problem findProblem = problemRepository.findProblemById(problemId);
         System.out.println("-------find Problem------");
 
-        MlScoreSet mlScoreSet = restSend.sendEngine(reportText).getBody();
+        MlScoreSet mlScoreSet = restSend.sendEngine(reportText,problemId.intValue()).getBody();
         ScoreSet gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
         userGradeSheet.setGradesByScoreSet(gradedScoreSet);
 

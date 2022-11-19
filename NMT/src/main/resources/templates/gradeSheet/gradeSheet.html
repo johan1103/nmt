@@ -159,47 +159,44 @@
         </thead>
         <tbody>
         <tr>
-          <td class="tit">어휘력</td>
+          <td class="tit">총점</td>
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade1}">A</span>
           </td>
           <td class="per">100%</td>
           <td class="text" style="text-align:left">
-            <p>복잡한 상황과 전제를 정확히 파악하고, 비판적 사고와 추론 과정을 통해 주장의 진위 여부 혹은 오류를 판단할 수 있는 능력주어진 사실들을 조합하여 새로운
-              가설을 만들고, 스스로 검증할 수 있는 능력</p>
+            <p>여러가지 세부항목과 전체적인 글의 완성도를 종합해서 평가합니다.</p>
           </td>
         </tr>
         <tr style="background-color: #eaeaea;">
-          <td class="tit">문장력</td>
+          <td class="tit">독해력</td>
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade2}">A</span>
           </td>
           <td class="per">96%</td>
           <td class="text" style="text-align:left">
-            <p>정보를 머릿속으로 떠올리고, 부분을 통합하여 전체를 파악할 수 있는 능력물체를 마음속으로 회전시키거나 조합할 수 있고, 방향을 바꾸더라도 동일한 도형을
-              찾아낼 수 있는 능력</p>
+            <p>제시문을 정확히 이해하고 정확히 제시한 대로 이행했는지 여부를 평가합니다.</p>
           </td>
         </tr>
         <tr>
-          <td class="tit">독해력</td>
+          <td class="tit">논리력</td>
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade3}">B</span>
           </td>
           <td class="per">91%</td>
           <td class="text" style="text-align:left">
-            <p>수 체계/수학에 대한 이해를 바탕으로 일상적 수리 문제를 쉽게 해결할 수 있는 능력말이나 글로 된 문제 상황을 보다 간단한 수학적 기호(사칙연산 기호,
-              등호, 부등호 등)로 전환한 뒤 해결해내는 능력</p>
+            <p>일관된 논리의 흐름대로 논리를 전개하고 설득력있는 글을 적었는지 여부를 평가합니다.
+            </p>
           </td>
         </tr>
         <tr style="background-color: #eaeaea;">
-          <td class="tit">단락구성력</td>
+          <td class="tit">표현력</td>
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade4}">D</span>
           </td>
           <td class="per">55%</td>
           <td class="text" style="text-align:left">
-            <p>단어와 문장의 의미를 정확히 이해하고, 적절한 어휘를 사용하여 대화하거나 글을 쓸 수 있는 능력글에서 제시된 사실적 또는 맥락적 정보와 개념의 핵심
-              내용을 파악하고, 요약하여 제시할 수 있는 능력</p>
+            <p>논리적인 글쓰기를 위한 다양한 어휘와 맞춤법에 알맞는 표현을 썼는지 여부를 평가합니다.</p>
           </td>
         </tr>
         <tr>
@@ -209,8 +206,7 @@
           </td>
           <td class="per">55%</td>
           <td class="text" style="text-align:left">
-            <p>단어와 문장의 의미를 정확히 이해하고, 적절한 어휘를 사용하여 대화하거나 글을 쓸 수 있는 능력글에서 제시된 사실적 또는 맥락적 정보와 개념의 핵심
-              내용을 파악하고, 요약하여 제시할 수 있는 능력</p>
+            <p>모범답안과 비교해서, 사용자의 답안이 얼마나 비슷한 흐름과 내용을 가졌는지 유사도 정도를 평가합니다.</p>
           </td>
         </tr>
         </tbody>
@@ -328,7 +324,7 @@
   new Chart(document.getElementById("radar-chart"), {
     type: 'radar',
     data: {
-      labels: ["어휘력", "문장력", "독해력", "단락구성력", "모범답안 유사도"],
+      labels: ["총점", "독해력", "논리력", "표현력", "모범답안 유사도"],
       datasets: [
         {
           label: "평균",

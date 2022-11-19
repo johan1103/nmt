@@ -8,4 +8,5 @@ import lombok.Setter;
 @Setter
 public class RequestText {
     private String answer;
+    private Integer pk;
 }
