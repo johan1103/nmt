@@ -23,20 +23,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link th:href="@{/css/header.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
 
   <style>
-    #wrap {
-      min-height: 35vh;
-      position: relative;
-      width: 100%;
-    }
-    footer {
-      width: 100%;
-      height: 110px;
-      /* 내용물에 따라 알맞는 값 설정 */
-      bottom: 0px;
-      position: absolute;
-    }
 
     a {
       color: rgb(0, 0, 0);
@@ -151,12 +140,6 @@
     .user-block-info p{
       color: #98a8b9;
     }
-    .header-menu li{
-      width: 20%;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 800;
-    }
     .pagination {
       width: 50%;
       margin: auto;
@@ -261,12 +244,10 @@
             <div style="width: 100%;">
               <p>해결한 문제</p>
               <p style="color: black; font-weight: bolder;">
-                <b th:text="${user.userSolvedNum}">11</b>문제
+                <a th:href="@{/profile/my-profile}">
+                  <b th:text="${user.userSolvedNum}">11</b>문제
+                </a>
               </p>
-            </div>
-            <div style="width: 100%; padding-top: 10px;">
-              <p>평균 점수</p>
-              <p style="color: black; font-weight: bolder;">2322개</p>
             </div>
           </div>
         </div>
@@ -276,20 +257,7 @@
   </div>
 </div>
 <!-- footer 작성 -->
-<div id='wrap' style="background-color: #e9e9e9;">
-  <section>
-    <!-- 대충 뭐 요소들이 가득차있음 -->
-  </section>
-  <footer>
-    <nav>
-      <a href='https://github.com/johan1103' target='_blank'>Github</a>
-    </nav>
-    <p>
-      <span>저자 : 김태형</span><br />
-      <span>이메일 : johan1103@naver.com</span><br />
-      <span>johan1103 2022. johan1103. All Rights Reserved.</span>
-    </p>
-  </footer>
+<div th:replace='template/footer :: footer'>
 </div>
 </body>
 

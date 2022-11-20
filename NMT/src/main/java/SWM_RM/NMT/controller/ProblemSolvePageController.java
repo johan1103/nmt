@@ -25,8 +25,8 @@ public class ProblemSolvePageController {
         System.out.println("problem id "+problemId+" grade sheet text "+gradeSheetDTO.getText());
         //원래는 스프링 시큐리티로 userId 가져와야 함. 지금은 일단 아무나 가져옴.
         Long userId=userRepository.findUserList().get(0).getId();
-        userGradeSheetService.submitUserGradeSheetService(gradeSheetDTO.getText(),
+        Long gradeSheetId=userGradeSheetService.submitUserGradeSheetService(gradeSheetDTO.getText(),
                 userId,problemId);
-        return "ok";
+        return Long.toString(gradeSheetId);
     }
 }

@@ -35,10 +35,10 @@ public class GradeSheetDetailDTO {
                                                                    Problem problem,
                                                                    User user){
         GradeSheetDetailDTO gradeSheetDetailDTO = new GradeSheetDetailDTO();
-        gradeSheetDetailDTO.setGrade1(userGradeSheet.getGrade1());
-        gradeSheetDetailDTO.setGrade2(userGradeSheet.getGrade2());
-        gradeSheetDetailDTO.setGrade3(userGradeSheet.getGrade3());
-        gradeSheetDetailDTO.setGrade4(userGradeSheet.getGrade4());
+        gradeSheetDetailDTO.setGrade1(Math.round(userGradeSheet.getGrade1() * 100) / 100.0);
+        gradeSheetDetailDTO.setGrade2(Math.round(userGradeSheet.getGrade2() * 100) / 100.0);
+        gradeSheetDetailDTO.setGrade3(Math.round(userGradeSheet.getGrade3() * 100) / 100.0);
+        gradeSheetDetailDTO.setGrade4(Math.round(userGradeSheet.getGrade4() * 100) / 100.0);
         gradeSheetDetailDTO.setGrade5(userGradeSheet.getGrade5());
         gradeSheetDetailDTO.setGrade(userGradeSheet.getGrade());
         gradeSheetDetailDTO.setText(userGradeSheet.getReportText());

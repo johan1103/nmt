@@ -7,29 +7,12 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link th:href="@{/css/header.css}" rel="stylesheet" />
+    <link th:href="@{/css/footer.css}" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <style>
-        #wrap {
-            min-height: 35vh;
-            position: relative;
-            width: 100%;
-        }
-        footer {
-            width: 100%;
-            height: 110px;
-            /* 내용물에 따라 알맞는 값 설정 */
-            bottom: 0px;
-            position: absolute;
-        }
-        .header-menu li {
-            width: 20%;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 800;
-        }
         .problem-li{
             display: flex;
             height: 45px;
@@ -50,13 +33,25 @@
         .nav-pills .show>.nav-link {
             background-color: #0d6efd;
         }
+
+        #answer-container {
+            border-radius: 4px;
+            border: 3px solid;
+            position: absolute;
+            right: 8vw;
+            top: 448px;
+            height: 500px;
+            width: 30%;
+            background-color: rgba(250, 250, 250, 1);
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 <!--페이지 최상위 헤더-->
 <div th:replace='template/header :: header'>
 </div>
-    <div class="container" style="margin-left: auto; margin-top: 45px; margin-right: auto;">
+    <div class="container" style="margin-left: auto;margin-right: auto;padding-bottom: 100px">
         <!-- 문제 제목 -->
         <div style="margin : 20px; margin-bottom: 5px; margin-left: 1%;">
             <h2 th:text="${problem.probTitle}">
@@ -99,51 +94,31 @@
                 </div>
             </div>
             <div>
-                <div style="width: 703px; background-color: #d9d9d9; padding: 20px; border-radius: 10px; margin-left: 1%"
+                <div style="width: 48vw; background-color: #d9d9d9; padding: 20px; border-radius: 10px; margin-left: 1%"
                      th:insert='${problem.probText} :: problem'>
-                </div>
-            </div>
-            <!-- 답안지 블럭 -->
-            <div id="ansBlock" class="wing2" style="border-radius: 4px; border: 3px solid; position : absolute;
-                right: 50px;
-                top: 8px;
-                height: 500px;
-                width: 450px;
-                background-color: rgba(250, 250, 250, 1);
-                text-align: left;
-                ">
-                <h3 style="margin: 8px; border-bottom: solid 2px #0d6efd;">
-                    답안지 제출
-                </h3>
-                <div>
-                    <div style="width: 90%; height: 400px; background-color: #d9d9d9;
-                        margin:auto;">
-                            <textarea id="text-content" rows=5 value={text}
-                                      style="width: 100%;height: 100%; border: none; resize: none;"></textarea>
-                    </div>
-                    <div href="#" id="submit-btn" style="position: absolute; background-color: #0d6efd; color: white;
-                        right: 20px; bottom: 10px; text-align: center; width: 20%; border-radius: 3px;">
-                        제출
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- 답안지 블럭 -->
+    <div id="answer-container" class="wing2">
+        <h3 style="margin: 8px; border-bottom: solid 2px #0d6efd;">
+            답안지 제출
+        </h3>
+        <div>
+            <div style="width: 90%; height: 400px; background-color: #d9d9d9;
+                margin:auto;">
+                    <textarea id="text-content" rows=5 value={text}
+                              style="width: 100%;height: 100%; border: none; resize: none;"></textarea>
+            </div>
+            <div href="#" id="submit-btn" style="position: absolute; background-color: #0d6efd; color: white;
+                right: 20px; bottom: 10px; text-align: center; width: 20%; border-radius: 3px;">
+                제출
+            </div>
+        </div>
+    </div>
     <!-- footer 작성 -->
-    <div id='wrap' style="background-color: #e9e9e9; margin-top: 20%;">
-        <section>
-            <!-- 대충 뭐 요소들이 가득차있음 -->
-        </section>
-        <footer>
-            <nav>
-                <a href='https://github.com/johan1103' target='_blank'>Github</a>
-            </nav>
-            <p>
-                <span>저자 : 김태형</span><br />
-                <span>이메일 : johan1103@naver.com</span><br />
-                <span>johan1103 2022. johan1103. All Rights Reserved.</span>
-            </p>
-        </footer>
+    <div th:replace='template/footer :: footer'>
     </div>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -164,25 +139,31 @@
 
     // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
     const contentTop = content.getBoundingClientRect().top + window.scrollY;
-    const ansBlockLoc=content.getBoundingClientRect();
+    let scrollHeight = Math.max(
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+    );
+    let threshold = 292+515;
+    let bottomScroll = scrollHeight-threshold;
 
     window.addEventListener('scroll', function () {
         if (window.scrollY >= contentTop) {
             wing.classList.add('fixed');
             $wing2[0].style.position = 'fixed';
-            $wing2[0].style.right = '115px';
-            $wing2[0].style.top = '8px';
-            if (window.scrollY > 1023) {
+            $wing2[0].style.right = '8vw';
+            $wing2[0].style.top = '18px';
+            if (window.scrollY > bottomScroll) {
                 wing.classList.remove('fixed');
                 $wing2[0].style.position = 'absolute';
-                $wing2[0].style.right = '43px';
-                $wing2[0].style.top = '634px';
+                $wing2[0].style.right = '8vw';
+                $wing2[0].style.top = bottomScroll+'px';
             }
         } else {
             wing.classList.remove('fixed');
             $wing2[0].style.position = 'absolute';
-            $wing2[0].style.right = '43px';
-            $wing2[0].style.top = '8px';
+            $wing2[0].style.right = '8vw';
+            $wing2[0].style.top = '448px';
         }
     });
     var cnt=0;
@@ -207,7 +188,7 @@
         })
             .then(response => response.text())
             .then(text => {
-               window.location.href = "/problem/user-solved-list?problemId="+problemId;
+               window.location.href = "/grade-sheet?gradeSheetId="+text;
             });
     }
 

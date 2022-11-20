@@ -1,19 +1,18 @@
 img {
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
 }
 a { text-decoration:none }
 
 .header {
     display: flex;
     border-bottom: solid 2px black;
-    padding-top: 7px;
+    padding-top: 15px;
     height: 72px;
     padding-bottom: 3px;
 }
 
 .header-logo {
-    width: 20vw;
     text-align: center;
     padding-top: 11px;
     padding-left: 1vw;
@@ -21,10 +20,10 @@ a { text-decoration:none }
 }
 
 .header-menu li {
-    width: 20%;
     text-align: center;
-    font-size: 18px;
+    font-size: 133%;
     font-weight: 800;
+    padding-left: 50px;
 }
 
 
@@ -32,4 +31,12 @@ a { text-decoration:none }
 .login-btn a:hover{
     background-color: #0078ff;
     color: white;
+}
+
+.container{
+    width:90vw;
+    max-width: none;
+    margin-left: auto;
+    padding-top: 45px;
+    margin-right: auto;
 }

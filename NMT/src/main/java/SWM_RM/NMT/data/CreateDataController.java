@@ -63,6 +63,16 @@ public class CreateDataController {
     @GetMapping("update-problem")
     public String updateDataProblem(@RequestBody CreateProblemDTO problemDTO){
         Problem problem = problemRepository.findProblemById(problemDTO.getProblemId());
+        if(problemDTO.getUnivName()!=null){
+            University university = universityRepository.findUniversityByName(problemDTO.getUnivName());
+            if(university!=null)
+                problem.setUniversity(university);
+        }
+        if(problemDTO.getProbTypeName()!=null){
+            ProbType probType = probTypeRepository.findProbTypeByName(problemDTO.getProbTypeName());
+            if(probType!=null)
+                problem.setProbType(probType);
+        }
         if(problemDTO.getCreateYear()!=null)
             problem.setCreateYear(problemDTO.getCreateYear());
         if(problemDTO.getCompetitionRate()!=null)

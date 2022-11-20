@@ -22,9 +22,8 @@ public class MlScoreSet {
         scoreSet.setGrade4((double) mlScoreSet.getPyohyunScore());
         scoreSet.setGrade5((double) mlScoreSet.getSimilarity());
         Double everageScore=scoreSet.getGrade1()+scoreSet.getGrade2()+ scoreSet.getGrade3()
-                +scoreSet.getGrade4()+scoreSet.getGrade5();
-        everageScore/=3;
-        everageScore=Math.ceil((everageScore*10000)%3);
+                +scoreSet.getGrade4();
+        everageScore/=4;
         scoreSet.setTotalEverage(everageScore);
         return scoreSet;
     }

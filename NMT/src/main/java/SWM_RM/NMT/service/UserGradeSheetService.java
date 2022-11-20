@@ -77,7 +77,7 @@ public class UserGradeSheetService {
      *      2. 제출한 유저 확인해서 유저 정보와 problem 정보 가져와서 userGradeSheet의 Create메서드로 전달
      *      3. (userGradeSheet Create이후)해당 유저 평균 성적표 업데이트 와 성적표 히스토리 create로직 작성
      */
-    public UserGradeSheet submitUserGradeSheetService(String reportText,Long userId,Long problemId){
+    public Long submitUserGradeSheetService(String reportText,Long userId,Long problemId){
         /**
          * userGradeSheet 채점 및 생성
          */
@@ -155,7 +155,7 @@ public class UserGradeSheetService {
         userGradeHistoryRepository.createUserGradeHistory(userGradeHistory,findUser);
         System.out.println("-------create userGradeHistory------");
 
-        return userGradeSheet;
+        return userGradeSheet.getId();
     }
 
     /**
@@ -225,6 +225,7 @@ public class UserGradeSheetService {
         scoreSet.setPyohyunScore((int)Math.ceil((Math.random()*10000)%3));
         scoreSet.setNonliScore((int)Math.ceil((Math.random()*10000)%3));
         scoreSet.setDockhaeScore((int)Math.ceil((Math.random()*10000)%3));
+        scoreSet.setSimilarity((int)Math.ceil((Math.random()*10000)%100));
         try {
             System.out.println("Sleep 3s: "  + LocalDateTime.now());
             TimeUnit.SECONDS.sleep(3);

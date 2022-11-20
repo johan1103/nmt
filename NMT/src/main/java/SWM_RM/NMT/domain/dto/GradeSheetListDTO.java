@@ -27,7 +27,7 @@ public class GradeSheetListDTO {
     public static GradeSheetListDTO gradeSheetDtoConverter(UserGradeSheet userGradeSheet){
         GradeSheetListDTO gradeSheetDTO = new GradeSheetListDTO();
         gradeSheetDTO.setId(userGradeSheet.getId());
-        gradeSheetDTO.setGrade1(userGradeSheet.getGrade1());
+        gradeSheetDTO.setGrade1(Math.round(userGradeSheet.getGrade1() * 100) / 100.0);
         gradeSheetDTO.setGrade2(userGradeSheet.getGrade2());
         gradeSheetDTO.setGrade3(userGradeSheet.getGrade3());
         gradeSheetDTO.setGrade4(userGradeSheet.getGrade4());

@@ -72,7 +72,7 @@ public class UserGradeSheetRepository {
      */
     public List<UserGradeSheet> findUserGradeSheetListByProblemId(Long problemId){
         return em.createQuery("select ugs from UserGradeSheet ugs join fetch ugs.user " +
-                "where ugs.problem.id =: id",UserGradeSheet.class)
+                "where ugs.problem.id =: id order by ugs.createTime DESC",UserGradeSheet.class)
                 .setParameter("id",problemId).getResultList();
     }
 
@@ -84,7 +84,7 @@ public class UserGradeSheetRepository {
      */
     public List<UserGradeSheet> findUserGradeSheetListByUserIdProblemId(Long userId,Long problemId){
         return em.createQuery("select ugs from UserGradeSheet ugs " +
-                "where ugs.user.id =: userId and ugs.problem.id =: problemId",UserGradeSheet.class)
+                "where ugs.user.id =: userId and ugs.problem.id =: problemId order by ugs.createTime DESC",UserGradeSheet.class)
                 .setParameter("userId",userId).setParameter("problemId",problemId)
                 .getResultList();
     }
