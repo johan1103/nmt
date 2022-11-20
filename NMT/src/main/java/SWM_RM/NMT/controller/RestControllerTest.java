@@ -64,7 +64,7 @@ public class RestControllerTest {
     @ResponseBody
     public MlScoreSet restApiTestStart(){
         System.out.println("---called api-start");
-        return restSend.sendEngine("hello",1).getBody();
+        return restSend.sendEngineByForm("피카피카츄",69).getBody();
     }
 
 }

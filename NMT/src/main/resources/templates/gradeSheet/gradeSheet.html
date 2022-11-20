@@ -153,7 +153,7 @@
         <tr>
           <th scope="col" style="padding: 10px; width: 10%;">항목</th>
           <th scope="col" style="padding: 10px; width: 10%;">성적</th>
-          <th scope="col" style="padding: 10px; width: 10%;">백분위</th>
+          <th scope="col" style="padding: 10px; width: 10%;">등급</th>
           <th scope="col" style="padding: 10px;">설명</th>
         </tr>
         </thead>
@@ -163,7 +163,7 @@
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade1}">A</span>
           </td>
-          <td class="per">100%</td>
+          <td class="per" id="total-grade">100%</td>
           <td class="text" style="text-align:left">
             <p>여러가지 세부항목과 전체적인 글의 완성도를 종합해서 평가합니다.</p>
           </td>
@@ -173,7 +173,7 @@
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade2}">A</span>
           </td>
-          <td class="per">96%</td>
+          <td class="per" id="reading-grade">96%</td>
           <td class="text" style="text-align:left">
             <p>제시문을 정확히 이해하고 정확히 제시한 대로 이행했는지 여부를 평가합니다.</p>
           </td>
@@ -183,7 +183,7 @@
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade3}">B</span>
           </td>
-          <td class="per">91%</td>
+          <td class="per" id="logical-grade">91%</td>
           <td class="text" style="text-align:left">
             <p>일관된 논리의 흐름대로 논리를 전개하고 설득력있는 글을 적었는지 여부를 평가합니다.
             </p>
@@ -194,7 +194,7 @@
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade4}">D</span>
           </td>
-          <td class="per">55%</td>
+          <td class="per" id="implement-grade">55%</td>
           <td class="text" style="text-align:left">
             <p>논리적인 글쓰기를 위한 다양한 어휘와 맞춤법에 알맞는 표현을 썼는지 여부를 평가합니다.</p>
           </td>
@@ -204,7 +204,7 @@
           <td class="rating">
             <span class="blind" th:text="${gradeSheet.grade5}">D</span>
           </td>
-          <td class="per">55%</td>
+          <td class="per">B</td>
           <td class="text" style="text-align:left">
             <p>모범답안과 비교해서, 사용자의 답안이 얼마나 비슷한 흐름과 내용을 가졌는지 유사도 정도를 평가합니다.</p>
           </td>
@@ -308,6 +308,11 @@
 
 
   const $backward_btn = document.getElementById('backward-btn');
+  let $total_grade=document.getElementById('total-grade');
+  let $reading_grade=document.getElementById('reading-grade');
+  let $logic_grade=document.getElementById('logical-grade');
+  let $impl_grade=document.getElementById('implement-grade');
+
 
   $backward_btn.addEventListener('click',function(){
     window.location.href="main.html";
@@ -321,6 +326,43 @@
   let userNickname=[[${gradeSheet.userNickName}]];
   let probTitle=[[${gradeSheet.probTitle}]];
 
+  if(grade1>=3){
+    $total_grade.innerText='A';
+  }else if(grade1>=2){
+    $total_grade.innerText='B';
+  }else if(grade1>=1){
+    $total_grade.innerText='C';
+  }else{
+    $total_grade.innerText='D';
+  }
+  if(grade2>=3){
+    $reading_grade.innerText='A';
+  }else if(grade2>=2){
+    $reading_grade.innerText='B';
+  }else if(grade2>=1){
+    $reading_grade.innerText='C';
+  }else{
+    $reading_grade.innerText='D';
+  }
+  if(grade3>=3){
+    $logic_grade.innerText='A';
+  }else if(grade3>=2){
+    $logic_grade.innerText='B';
+  }else if(grade3>=1){
+    $logic_grade.innerText='C';
+  }else{
+    $logic_grade.innerText='D';
+  }
+  if(grade4>=3){
+    $impl_grade.innerText='A';
+  }else if(grade4>=2){
+    $impl_grade.innerText='B';
+  }else if(grade4>=1){
+    $impl_grade.innerText='C';
+  }else{
+    $impl_grade.innerText='D';
+  }
+
   new Chart(document.getElementById("radar-chart"), {
     type: 'radar',
     data: {
@@ -333,7 +375,7 @@
           borderColor: "rgba(179,181,198,1)",
           pointBorderColor: "#fff",
           pointBackgroundColor: "rgba(179,181,198,1)",
-          data: [3, 3, 3, 3, 3]
+          data: [1.5, 1.5, 1.5, 1.5, 1.5]
         }, {
           label: "본인",
           fill: true,
@@ -354,7 +396,7 @@
       scale: {
         ticks : {
           suggestedMin: 0,
-          suggestedMax: 5
+          suggestedMax: 3
         }
       },
     }
@@ -362,14 +404,14 @@
   new Chart(document.getElementById("bar-chart"), {
     type: 'line',
     data: {
-      labels: ["E", "D", "C", "B", "A"],
+      labels: ['하','중','상'],
       datasets: [
         {
-          label: "Population (millions)",
+          label: "명 (millions)",
           //backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
           borderColor: '#0076C0',
           backgroundColor: 'rgba(185, 225, 250,0.5)',
-          data: [478, 2295, 4010, 2478, 1200],
+          data: [55, 71, 36],
 
           drawActiveElementsOnTop : true,
           indexAxis:2,
@@ -381,6 +423,12 @@
       title: {
         display: true,
         text: probTitle+' 점수 분포표'
+      },
+      scale: {
+        ticks : {
+          suggestedMin: 0,
+          suggestedMax: 90
+        }
       }
     }
   });

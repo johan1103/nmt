@@ -90,8 +90,15 @@ public class UserGradeSheetService {
         Problem findProblem = problemRepository.findProblemById(problemId);
         System.out.println("-------find Problem------");
 
-        MlScoreSet mlScoreSet = restSend.sendEngine(reportText,problemId.intValue()).getBody();
-        ScoreSet gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
+        ScoreSet gradedScoreSet;
+        if(problemId==69) {
+            MlScoreSet mlScoreSet = restSend.sendEngineByForm(reportText, problemId.intValue()).getBody();
+            gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
+        }
+        else {
+            MlScoreSet mlScoreSet = UserGradeSheetService.tempGradeEvaluater(reportText);
+            gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
+        }
         userGradeSheet.setGradesByScoreSet(gradedScoreSet);
 
         userGradeSheetRepository.createGradeSheet(findProblem,findUser,userGradeSheet);
@@ -212,24 +219,12 @@ public class UserGradeSheetService {
      * @param text
      * @return
      */
-    public static ScoreSet tempGradeEvaluater(String text){
-        ScoreSet scoreSet = new ScoreSet();
-        scoreSet.setGrade1(Math.ceil((Math.random()*10000)%5));
-        scoreSet.setGrade2(Math.ceil((Math.random()*10000)%5));
-        scoreSet.setGrade3(Math.ceil((Math.random()*10000)%5));
-        scoreSet.setGrade4(Math.ceil((Math.random()*10000)%5));
-        scoreSet.setGrade5(Math.ceil((Math.random()*10000)%5));
-
-        Double sum = 0D;
-        sum+=scoreSet.getGrade1();
-        sum+=scoreSet.getGrade2();
-        sum+=scoreSet.getGrade3();
-        sum+=scoreSet.getGrade4();
-        sum+=scoreSet.getGrade5();
-
-        scoreSet.setTotalEverage(sum/5);
-
-        scoreSet.setGrade("B");
+    public static MlScoreSet tempGradeEvaluater(String text){
+        MlScoreSet scoreSet = new MlScoreSet();
+        scoreSet.setChongjumScore((int)Math.ceil((Math.random()*10000)%3));
+        scoreSet.setPyohyunScore((int)Math.ceil((Math.random()*10000)%3));
+        scoreSet.setNonliScore((int)Math.ceil((Math.random()*10000)%3));
+        scoreSet.setDockhaeScore((int)Math.ceil((Math.random()*10000)%3));
         try {
             System.out.println("Sleep 3s: "  + LocalDateTime.now());
             TimeUnit.SECONDS.sleep(3);

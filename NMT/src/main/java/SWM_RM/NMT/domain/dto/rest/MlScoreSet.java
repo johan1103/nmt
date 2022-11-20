@@ -12,6 +12,7 @@ public class MlScoreSet {
     private Integer dockhaeScore=0;
     private Integer nonliScore=0;
     private Integer pyohyunScore=0;
+    private Integer similarity=0;
 
     public static ScoreSet scoreSetConverter(MlScoreSet mlScoreSet){
         ScoreSet scoreSet = new ScoreSet();
@@ -19,10 +20,11 @@ public class MlScoreSet {
         scoreSet.setGrade2((double) mlScoreSet.getDockhaeScore());
         scoreSet.setGrade3((double) mlScoreSet.getNonliScore());
         scoreSet.setGrade4((double) mlScoreSet.getPyohyunScore());
-        scoreSet.setGrade5(1D);
+        scoreSet.setGrade5((double) mlScoreSet.getSimilarity());
         Double everageScore=scoreSet.getGrade1()+scoreSet.getGrade2()+ scoreSet.getGrade3()
                 +scoreSet.getGrade4()+scoreSet.getGrade5();
-        everageScore/=5;
+        everageScore/=3;
+        everageScore=Math.ceil((everageScore*10000)%3);
         scoreSet.setTotalEverage(everageScore);
         return scoreSet;
     }
