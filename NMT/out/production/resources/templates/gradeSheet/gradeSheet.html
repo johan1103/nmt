@@ -34,7 +34,7 @@
 <div th:replace='template/header :: header'>
 </div>
 
-<div class="container" style="margin-left: auto; margin-right: auto;">
+<div class="container" style="margin-left: auto; margin-right: auto; padding-bottom: 20px;">
   <!-- 문제 제목 -->
   <div style="margin : 20px; display:flex; margin-bottom: 5px; margin-left: 1%;">
     <h2 th:text="${gradeSheet.probTitle}">
@@ -105,7 +105,7 @@
         <span class="special-font" th:text="${gradeSheet.userNickName}">황태호</span>
         님의 성적은
         <span class="special-font">상위</span>
-        <span class="special-font">21</span>
+        <span class="special-font" id="percentage">21</span>
         <span class="special-font">%</span>입니다.
       </div>
     </div>
@@ -264,6 +264,7 @@
   let $logic_value=document.getElementById('logical-value');
   let $impl_value=document.getElementById('implement-value');
   let $similarity_value=document.getElementById('similarity-value');
+  let $percentage=document.getElementById('percentage');
 
   let grade1=[[${gradeSheet.grade1}]];
   let grade2=[[${gradeSheet.grade2}]];
@@ -282,8 +283,9 @@
   $logic_value.innerText=grade3.toFixed(2);
   $impl_value.innerText=grade4.toFixed(2);
   $similarity_value.innerText=grade5+"%";
+  $percentage.innerText=(100-grade1*33);
 
-  if(grade1>=3){
+  if(grade1>=2.5){
     $total_grade.innerText='A';
   }else if(grade1>=2){
     $total_grade.innerText='B';
