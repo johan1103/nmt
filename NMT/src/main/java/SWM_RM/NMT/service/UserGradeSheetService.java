@@ -91,7 +91,7 @@ public class UserGradeSheetService {
         System.out.println("-------find Problem------");
 
         ScoreSet gradedScoreSet;
-        if(problemId==69) {
+        if(problemId==69 || problemId==287) {
             MlScoreSet mlScoreSet = restSend.sendEngineByForm(reportText, problemId.intValue()).getBody();
             gradedScoreSet = MlScoreSet.scoreSetConverter(mlScoreSet);
         }
