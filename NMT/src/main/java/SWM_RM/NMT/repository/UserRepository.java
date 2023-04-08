@@ -23,7 +23,7 @@ public class UserRepository {
     public User createUser(User user){
         //User 생성과 동시에 userGrade 또한 생성해서 연관관계 형성
         UserGrade createUserGrade = userGradeRepository.createUserGrade();
-        user.setUserGrade(createUserGrade);
+        user.initUserGrade(createUserGrade);
         em.persist(user);
         return user;
     }
@@ -43,5 +43,9 @@ public class UserRepository {
      */
     public List<User> findUserList(){
         return em.createQuery("select u from User u",User.class).getResultList();
+    }
+    public List<User> findUserByKey(String key){
+        return em.createQuery("select u from User u where u.nickName=:key",User.class)
+                .setParameter("key",key).getResultList();
     }
 }
