@@ -37,12 +37,6 @@ public class CreateDataController {
         createProblemDatas2.createDatas();
         return "ok";
     }
-    @GetMapping("create-data2")
-    public String createData2Controller(){
-        CreateUserDatas createUserDatas = new CreateUserDatas(userRepository);
-        createUserDatas.createDatas();
-        return "ok";
-    }
     @GetMapping("create-problem")
     public String createDataProblem(@RequestBody CreateProblemDTO problemDTO){
         University university = universityRepository.findUniversityByName(problemDTO.getUnivName());
