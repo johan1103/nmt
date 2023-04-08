@@ -11,14 +11,14 @@ import lombok.Setter;
 public class UserDTO {
     private String nickName;
     private String strick;
-    private String email;
+    private String oauthKey;
     private Integer userSolvedNum;
     //private Role role;
 
     public static UserDTO userDtoConverter(User user,Integer solvedNum){
         UserDTO userDTO = new UserDTO();
         userDTO.setStrick(user.getStrick());
-        userDTO.setEmail(user.getEmail());
+        userDTO.setOauthKey(user.getOauthKey());
         userDTO.setNickName(user.getNickName());
         userDTO.setUserSolvedNum(solvedNum);
         return userDTO;
