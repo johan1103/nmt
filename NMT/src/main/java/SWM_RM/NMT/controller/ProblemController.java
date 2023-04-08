@@ -1,6 +1,7 @@
 package SWM_RM.NMT.controller;
 import SWM_RM.NMT.domain.User;
 import SWM_RM.NMT.domain.dto.*;
+import SWM_RM.NMT.security.JwtTokenProvider;
 import SWM_RM.NMT.service.ProblemService;
 import SWM_RM.NMT.service.UniversityService;
 import SWM_RM.NMT.service.UserGradeSheetService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import java.util.List;
 
 @Controller
@@ -21,23 +23,19 @@ public class ProblemController {
     private final UserGradeSheetService userGradeSheetService;
     private final UserService userService;
     private final UniversityService universityService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @GetMapping("")
     public String problemController(Model model
             , @RequestParam(value = "problemId") Long problemId){
         ProblemDetailDTO problemDetailDTO=problemService.problemPageService(problemId);
         model.addAttribute("problem",problemDetailDTO);
-        System.out.println("----problem title: "+problemDetailDTO.getProbTitle());
         return "problems/main";
     }
     @GetMapping("/user-solved-list")
-    public String userSolvedListController(Model model, @RequestParam(value = "problemId") Long problemId){
-        /**
-         * user id는 security에서 가져와야 함
-         */
-        Long userId = 21L;
-        System.out.println("----------user-solved-list controller--------");
-        System.out.println(problemId+" "+userId);
+    public String userSolvedListController(Model model,@CookieValue(value = "nmt-token")Cookie cookie,
+                                           @RequestParam(value = "problemId") Long problemId){
+        Long userId = jwtTokenProvider.getUserIdFromToken(cookie.getValue());
         List<GradeSheetListDTO> userGradeSheetList=userGradeSheetService.userGradeSheetListService(userId,problemId);
         ProblemDetailDTO problemDetail=problemService.problemPageService(problemId);
         model.addAttribute("gradeList",userGradeSheetList);
@@ -57,13 +55,9 @@ public class ProblemController {
     }
 
     @GetMapping("/list")
-    public String problemListController(Model model,
+    public String problemListController(Model model, @CookieValue(value = "nmt-token")Cookie cookie,
                                         @RequestParam(value = "univName") @Nullable String univName){
-        /**
-         * user id는 security에서 가져와야 함
-         */
-        Long userId = 21L;
-        System.out.println("-----------problem-list controller");
+        Long userId = jwtTokenProvider.getUserIdFromToken(cookie.getValue());
         List<ProblemListDTO> problemDtoList;
         List<UniversityDTO> universityDtoList;
         if(univName==null)
@@ -77,4 +71,5 @@ public class ProblemController {
         model.addAttribute("universities",universityDtoList);
         return "problems/problemList";
     }
+
 }
