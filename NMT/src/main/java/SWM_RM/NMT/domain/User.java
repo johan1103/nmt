@@ -4,15 +4,19 @@ import SWM_RM.NMT.config.auth.Role;
 import SWM_RM.NMT.domain.compositeKey.UserUniversityPK;
 import SWM_RM.NMT.domain.dto.UserDTO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "Users")
+@NoArgsConstructor
 public class User {
     @Id @GeneratedValue
     private Long id;
@@ -20,28 +24,23 @@ public class User {
     private String nickName;
     @Column
     private String strick;
-    @Column
-    private String email;
+    @Column(unique = true)
+    private String oauthKey;
     @OneToOne
     private UserGrade userGrade;
     @Column
     private Double exp;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
 
-    public String getRoleKey() {
-        return this.role.getKey();
+    protected User(String nickName, String oauthKey){
+        this.nickName=nickName;
+        this.oauthKey=oauthKey;
+        this.strick="empty";
+        this.exp=0D;
     }
-    public UserDTO userToDTO(User user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setNickName(user.getNickName());
-        userDTO.setStrick(user.getStrick());
-        userDTO.setEmail(user.getEmail());
-        return userDTO;
+    public static User create(String nickName, String oauthKey){
+        return new User(nickName,oauthKey);
     }
-    /*
-    @OneToMany(mappedBy = "user")
-    List<UserProblemSheet> userSheets;
-    */
+    public void initUserGrade(UserGrade userGrade){
+        this.userGrade=userGrade;
+    }
 }
